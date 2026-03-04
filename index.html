@@ -9,13 +9,9 @@
 :root{--k:#060606;--y:#FFE500;--w:#f0f0ee;--g:#00ff41;--r:#ff3333;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;height:100%;overflow:hidden;background:var(--k);color:var(--w);cursor:none;}
-
-/* CURSOR */
 #cur{position:fixed;width:12px;height:12px;background:var(--y);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:transform 0.1s;}
 #cur.big{transform:translate(-50%,-50%) scale(2.5);}
 #cur2{position:fixed;width:28px;height:28px;border:1px solid rgba(255,229,0,0.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left 0.12s,top 0.12s,transform 0.2s;}
-
-/* STAGE */
 #stage{position:fixed;top:0;left:0;width:600vw;height:100vh;display:flex;transition:transform 0.9s cubic-bezier(0.77,0,0.175,1);}
 .world{width:100vw;height:100vh;position:relative;overflow:hidden;flex-shrink:0;}
 #w0{background:var(--k);}
@@ -25,15 +21,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--k);color:var(-
 #w4{background:linear-gradient(180deg,#03000a 0%,#07001a 50%,#020008 100%);}
 #w5{background:linear-gradient(180deg,#000500 0%,#000e00 50%,#000400 100%);}
 .world::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.05) 3px,rgba(0,0,0,0.05) 4px);pointer-events:none;z-index:1;}
-
-/* GRAIN */
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");pointer-events:none;z-index:500;opacity:0.3;}
-
-/* GROUND */
 #gnd{position:fixed;bottom:78px;left:0;right:0;height:3px;z-index:50;pointer-events:none;transition:background 0.5s;}
-
-/* DAVE */
-#dave{position:fixed;bottom:81px;z-index:9000;pointer-events:none;transition:left 0s;}
+#dave{position:fixed;bottom:81px;z-index:9000;pointer-events:none;}
 .dw{image-rendering:pixelated;width:44px;height:58px;position:relative;}
 .px{position:absolute;image-rendering:pixelated;}
 .dc{width:28px;height:8px;background:#cc2200;top:0;left:8px;}
@@ -55,8 +45,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .dw.wl{animation:wl 0.26s steps(2) infinite;}
 .dw.idle{animation:ib 1.4s steps(2) infinite;}
 .dw.jump{animation:jmp 0.52s ease-out forwards;}
-
-/* NAV */
 #nav{position:fixed;top:0;left:0;right:0;padding:16px 36px;display:flex;justify-content:space-between;align-items:center;z-index:200;background:linear-gradient(to bottom,rgba(6,6,6,0.98),transparent);}
 .nlogo{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--y);letter-spacing:1px;}
 .nright{display:flex;align-items:center;gap:24px;}
@@ -65,22 +53,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .ndot.active{background:var(--y);border-color:var(--y);box-shadow:0 0 8px rgba(255,229,0,0.4);}
 .nemail{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);text-decoration:none;letter-spacing:1px;border:1px solid rgba(255,255,255,0.08);padding:6px 10px;transition:all 0.2s;}
 .nemail:hover{color:var(--y);border-color:var(--y);}
-
-/* SOCIAL */
 #sbar{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;z-index:200;}
 .slink{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.15);text-decoration:none;writing-mode:vertical-rl;letter-spacing:2px;transition:color 0.2s;}
 .slink:hover{color:var(--y);}
-
-/* COUNTER + HINT */
 #wct{position:fixed;bottom:20px;right:34px;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.1);z-index:200;}
-#hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.12);letter-spacing:3px;z-index:200;animation:blink 2.2s steps(1) infinite;white-space:nowrap;}
+#hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.12);letter-spacing:3px;z-index:200;white-space:nowrap;animation:blink 2.2s steps(1) infinite;}
 @keyframes blink{50%{opacity:0}}
-
-/* FLASH */
 #flash{position:fixed;inset:0;background:var(--y);opacity:0;pointer-events:none;z-index:9990;transition:opacity 0.08s;}
-
-/* ── HOME WORLD ── */
-.hcontent{position:absolute;inset:0;display:flex;align-items:center;padding:0 56px;z-index:10;gap:0;}
+.hcontent{position:absolute;inset:0;display:flex;align-items:center;padding:0 56px;z-index:10;}
 .hleft{flex:1;padding-right:40px;}
 .htag{font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.4);letter-spacing:4px;margin-bottom:18px;}
 .hname{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,13vw,168px);line-height:0.83;letter-spacing:-2px;}
@@ -93,14 +73,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
 .hstext{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(0,255,65,0.5);letter-spacing:2px;}
 .hdisc{margin-top:14px;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.18);letter-spacing:1px;}
-
-/* WHAT'S NEXT TICKER */
-#ticker{position:fixed;bottom:0;left:0;right:0;height:32px;background:var(--y);z-index:9000;overflow:hidden;display:flex;align-items:center;}
+#ticker{position:fixed;bottom:0;left:0;right:0;height:32px;background:var(--y);z-index:300;overflow:hidden;display:flex;align-items:center;pointer-events:none;}
 .tick-inner{display:flex;white-space:nowrap;animation:tick 22s linear infinite;}
-.tick-item{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--k);padding:0 32px;letter-spacing:2px;}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* MARIO BOXES */
+.tick-item{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--k);padding:0 32px;letter-spacing:2px;}
 .bcol{position:absolute;right:48px;bottom:120px;display:flex;flex-direction:row;gap:18px;z-index:10;align-items:flex-end;}
 .mbox{position:relative;cursor:none;display:flex;flex-direction:column;align-items:center;}
 .mbi{width:64px;height:64px;border:2px solid rgba(255,255,255,0.1);background:#0d0d0d;display:flex;align-items:center;justify-content:center;position:relative;transition:all 0.2s;}
@@ -114,16 +90,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .bumping{animation:bump 0.35s ease;}
 @keyframes coinfly{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-80px) scale(0.3)}}
 .cpop{position:fixed;font-family:'Press Start 2P',monospace;font-size:13px;color:var(--y);pointer-events:none;z-index:9999;animation:coinfly 0.75s ease-out forwards;}
-
-/* ── WORLD CONTENT ── */
 .wc{position:absolute;top:0;left:0;bottom:82px;width:56%;display:flex;flex-direction:column;justify-content:center;padding:80px 56px 20px;z-index:10;}
 .wlabel{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.35);letter-spacing:5px;margin-bottom:10px;}
 .wtit{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,104px);line-height:0.86;letter-spacing:-1px;margin-bottom:6px;}
 .wtit .wy{color:var(--y);}
 .wtit .ww{color:var(--w);}
 .wdesc{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);margin-bottom:20px;line-height:1.8;letter-spacing:0.5px;}
-
-/* VIDEO GRID */
 .vg{display:grid;gap:10px;}
 .c1{grid-template-columns:1fr;max-width:460px;}
 .c2{grid-template-columns:1fr 1fr;}
@@ -144,8 +116,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .vc:hover .vplay{opacity:1;}
 .thumb-fallback{position:absolute;inset:0;background:linear-gradient(135deg,#0f0f0f,#181818);display:flex;align-items:center;justify-content:center;z-index:1;}
 .thumb-fallback span{font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.18);letter-spacing:2px;}
-
-/* IG CARDS */
 .ig-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;position:relative;}
 .ig-bg::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,0.012) 0,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 8px);}
 .ig-ico{font-size:26px;position:relative;z-index:1;}
@@ -153,9 +123,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .ig-tap{font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.15);z-index:1;margin-top:3px;letter-spacing:1px;}
 .igopen{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.85);background:rgba(0,0,0,0.85);padding:8px 10px;opacity:0;transition:opacity 0.2s;text-align:center;line-height:2.2;white-space:nowrap;z-index:5;border:1px solid rgba(255,229,0,0.25);}
 .vc:hover .igopen{opacity:1;}
-
-/* VIBE WORLD */
-.vibewrap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:80px 56px 100px;z-index:10;}
+.wpanel{position:absolute;right:0;top:0;bottom:82px;width:40%;display:flex;flex-direction:column;justify-content:center;padding:80px 48px 20px 20px;z-index:10;pointer-events:none;}
+.wstat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,72px);line-height:1;color:var(--y);}
+.wstat-label{font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.2);letter-spacing:3px;margin-top:4px;}
+.wstat-divider{width:32px;height:1px;background:rgba(255,229,0,0.15);margin:20px 0;}
+.wrole{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.18);line-height:2;letter-spacing:0.5px;}
+.wrole .hi{color:rgba(255,229,0,0.4);}
+.wtag-list{display:flex;flex-direction:column;gap:8px;margin-top:18px;}
+.wtag{font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.12);letter-spacing:2px;padding:6px 8px;border:1px solid rgba(255,255,255,0.05);display:inline-block;width:fit-content;}
+.vibewrap{position:absolute;top:0;left:0;bottom:82px;width:58%;display:flex;flex-direction:column;justify-content:center;padding:80px 56px 20px;z-index:10;}
 .vibtit{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,8vw,112px);line-height:0.84;margin-bottom:8px;}
 .stk{text-decoration:line-through;color:rgba(255,255,255,0.1);}
 .vibsub{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(0,255,65,0.3);letter-spacing:4px;margin-bottom:30px;}
@@ -166,55 +142,49 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .vc2name{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--w);display:block;}
 .vc2desc{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);margin-top:5px;line-height:1.7;}
 .aibadge{margin-top:22px;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,65,0.2);border:1px solid rgba(0,255,65,0.08);padding:6px 10px;display:inline-block;}
-
-/* NOW READING / WATCHING STRIP on vibe world */
 .nowstrip{position:absolute;right:40px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;z-index:10;max-width:220px;}
 .nowcard{border:1px solid rgba(0,255,65,0.1);padding:14px 16px;background:rgba(0,255,65,0.015);}
 .nowlabel{font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,65,0.3);letter-spacing:2px;margin-bottom:8px;}
 .nowtext{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);line-height:1.7;}
 .nowtext .hi{color:rgba(0,255,65,0.6);}
-
-/* LIGHTBOX */
 #lb{position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:10000;display:none;align-items:center;justify-content:center;flex-direction:column;}
 #lb.open{display:flex;}
 #lbclose{position:absolute;top:20px;right:28px;font-family:'Press Start 2P',monospace;font-size:9px;color:rgba(255,255,255,0.28);cursor:none;transition:color 0.2s;z-index:10001;}
 #lbclose:hover{color:var(--y);}
 #lbframe{width:80vw;max-width:1100px;aspect-ratio:16/9;border:1px solid rgba(255,229,0,0.1);}
 #lbtitle{margin-top:12px;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.2);letter-spacing:2px;}
-
-/* MOBILE NOTICE */
 #mob{display:none;position:fixed;inset:0;background:var(--k);z-index:99999;align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:40px;text-align:center;}
 @media(max-width:768px){#mob{display:flex;}}
 .mobt{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--y);line-height:2;margin-bottom:8px;}
 .mobs{font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.3);line-height:1.8;}
 .moblink{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--g);text-decoration:none;border:1px solid rgba(0,255,65,0.3);padding:10px 14px;margin-top:8px;display:inline-block;}
+@keyframes wwave{from{background-position:0 0}to{background-position:36px 0}}
+@keyframes bboat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
+@keyframes road{from{background-position:0 0}to{background-position:60px 0}}
+@keyframes grgr{0%{transform:translate(0,0)}25%{transform:translate(2px,-2px)}50%{transform:translate(-2px,2px)}75%{transform:translate(1px,1px)}}
+@keyframes clap{0%,80%,100%{transform:rotate(-6deg)}86%{transform:rotate(-20deg)}93%{transform:rotate(-6deg)}}
+@keyframes discos{to{transform:translateX(-50%) rotate(360deg)}}
+@keyframes scan{from{top:0}to{top:100vh}}
+@keyframes floatup{from{transform:translateY(0) rotate(0deg);opacity:0.6}to{transform:translateY(-110vh) rotate(180deg);opacity:0}}
+@keyframes mfall{from{transform:translateY(-80px)}to{transform:translateY(100vh)}}
 </style>
 </head>
 <body>
-
-<!-- MOBILE NOTICE -->
 <div id="mob">
   <div style="font-size:40px">🎮</div>
   <div class="mobt">BEST ON<br>DESKTOP</div>
   <p class="mobs">This portfolio was built<br>for a big screen.<br>Grab a laptop.</p>
   <a href="https://www.instagram.com/malanidoosra/" target="_blank" class="moblink">↗ INSTAGRAM</a>
 </div>
-
 <div id="cur"></div>
 <div id="cur2"></div>
 <div id="flash"></div>
-
-<!-- LIGHTBOX -->
 <div id="lb">
   <div id="lbclose" onclick="closeLB()">[ ESC ] CLOSE</div>
   <iframe id="lbframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
   <div id="lbtitle"></div>
 </div>
-
-<!-- GROUND -->
 <div id="gnd"></div>
-
-<!-- DAVE -->
 <div id="dave" style="left:90px">
   <div class="dw idle" id="DB">
     <div class="px dc"></div><div class="px db2"></div>
@@ -224,8 +194,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="px dsl"></div><div class="px dsr"></div>
   </div>
 </div>
-
-<!-- NAV -->
 <div id="nav">
   <div class="nlogo">malanidoosra</div>
   <div class="nright">
@@ -240,81 +208,46 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <a href="mailto:malanidoosra@gmail.com" class="nemail">HIRE ME ↗</a>
   </div>
 </div>
-
-<!-- SOCIAL -->
 <div id="sbar">
   <a href="https://www.youtube.com/@Malanidoosra" target="_blank" class="slink">YOUTUBE</a>
   <a href="https://www.instagram.com/malanidoosra/" target="_blank" class="slink">INSTAGRAM</a>
 </div>
 <div id="wct">01 / 06</div>
-<div id="hint">MOVE CURSOR → TO EXPLORE</div>
+<div id="hint">MOVE CURSOR &#8594; TO EXPLORE</div>
+<div id="ticker"><div class="tick-inner" id="ti"></div></div>
 
-<!-- TICKER -->
-<div id="ticker">
-  <div class="tick-inner" id="ti"></div>
-</div>
-
-<!-- STAGE -->
 <div id="stage">
 
-<!-- ═══ W0: HOME ═══ -->
 <div class="world" id="w0">
   <canvas id="sparks" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></canvas>
-
-  <!-- animated question marks floating -->
   <div id="floaters" style="position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;"></div>
-
   <div class="hcontent">
     <div class="hleft">
-      <div class="htag">↳ CURIOUS · CREATOR · AI-NATIVE</div>
+      <div class="htag">&#8627; CURIOUS &middot; CREATOR &middot; AI-NATIVE</div>
       <div class="hname">
         <div class="wh">MALANI</div>
         <div class="yl">DOOSRA</div>
       </div>
-      <p class="hbio">
-        Can't sit still. Always asking <span class="hi">what's next.</span><br>
-        I make videos. I build with AI.<br>
-        I chase the things that don't exist yet.
-      </p>
+      <p class="hbio">Can't sit still. Always asking <span class="hi">what's next.</span><br>I make videos. I build with AI.<br>I chase the things that don't exist yet.</p>
       <div class="hstatus">
         <div class="hsdot"></div>
-        <div class="hstext">CURRENTLY EXPLORING · OPEN TO WORK</div>
+        <div class="hstext">CURRENTLY EXPLORING &middot; OPEN TO WORK</div>
       </div>
       <div class="hdisc">* this site was mostly vibe-coded at 2am</div>
     </div>
   </div>
-
-  <!-- ? BOXES -->
   <div class="bcol">
-    <div class="mbox" onclick="jumpBox(1,this)">
-      <div class="mbi"><span class="mbq">?</span></div>
-      <div class="mbl">TRAVEL</div>
-    </div>
-    <div class="mbox" onclick="jumpBox(2,this)">
-      <div class="mbi"><span class="mbq">?</span></div>
-      <div class="mbl">DOCU</div>
-    </div>
-    <div class="mbox" onclick="jumpBox(3,this)">
-      <div class="mbi"><span class="mbq">?</span></div>
-      <div class="mbl">AD / BTS</div>
-    </div>
-    <div class="mbox" onclick="jumpBox(4,this)">
-      <div class="mbi"><span class="mbq">?</span></div>
-      <div class="mbl">MV</div>
-    </div>
-    <div class="mbox" onclick="jumpBox(5,this)">
-      <div class="mbi"><span class="mbq">?</span></div>
-      <div class="mbl">BUILT</div>
-    </div>
+    <div class="mbox" onclick="jumpBox(1,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">TRAVEL</div></div>
+    <div class="mbox" onclick="jumpBox(2,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">DOCU</div></div>
+    <div class="mbox" onclick="jumpBox(3,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">AD / BTS</div></div>
+    <div class="mbox" onclick="jumpBox(4,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">MV</div></div>
+    <div class="mbox" onclick="jumpBox(5,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">BUILT</div></div>
   </div>
 </div>
 
-<!-- ═══ W1: TRAVEL ═══ -->
 <div class="world" id="w1">
   <div id="tstars" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></div>
-  <!-- moon -->
-  <div style="position:absolute;top:38px;right:16%;width:48px;height:48px;border-radius:50%;background:#c8d8ee;box-shadow:0 0 28px rgba(160,190,255,0.28);z-index:3;"></div>
-  <!-- mountains -->
+  <div style="position:absolute;top:38px;right:16%;width:48px;height:48px;border-radius:50%;background:#c8d8ee;box-shadow:0 0 28px rgba(160,190,255,0.28);z-index:3;pointer-events:none;"></div>
   <div style="position:absolute;z-index:3;bottom:115px;left:0;right:0;pointer-events:none;">
     <div style="position:absolute;bottom:0;left:3%;border-left:155px solid transparent;border-right:155px solid transparent;border-bottom:265px solid #0f2238;"></div>
     <div style="position:absolute;bottom:0;left:20%;border-left:200px solid transparent;border-right:200px solid transparent;border-bottom:330px solid #152e4a;"></div>
@@ -324,102 +257,93 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div style="position:absolute;bottom:330px;left:calc(20% + 158px);border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:82px solid #cce0ff;"></div>
     <div style="position:absolute;bottom:295px;left:calc(44% + 125px);border-left:44px solid transparent;border-right:44px solid transparent;border-bottom:70px solid #bbcfe0;"></div>
   </div>
-  <!-- sea -->
-  <div style="position:absolute;bottom:0;left:0;right:0;height:115px;background:linear-gradient(180deg,#0a3060,#071e45);z-index:4;">
+  <div style="position:absolute;bottom:0;left:0;right:0;height:115px;background:linear-gradient(180deg,#0a3060,#071e45);z-index:4;pointer-events:none;">
     <div style="position:absolute;top:0;left:0;right:0;height:18px;background:repeating-linear-gradient(90deg,rgba(255,255,255,0.06) 0,rgba(255,255,255,0.06) 18px,transparent 18px,transparent 36px);animation:wwave 3s linear infinite;"></div>
   </div>
-  <!-- boat -->
-  <div style="position:absolute;bottom:90px;left:54%;z-index:5;animation:bboat 4.5s ease-in-out infinite;">
+  <div style="position:absolute;bottom:90px;left:54%;z-index:5;animation:bboat 4.5s ease-in-out infinite;pointer-events:none;">
     <div style="position:relative;width:62px;">
       <div style="width:3px;height:52px;background:#3e2006;position:absolute;bottom:18px;left:28px;"></div>
       <div style="width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-bottom:48px solid rgba(232,222,200,0.88);position:absolute;bottom:18px;left:12px;"></div>
       <div style="width:62px;height:20px;background:#6a3408;border-radius:0 0 12px 12px;"></div>
     </div>
   </div>
-  @keyframes wwave{from{background-position:0 0}to{background-position:36px 0}}
-  @keyframes bboat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
   <div class="wc">
-    <div class="wlabel">WORLD 01 — TRAVEL</div>
+    <div class="wlabel">WORLD 01 &mdash; TRAVEL</div>
     <div class="wtit"><span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span></div>
     <div class="wdesc">Solo trips. Strange places.<br>No script, just instinct + a camera.</div>
     <div class="vg c2" style="max-height:310px;">
-      <div class="vc" onclick="openYT('xllgMv7vr-g','Solo — Shot &amp; Edited Alone')">
+      <div class="vc" onclick="openYT('xllgMv7vr-g','Solo - Shot and Edited Alone')">
         <img src="https://img.youtube.com/vi/xllgMv7vr-g/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/xllgMv7vr-g/hqdefault.jpg'" alt="">
-        <div class="vovl"><div class="vt">Solo — Shot &amp; Edited Alone</div><div class="vm"><span class="vp">YOUTUBE</span><span class="vv">Full film</span></div></div>
+        <div class="vovl"><div class="vt">Solo &mdash; Shot &amp; Edited Alone</div><div class="vm"><span class="vp">YOUTUBE</span><span class="vv">Full film</span></div></div>
         <div class="vplay"></div>
       </div>
       <a href="https://www.instagram.com/reel/DTK1ehGjQiO/" target="_blank" class="vc">
-        <div class="ig-bg" style="background:linear-gradient(135deg,#04121e,#0a2038);">
-          <span class="ig-ico">🎥</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH ↗</span>
-        </div>
+        <div class="ig-bg" style="background:linear-gradient(135deg,#04121e,#0a2038);"><span class="ig-ico">&#127909;</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH</span></div>
         <div class="vovl"><div class="vt">Mountains Don't Wait</div><div class="vm"><span class="vp">INSTAGRAM</span></div></div>
-        <div class="igopen">OPEN IN INSTAGRAM ↗</div>
+        <div class="igopen">OPEN IN INSTAGRAM &#8599;</div>
       </a>
       <a href="https://www.instagram.com/reel/DTC706YjYeS/" target="_blank" class="vc">
-        <div class="ig-bg" style="background:linear-gradient(135deg,#030e18,#081a2c);">
-          <span class="ig-ico">🎥</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH ↗</span>
-        </div>
+        <div class="ig-bg" style="background:linear-gradient(135deg,#030e18,#081a2c);"><span class="ig-ico">&#127909;</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH</span></div>
         <div class="vovl"><div class="vt">Monsoon Roads</div><div class="vm"><span class="vp">INSTAGRAM</span></div></div>
-        <div class="igopen">OPEN IN INSTAGRAM ↗</div>
+        <div class="igopen">OPEN IN INSTAGRAM &#8599;</div>
       </a>
       <a href="https://www.instagram.com/reel/DS385sPDepS/" target="_blank" class="vc">
-        <div class="ig-bg" style="background:linear-gradient(135deg,#030c14,#071520);">
-          <span class="ig-ico">🎥</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH ↗</span>
-        </div>
+        <div class="ig-bg" style="background:linear-gradient(135deg,#030c14,#071520);"><span class="ig-ico">&#127909;</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH</span></div>
         <div class="vovl"><div class="vt">Golden Hour, No Plan</div><div class="vm"><span class="vp">INSTAGRAM</span></div></div>
-        <div class="igopen">OPEN IN INSTAGRAM ↗</div>
+        <div class="igopen">OPEN IN INSTAGRAM &#8599;</div>
       </a>
     </div>
   </div>
+  <div class="wpanel">
+    <div class="wstat-num">3+</div><div class="wstat-label">COUNTRIES FILMED</div>
+    <div class="wstat-divider"></div>
+    <div class="wrole">Solo cinematographer.<br>Writer. Editor.<br><span class="hi">One person. Full film.</span></div>
+    <div class="wtag-list"><div class="wtag">SONY A7 SERIES</div><div class="wtag">SOLO PRODUCTION</div><div class="wtag">COLOR + GRADE</div></div>
+  </div>
 </div>
 
-<!-- ═══ W2: DOCUMENTARY ═══ -->
 <div class="world" id="w2">
-  <!-- street bg -->
-  <div style="position:absolute;bottom:80px;left:0;right:0;height:150px;background:repeating-linear-gradient(90deg,#0c0c0c 0,#0c0c0c 60px,#080808 60px,#080808 120px);z-index:2;"></div>
-  <!-- street lamp -->
-  <div style="position:absolute;bottom:80px;left:18%;z-index:5;">
+  <div style="position:absolute;bottom:80px;left:0;right:0;height:150px;background:repeating-linear-gradient(90deg,#0c0c0c 0,#0c0c0c 60px,#080808 60px,#080808 120px);z-index:2;pointer-events:none;"></div>
+  <div style="position:absolute;bottom:80px;left:18%;z-index:5;pointer-events:none;">
     <div style="width:4px;height:160px;background:#1a1a1a;margin:0 auto;"></div>
     <div style="width:40px;height:8px;background:#1e1e1e;margin-left:-18px;margin-top:-4px;border-radius:4px 4px 0 0;"></div>
     <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,210,80,0.75);box-shadow:0 0 30px 14px rgba(255,185,40,0.1);margin:-4px auto;"></div>
   </div>
-  <div style="position:absolute;bottom:80px;left:48%;z-index:5;">
+  <div style="position:absolute;bottom:80px;left:48%;z-index:5;pointer-events:none;">
     <div style="width:4px;height:140px;background:#1a1a1a;margin:0 auto;"></div>
     <div style="width:40px;height:8px;background:#1e1e1e;margin-left:-18px;margin-top:-4px;border-radius:4px 4px 0 0;"></div>
     <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,210,80,0.6);box-shadow:0 0 28px 12px rgba(255,185,40,0.08);margin:-4px auto;"></div>
   </div>
-  <!-- road -->
-  <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:#111;z-index:3;border-top:2px solid #1a1a1a;">
+  <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:#111;z-index:3;border-top:2px solid #1a1a1a;pointer-events:none;">
     <div style="position:absolute;top:38px;left:0;right:0;height:4px;background:repeating-linear-gradient(90deg,rgba(255,229,0,0.3) 0,rgba(255,229,0,0.3) 30px,transparent 30px,transparent 60px);animation:road 1.8s linear infinite;"></div>
   </div>
-  @keyframes road{from{background-position:0 0}to{background-position:60px 0}}
-  <!-- film grain -->
   <div style="position:absolute;inset:0;z-index:6;pointer-events:none;opacity:0.5;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.7%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.06%22/%3E%3C/svg%3E');animation:grgr 0.12s steps(1) infinite;"></div>
-  @keyframes grgr{0%{transform:translate(0,0)}25%{transform:translate(2px,-2px)}50%{transform:translate(-2px,2px)}75%{transform:translate(1px,1px)}}
   <div class="wc">
-    <div class="wlabel">WORLD 02 — DOCUMENTARY</div>
+    <div class="wlabel">WORLD 02 &mdash; DOCUMENTARY</div>
     <div class="wtit"><span class="wy">REAL</span><br><span class="ww">STORIES</span></div>
     <div class="wdesc">Documentaries built on the streets.<br>No studios. Just truth + a lens.</div>
     <div class="vg c2" style="max-height:285px;">
-      <div class="vc" onclick="openYT('a8UQpuG5k08','Untold — 350K Views on Instagram')">
+      <div class="vc" onclick="openYT('a8UQpuG5k08','Untold')">
         <img src="https://img.youtube.com/vi/a8UQpuG5k08/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/a8UQpuG5k08/hqdefault.jpg'" alt="">
         <div class="vovl"><div class="vt">Untold</div><div class="vm"><span class="vp">YOUTUBE</span><span class="vv">Full documentary</span><span class="vhot">350K IG</span></div></div>
         <div class="vplay"></div>
       </div>
       <a href="https://www.instagram.com/reel/DT-jFVJDAOc/" target="_blank" class="vc">
-        <div class="ig-bg" style="background:linear-gradient(135deg,#100800,#1c0e00);">
-          <span class="ig-ico">🎥</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH ↗</span>
-        </div>
+        <div class="ig-bg" style="background:linear-gradient(135deg,#100800,#1c0e00);"><span class="ig-ico">&#127909;</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH</span></div>
         <div class="vovl"><div class="vt">Cut From The Floor</div><div class="vm"><span class="vp">INSTAGRAM</span><span class="vhot">80K IG</span></div></div>
-        <div class="igopen">OPEN IN INSTAGRAM ↗</div>
+        <div class="igopen">OPEN IN INSTAGRAM &#8599;</div>
       </a>
     </div>
   </div>
+  <div class="wpanel">
+    <div class="wstat-num">350K</div><div class="wstat-label">VIEWS ON INSTAGRAM</div>
+    <div class="wstat-divider"></div>
+    <div class="wrole">Street-level stories.<br>Real people, real stakes.<br><span class="hi">No studio. No script.</span></div>
+    <div class="wtag-list"><div class="wtag">DOCUMENTARY</div><div class="wtag">SHOOT + EDIT</div><div class="wtag">ORIGINAL STORY</div></div>
+  </div>
 </div>
 
-<!-- ═══ W3: AD / BTS ═══ -->
 <div class="world" id="w3">
-  <!-- studio lights -->
   <div style="position:absolute;top:0;left:20%;z-index:3;pointer-events:none;">
     <div style="width:50px;height:14px;background:#1c1800;border:2px solid #2e2800;margin-left:-22px;"></div>
     <div style="width:3px;height:170px;background:#111000;margin:0 auto;"></div>
@@ -430,136 +354,116 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div style="width:3px;height:140px;background:#111000;margin:0 auto;"></div>
     <div style="width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(255,229,0,0.09) 0%,transparent 70%);margin-left:-48px;margin-top:-35px;"></div>
   </div>
-  <!-- clapboard -->
-  <div style="position:absolute;bottom:130px;left:6%;z-index:6;transform:rotate(-6deg);animation:clap 4s ease-in-out infinite;">
-    <div style="width:86px;height:22px;background:#1a1a1a;border:2px solid #2a2a2a;overflow:hidden;">
-      <div style="height:100%;background:repeating-linear-gradient(90deg,#222 0,#222 10px,#111 10px,#111 20px);"></div>
-    </div>
+  <div style="position:absolute;bottom:130px;left:6%;z-index:6;transform:rotate(-6deg);animation:clap 4s ease-in-out infinite;pointer-events:none;">
+    <div style="width:86px;height:22px;background:#1a1a1a;border:2px solid #2a2a2a;overflow:hidden;"><div style="height:100%;background:repeating-linear-gradient(90deg,#222 0,#222 10px,#111 10px,#111 20px);"></div></div>
     <div style="width:86px;height:54px;background:#111;border:2px solid #222;padding:6px 8px;">
       <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:var(--y);line-height:2.2;">MALANIDOOSRA</div>
       <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.2);line-height:2.2;">SC.01 TAKE 1</div>
     </div>
   </div>
-  @keyframes clap{0%,80%,100%{transform:rotate(-6deg)}86%{transform:rotate(-20deg)}93%{transform:rotate(-6deg)}}
-  <!-- floor -->
-  <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:#0a0900;border-top:1px solid rgba(255,229,0,0.06);z-index:4;"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:#0a0900;border-top:1px solid rgba(255,229,0,0.06);z-index:4;pointer-events:none;"></div>
   <div class="wc">
-    <div class="wlabel">WORLD 03 — AD / BTS</div>
+    <div class="wlabel">WORLD 03 &mdash; AD / BTS</div>
     <div class="wtit"><span class="wy">BRAND</span><br><span class="ww">STORIES</span></div>
     <div class="wdesc">Behind the brief. Inside the set.<br>Making brands feel like people.</div>
     <div class="vg c3" style="max-height:265px;">
-      <div class="vc" onclick="openYT('TQErkMnNy44','Brand Film — Full BTS')">
+      <div class="vc" onclick="openYT('TQErkMnNy44','Behind The Campaign')">
         <img src="https://img.youtube.com/vi/TQErkMnNy44/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/TQErkMnNy44/hqdefault.jpg'" alt="">
-        <div class="vovl"><div class="vt">Brand Film BTS</div><div class="vm"><span class="vp">YOUTUBE</span></div></div>
+        <div class="vovl"><div class="vt">Behind The Campaign</div><div class="vm"><span class="vp">YOUTUBE</span></div></div>
         <div class="vplay"></div>
       </div>
-      <div class="vc" onclick="openYT('bnCsUHAcCKg','On Set — Uncut')">
+      <div class="vc" onclick="openYT('bnCsUHAcCKg','On Set - Uncut')">
         <img src="https://img.youtube.com/vi/bnCsUHAcCKg/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/bnCsUHAcCKg/hqdefault.jpg'" alt="">
-        <div class="vovl"><div class="vt">On Set — Uncut</div><div class="vm"><span class="vp">YOUTUBE</span></div></div>
+        <div class="vovl"><div class="vt">On Set &mdash; Uncut</div><div class="vm"><span class="vp">YOUTUBE</span></div></div>
         <div class="vplay"></div>
       </div>
-      <div class="vc" onclick="openYT('WBYlgFsWBXo','Pre-Roll Ad Production')">
+      <div class="vc" onclick="openYT('WBYlgFsWBXo','Six-Second Hook')">
         <img src="https://img.youtube.com/vi/WBYlgFsWBXo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/WBYlgFsWBXo/hqdefault.jpg'" alt="">
-        <div class="vovl"><div class="vt">Pre-Roll Ad Production</div><div class="vm"><span class="vp">YOUTUBE</span></div></div>
+        <div class="vovl"><div class="vt">Six-Second Hook</div><div class="vm"><span class="vp">YOUTUBE</span></div></div>
         <div class="vplay"></div>
       </div>
     </div>
   </div>
+  <div class="wpanel">
+    <div class="wstat-num">DOP</div><div class="wstat-label">+ DIRECTOR + EDITOR</div>
+    <div class="wstat-divider"></div>
+    <div class="wrole">Brand films. Product ads.<br>BTS content that<br><span class="hi">actually converts.</span></div>
+    <div class="wtag-list"><div class="wtag">AD FILMS</div><div class="wtag">BTS CONTENT</div><div class="wtag">BRAND STORYTELLING</div></div>
+  </div>
 </div>
 
-<!-- ═══ W4: MUSIC VIDEO ═══ -->
 <div class="world" id="w4">
   <div id="mvstars" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></div>
-  <!-- disco -->
-  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:5;">
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;">
     <div style="width:2px;height:52px;background:rgba(255,255,255,0.12);margin:0 auto;"></div>
     <div style="width:44px;height:44px;border-radius:50%;background:repeating-conic-gradient(rgba(255,255,255,0.2) 0deg,rgba(120,0,200,0.07) 10deg);border:1px solid rgba(255,255,255,0.1);animation:discos 2s linear infinite;box-shadow:0 0 32px rgba(170,0,255,0.28);"></div>
   </div>
-  @keyframes discos{to{transform:translateX(-50%) rotate(360deg)}}
-  <!-- light beams -->
   <div style="position:absolute;top:52px;left:22%;width:80px;height:60vh;background:linear-gradient(180deg,rgba(255,0,180,0.07),transparent);clip-path:polygon(40px 0,80px 0,105% 100%,-5% 100%);z-index:3;pointer-events:none;"></div>
   <div style="position:absolute;top:52px;right:24%;width:80px;height:55vh;background:linear-gradient(180deg,rgba(0,160,255,0.05),transparent);clip-path:polygon(0 0,40px 0,105% 100%,-5% 100%);z-index:3;pointer-events:none;"></div>
-  <!-- stage floor -->
-  <div style="position:absolute;bottom:0;left:0;right:0;height:96px;background:linear-gradient(180deg,#060015,#020009);border-top:2px solid rgba(110,0,255,0.2);z-index:4;"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:96px;background:linear-gradient(180deg,#060015,#020009);border-top:2px solid rgba(110,0,255,0.2);z-index:4;pointer-events:none;"></div>
   <div class="wc">
-    <div class="wlabel">WORLD 04 — MUSIC VIDEO</div>
+    <div class="wlabel">WORLD 04 &mdash; MUSIC VIDEO</div>
     <div class="wtit"><span class="wy">DIRECTOR'S</span><br><span class="ww">CUT</span></div>
     <div class="wdesc">Full creative direction.<br>From concept to final frame.</div>
     <div class="vg c1" style="max-height:250px;max-width:450px;">
       <a href="https://www.instagram.com/reel/DK7nr1ExKl4/" target="_blank" class="vc">
-        <div class="ig-bg" style="background:linear-gradient(135deg,#06001a,#110028);">
-          <span class="ig-ico">🎬</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH ↗</span>
-        </div>
-        <div class="vovl"><div class="vt">Music Video — Creative Director</div><div class="vm"><span class="vp">INSTAGRAM</span><span class="vv">Concept · Visuals · Execution</span></div></div>
-        <div class="igopen">OPEN IN INSTAGRAM ↗</div>
+        <div class="ig-bg" style="background:linear-gradient(135deg,#06001a,#110028);"><span class="ig-ico">&#127916;</span><span class="ig-lbl">IG REEL</span><span class="ig-tap">TAP TO WATCH</span></div>
+        <div class="vovl"><div class="vt">Music Video &mdash; Creative Director</div><div class="vm"><span class="vp">INSTAGRAM</span><span class="vv">Concept &middot; Visuals &middot; Execution</span></div></div>
+        <div class="igopen">OPEN IN INSTAGRAM &#8599;</div>
       </a>
     </div>
-    <p style="margin-top:14px;font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.12);line-height:2;">CONCEPT · VISUAL LANGUAGE · LIGHTING · EDIT</p>
+    <p style="margin-top:14px;font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.12);line-height:2;">CONCEPT &middot; VISUAL LANGUAGE &middot; LIGHTING &middot; EDIT</p>
+  </div>
+  <div class="wpanel">
+    <div class="wstat-num">CD</div><div class="wstat-label">CREATIVE DIRECTOR</div>
+    <div class="wstat-divider"></div>
+    <div class="wrole">Concept to final cut.<br>Visual language.<br><span class="hi">Full creative control.</span></div>
+    <div class="wtag-list"><div class="wtag">CONCEPT</div><div class="wtag">VISUAL LANGUAGE</div><div class="wtag">LIGHTING + EDIT</div><div class="wtag">COLOUR GRADE</div></div>
   </div>
 </div>
 
-<!-- ═══ W5: BUILT / VIBE CODED ═══ -->
 <div class="world" id="w5">
   <div id="mrain" style="position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;"></div>
   <div style="position:absolute;left:0;right:0;height:1px;background:rgba(0,255,65,0.05);z-index:4;animation:scan 5s linear infinite;pointer-events:none;"></div>
-  @keyframes scan{from{top:0}to{top:100vh}}
-  <!-- terminal ghost text -->
-  <div style="position:absolute;bottom:100px;right:5%;z-index:5;font-family:'DM Mono',monospace;font-size:9px;color:rgba(0,255,65,0.06);line-height:2.2;text-align:right;pointer-events:none;">
-    npm run dev<br>✓ compiled in 840ms<br>git add . && git push<br>vercel --prod<br>→ deployed to production<br>✓ live
-  </div>
-  <div style="position:absolute;bottom:0;left:0;right:0;height:96px;z-index:4;border-top:1px solid rgba(0,255,65,0.07);background:repeating-linear-gradient(90deg,rgba(0,255,65,0.03) 0,transparent 1px,transparent 44px);"></div>
-
-  <div class="vibewrap" style="width:58%;">
-    <div class="wlabel" style="color:rgba(0,255,65,0.3);">WORLD 05 — BUILT WITH AI</div>
-    <div class="vibtit">
-      <span class="stk" style="color:rgba(0,255,65,0.15);">ENGINEER</span><br>
-      <span style="color:var(--y);">VIBE</span>
-      <span style="color:var(--w);">CODED</span>
-    </div>
+  <div style="position:absolute;bottom:100px;right:5%;z-index:5;font-family:'DM Mono',monospace;font-size:9px;color:rgba(0,255,65,0.06);line-height:2.2;text-align:right;pointer-events:none;">npm run dev<br>compiled in 840ms<br>git add . &amp;&amp; git push<br>vercel --prod<br>deployed to production<br>live</div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:96px;z-index:4;border-top:1px solid rgba(0,255,65,0.07);background:repeating-linear-gradient(90deg,rgba(0,255,65,0.03) 0,transparent 1px,transparent 44px);pointer-events:none;"></div>
+  <div class="vibewrap">
+    <div class="wlabel" style="color:rgba(0,255,65,0.3);">WORLD 05 &mdash; BUILT WITH AI</div>
+    <div class="vibtit"><span class="stk" style="color:rgba(0,255,65,0.15);">ENGINEER</span><br><span style="color:var(--y);">VIBE</span> <span style="color:var(--w);">CODED</span></div>
     <div class="vibsub">CURIOSITY IS THE ONLY STACK THAT MATTERS</div>
     <div class="vibcards">
       <a href="https://trackmyreps.in" target="_blank" class="vc2">
-        <span class="vc2ico">🏋️</span>
+        <span class="vc2ico">&#127947;</span>
         <span class="vc2name">TrackMyReps</span>
         <p class="vc2desc">Fitness SaaS for Indian trainers.<br>Built solo. Actually ships.</p>
       </a>
       <div class="vc2" style="opacity:0.28;cursor:default;">
-        <span class="vc2ico">🚧</span>
+        <span class="vc2ico">&#128679;</span>
         <span class="vc2name">Next Drop</span>
         <p class="vc2desc">Something's cooking.<br>Check back soon.</p>
       </div>
       <div class="vc2" style="opacity:0.18;cursor:default;">
-        <span class="vc2ico">🤖</span>
+        <span class="vc2ico">&#129302;</span>
         <span class="vc2name">AI Experiments</span>
         <p class="vc2desc">Prompting, building,<br>breaking things.</p>
       </div>
     </div>
     <div class="aibadge">* this portfolio was built with claude at 2am</div>
   </div>
-
-  <!-- NOW READING / WATCHING -->
   <div class="nowstrip">
-    <div class="nowcard">
-      <div class="nowlabel">█ NOW WATCHING</div>
-      <div class="nowtext">Keeping up with<br><span class="hi">every AI release</span><br>so you don't have to</div>
-    </div>
-    <div class="nowcard">
-      <div class="nowlabel">█ ALWAYS ASKING</div>
-      <div class="nowtext">What if we made<br><span class="hi">this with AI?</span><br>What's next after this?</div>
-    </div>
-    <div class="nowcard">
-      <div class="nowlabel">█ CURRENT STATUS</div>
-      <div class="nowtext">Mumbai.<br><span class="hi">Building.</span> Shooting.<br>Not sleeping enough.</div>
-    </div>
+    <div class="nowcard"><div class="nowlabel">&#9608; NOW WATCHING</div><div class="nowtext">Keeping up with<br><span class="hi">every AI release</span><br>so you don't have to</div></div>
+    <div class="nowcard"><div class="nowlabel">&#9608; ALWAYS ASKING</div><div class="nowtext">What if we made<br><span class="hi">this with AI?</span><br>What's next after this?</div></div>
+    <div class="nowcard"><div class="nowlabel">&#9608; CURRENT STATUS</div><div class="nowtext">Mumbai.<br><span class="hi">Building.</span> Shooting.<br>Not sleeping enough.</div></div>
   </div>
 </div>
 
-</div><!-- end stage -->
+</div>
 
 <script>
-// ── CURSOR ──
-const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
-let mx=innerWidth/2,my=innerHeight/2;
+(function(){
+var cur=document.getElementById('cur');
+var cur2=document.getElementById('cur2');
+var mx=window.innerWidth/2,my=window.innerHeight/2;
 document.addEventListener('mousemove',function(e){
   mx=e.clientX;my=e.clientY;
   cur.style.left=mx+'px';cur.style.top=my+'px';
@@ -568,173 +472,59 @@ document.addEventListener('mousemove',function(e){
 document.addEventListener('mousedown',function(){cur.classList.add('big');});
 document.addEventListener('mouseup',function(){cur.classList.remove('big');});
 
-// ── TICKER ──
-const items=['ALWAYS LOOKING FOR WHAT\'S NEXT','CURIOUS BY DEFAULT','MAKING VIDEOS SINCE BEFORE IT WAS EASY','AI TOOLS ARE JUST HOW I SCALE INSTINCT','MUMBAI BASED · INTERNET NATIVE','CAN\'T SIT STILL · WON\'T STOP ASKING WHY','350K VIEWS AND COUNTING','BUILDING THINGS THAT DIDN\'T EXIST YESTERDAY'];
-const ti=document.getElementById('ti');
-let ts='';for(let i=0;i<2;i++)items.forEach(function(t){ts+='<span class="tick-item">'+t+' ✦</span>';});
+var ti=document.getElementById('ti');
+var its=['ALWAYS LOOKING FOR WHATS NEXT','CURIOUS BY DEFAULT','MAKING VIDEOS SINCE BEFORE IT WAS EASY','AI TOOLS ARE JUST HOW I SCALE INSTINCT','MUMBAI BASED - INTERNET NATIVE','CANT SIT STILL - WONT STOP ASKING WHY','350K VIEWS AND COUNTING','BUILDING THINGS THAT DIDNT EXIST YESTERDAY'];
+var ts='';for(var i=0;i<2;i++)its.forEach(function(t){ts+='<span class="tick-item">'+t+' &#10022;</span>';});
 ti.innerHTML=ts;
 
-// ── SPARKS (home canvas) ──
-const sc=document.getElementById('sparks');
-if(sc){
-  sc.width=window.innerWidth;sc.height=window.innerHeight;
-  const ctx=sc.getContext('2d');
-  for(let i=0;i<180;i++){
-    ctx.fillStyle='rgba(255,255,255,'+(Math.random()*0.45+0.05)+')';
-    const s=Math.random()<0.8?1:Math.random()<0.5?2:1.5;
-    ctx.beginPath();ctx.arc(Math.random()*sc.width,Math.random()*sc.height*0.75,s/2,0,Math.PI*2);ctx.fill();
-  }
-}
+var sc=document.getElementById('sparks');
+if(sc){sc.width=window.innerWidth;sc.height=window.innerHeight;var ctx=sc.getContext('2d');for(var i=0;i<180;i++){ctx.fillStyle='rgba(255,255,255,'+(Math.random()*0.45+0.05)+')';var s=Math.random()<0.8?1:Math.random()<0.5?2:1.5;ctx.beginPath();ctx.arc(Math.random()*sc.width,Math.random()*sc.height*0.75,s/2,0,Math.PI*2);ctx.fill();}}
 
-// ── FLOATERS (? marks drifting up on home) ──
-const fl=document.getElementById('floaters');
-function mkFloat(){
-  const d=document.createElement('div');
-  const chars=['?','!','→','✦','★','·'];
-  d.textContent=chars[Math.floor(Math.random()*chars.length)];
-  d.style.cssText='position:absolute;font-family:"Press Start 2P",monospace;font-size:'+(Math.random()*10+7)+'px;color:rgba(255,229,0,'+(Math.random()*0.08+0.02)+');left:'+(Math.random()*100)+'%;bottom:-20px;animation:floatup '+(Math.random()*12+8)+'s linear forwards;pointer-events:none;';
-  if(!document.head.querySelector('#floatcss')){const s=document.createElement('style');s.id='floatcss';s.textContent='@keyframes floatup{from{transform:translateY(0) rotate(0deg);opacity:0.6}to{transform:translateY(-110vh) rotate('+(Math.random()>0.5?1:-1)*(Math.random()*180+90)+'deg);opacity:0}}';document.head.appendChild(s);}
-  fl.appendChild(d);setTimeout(function(){d.remove();},16000);
-}
+var fl=document.getElementById('floaters');
+function mkFloat(){var d=document.createElement('div');var chars=['?','!','>','*','+','.'];d.textContent=chars[Math.floor(Math.random()*chars.length)];d.style.cssText='position:absolute;font-family:"Press Start 2P",monospace;font-size:'+(Math.random()*10+7)+'px;color:rgba(255,229,0,'+(Math.random()*0.08+0.02)+');left:'+(Math.random()*100)+'%;bottom:-20px;animation:floatup '+(Math.random()*12+8)+'s linear forwards;pointer-events:none;';fl.appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},16000);}
 setInterval(mkFloat,800);
 
-// ── STARS ──
-function mkStars(id,n,col){
-  const c=document.getElementById(id);if(!c)return;
-  let h='';for(let i=0;i<n;i++){const s=Math.random()<0.78?1:Math.random()<0.5?2:1.5;const op=Math.random()*0.55+0.08;h+='<div style="position:absolute;width:'+s+'px;height:'+s+'px;background:'+(col||'rgba(255,255,255,'+op+')');h+=';border-radius:50%;top:'+(Math.random()*80)+'%;left:'+(Math.random()*100)+'%;animation:blink '+(Math.random()*3+1.5)+'s steps(1) '+(Math.random()*-3)+'s infinite;"></div>';}
-  c.innerHTML=h;
-}
+function mkStars(id,n,col){var c=document.getElementById(id);if(!c)return;var h='';for(var i=0;i<n;i++){var s=Math.random()<0.78?1:Math.random()<0.5?2:1.5;var op=Math.random()*0.55+0.08;h+='<div style="position:absolute;width:'+s+'px;height:'+s+'px;background:'+(col||'rgba(255,255,255,'+op+')')+';border-radius:50%;top:'+(Math.random()*80)+'%;left:'+(Math.random()*100)+'%;animation:blink '+(Math.random()*3+1.5)+'s steps(1) '+(Math.random()*-3)+'s infinite;pointer-events:none;"></div>';}c.innerHTML=h;}
 mkStars('tstars',90);mkStars('mvstars',60,'rgba(180,100,255,0.4)');
 
-// ── MATRIX RAIN ──
-const mr=document.getElementById('mrain');
-if(mr){
-  const ch='01アイウエカキABCDE';
-  let h='';
-  for(let i=0;i<24;i++){
-    let col='';const l=Math.floor(Math.random()*16+6);
-    for(let j=0;j<l;j++)col+=ch[Math.floor(Math.random()*ch.length)]+'\n';
-    h+='<div style="position:absolute;top:-80px;font-family:monospace;font-size:10px;color:#00ff41;line-height:14px;animation:mfall '+(Math.random()*9+5)+'s linear '+(Math.random()*-8)+'s infinite;opacity:'+(Math.random()*0.1+0.04)+';white-space:pre;writing-mode:vertical-lr;left:'+Math.round(i*4.3)+'%">'+col+'</div>';
-  }
-  mr.innerHTML=h;
-}
+var mr=document.getElementById('mrain');
+if(mr){var ch='01ABCDE';var h='';for(var i=0;i<24;i++){var col='';var l=Math.floor(Math.random()*16+6);for(var j=0;j<l;j++)col+=ch[Math.floor(Math.random()*ch.length)]+'\n';h+='<div style="position:absolute;top:-80px;font-family:monospace;font-size:10px;color:#00ff41;line-height:14px;animation:mfall '+(Math.random()*9+5)+'s linear '+(Math.random()*-8)+'s infinite;opacity:'+(Math.random()*0.1+0.04)+';white-space:pre;writing-mode:vertical-lr;left:'+Math.round(i*4.3)+'%">'+col+'</div>';}mr.innerHTML=h;}
 
-// ── THUMBNAIL FALLBACK ──
-document.querySelectorAll('.vc img').forEach(function(img){
-  img.addEventListener('error',function(){
-    if(this.dataset.tried)return;this.dataset.tried=1;
-    this.src=this.src.replace('maxresdefault','hqdefault');
-    this.addEventListener('error',function(){
-      this.style.display='none';
-      const fb=document.createElement('div');fb.className='thumb-fallback';fb.innerHTML='<span>▶ YOUTUBE</span>';
-      this.parentNode.insertBefore(fb,this);
-    });
-  });
-});
+document.querySelectorAll('.vc img').forEach(function(img){img.addEventListener('error',function(){if(this.dataset.tried)return;this.dataset.tried=1;this.src=this.src.replace('maxresdefault','hqdefault');this.addEventListener('error',function(){this.style.display='none';var fb=document.createElement('div');fb.className='thumb-fallback';fb.innerHTML='<span>YOUTUBE</span>';this.parentNode.insertBefore(fb,this);});});});
 
-// ── DAVE + WORLD NAV ──
-const WORLDS=6;
-let cw=0,dX=90,dDir=1,wTO,isJ=false,isTr=false,eCool=false;
-const stage=document.getElementById('stage');
-const flash=document.getElementById('flash');
-const dave=document.getElementById('dave');
-const DB=document.getElementById('DB');
-const gnd=document.getElementById('gnd');
-const wct=document.getElementById('wct');
-const hint=document.getElementById('hint');
-const dots=document.querySelectorAll('.ndot');
+var WORLDS=6,cw=0,dX=90,dDir=1,wTO,isJ=false,isTr=false,eCool=false;
+var stage=document.getElementById('stage');
+var flash=document.getElementById('flash');
+var dave=document.getElementById('dave');
+var DB=document.getElementById('DB');
+var gnd=document.getElementById('gnd');
+var wct=document.getElementById('wct');
+var hint=document.getElementById('hint');
+var dots=document.querySelectorAll('.ndot');
+var gndS=['repeating-linear-gradient(90deg,rgba(255,255,255,0.1) 0,rgba(255,255,255,0.1) 10px,transparent 10px,transparent 20px)','repeating-linear-gradient(90deg,#2a7a2a 0,#2a7a2a 10px,#1e5a1e 10px,#1e5a1e 20px)','repeating-linear-gradient(90deg,#242424 0,#242424 10px,#181818 10px,#181818 20px)','repeating-linear-gradient(90deg,rgba(255,229,0,0.35) 0,rgba(255,229,0,0.35) 10px,#1a1500 10px,#1a1500 20px)','repeating-linear-gradient(90deg,#440088 0,#440088 10px,#220044 10px,#220044 20px)','repeating-linear-gradient(90deg,rgba(0,255,65,0.35) 0,rgba(0,255,65,0.35) 10px,#002a0a 10px,#002a0a 20px)'];
+var hintT=['MOVE CURSOR TO EXPLORE - CLICK TO JUMP','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','MOVE CURSOR LEFT TO GO BACK'];
 
-const gndStyles=[
-  'repeating-linear-gradient(90deg,rgba(255,255,255,0.1) 0,rgba(255,255,255,0.1) 10px,transparent 10px,transparent 20px)',
-  'repeating-linear-gradient(90deg,#2a7a2a 0,#2a7a2a 10px,#1e5a1e 10px,#1e5a1e 20px)',
-  'repeating-linear-gradient(90deg,#242424 0,#242424 10px,#181818 10px,#181818 20px)',
-  'repeating-linear-gradient(90deg,rgba(255,229,0,0.35) 0,rgba(255,229,0,0.35) 10px,#1a1500 10px,#1a1500 20px)',
-  'repeating-linear-gradient(90deg,#440088 0,#440088 10px,#220044 10px,#220044 20px)',
-  'repeating-linear-gradient(90deg,rgba(0,255,65,0.35) 0,rgba(0,255,65,0.35) 10px,#002a0a 10px,#002a0a 20px)'
-];
-const hintTxt=['MOVE CURSOR → TO EXPLORE · CLICK TO JUMP','← → TO NAVIGATE','← → TO NAVIGATE','← → TO NAVIGATE','← → TO NAVIGATE','← MOVE CURSOR TO GO BACK'];
-
-function daveLoop(){
-  const tx=Math.max(8,Math.min(innerWidth-56,mx-22));
-  const diff=tx-dX;
-  if(Math.abs(diff)>2&&!isJ){
-    dX+=diff*0.1;dave.style.left=dX+'px';
-    const nd=diff>0?1:-1;
-    if(nd!==dDir){dDir=nd;DB.style.setProperty('--f',dDir);}
-    DB.className='dw '+(dDir>0?'wr':'wl');
-    clearTimeout(wTO);wTO=setTimeout(function(){if(!isJ)DB.className='dw idle';},160);
-  }
-  if(!isTr&&!eCool){
-    if(mx>innerWidth-52&&cw<WORLDS-1)goW(cw+1);
-    else if(mx<52&&cw>0)goW(cw-1);
-  }
-  requestAnimationFrame(daveLoop);
-}
+function daveLoop(){var tx=Math.max(8,Math.min(window.innerWidth-56,mx-22));var diff=tx-dX;if(Math.abs(diff)>2&&!isJ){dX+=diff*0.1;dave.style.left=dX+'px';var nd=diff>0?1:-1;if(nd!==dDir){dDir=nd;DB.style.setProperty('--f',dDir);}DB.className='dw '+(dDir>0?'wr':'wl');clearTimeout(wTO);wTO=setTimeout(function(){if(!isJ)DB.className='dw idle';},160);}if(!isTr&&!eCool){if(mx>window.innerWidth-52&&cw<WORLDS-1)goW(cw+1);else if(mx<52&&cw>0)goW(cw-1);}requestAnimationFrame(daveLoop);}
 daveLoop();
 
-function goW(i){
-  if(isTr||i===cw)return;isTr=true;eCool=true;
-  flash.style.opacity='0.06';setTimeout(function(){flash.style.opacity='0';},100);
-  cw=i;
-  stage.style.transform='translateX(-'+(cw*100)+'vw)';
-  dots.forEach(function(d,j){d.classList.toggle('active',j===cw);});
-  wct.textContent=String(cw+1).padStart(2,'0')+' / '+String(WORLDS).padStart(2,'0');
-  hint.textContent=hintTxt[cw];
-  gnd.style.background=gndStyles[cw];
-  setTimeout(function(){isTr=false;},1000);
-  setTimeout(function(){eCool=false;},1400);
-}
+function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity='0.06';setTimeout(function(){flash.style.opacity='0';},100);cw=i;stage.style.transform='translateX(-'+(cw*100)+'vw)';dots.forEach(function(d,j){d.classList.toggle('active',j===cw);});wct.textContent=String(cw+1).padStart(2,'0')+' / '+String(WORLDS).padStart(2,'0');hint.textContent=hintT[cw];gnd.style.background=gndS[cw];setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
 
-function spawnCoin(x,y,char){
-  const c=document.createElement('div');c.className='cpop';
-  c.textContent=char||'★';c.style.left=x+'px';c.style.top=y+'px';
-  document.body.appendChild(c);setTimeout(function(){c.remove();},800);
-}
+function spawnCoin(x,y){var c=document.createElement('div');c.className='cpop';c.textContent='*';c.style.left=x+'px';c.style.top=y+'px';document.body.appendChild(c);setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},800);}
 
-function jumpDave(targetX){
-  if(isJ)return;
-  isJ=true;
-  const dir=targetX>dX?1:-1;
-  dDir=dir;DB.style.setProperty('--f',dir);DB.className='dw jump';
-  spawnCoin(dX+10,innerHeight-155,'★');
-  setTimeout(function(){isJ=false;DB.className='dw idle';},520);
-}
+function jumpDave(tx){if(isJ)return;isJ=true;var dir=tx>dX?1:-1;dDir=dir;DB.style.setProperty('--f',dir);DB.className='dw jump';spawnCoin(dX+10,window.innerHeight-155);setTimeout(function(){isJ=false;DB.className='dw idle';},520);}
 
-// click anywhere = dave jumps
-document.addEventListener('click',function(e){
-  if(e.target.closest('.mbox')||e.target.closest('#lb')||e.target.closest('.vc')||e.target.closest('.ndot')||e.target.closest('.nemail')||e.target.closest('.slink')||e.target.closest('#ticker'))return;
-  jumpDave(mx);
-});
+document.addEventListener('click',function(e){if(e.target.closest('.mbox')||e.target.closest('#lb')||e.target.closest('.vc')||e.target.closest('.ndot')||e.target.closest('.nemail')||e.target.closest('.slink')||e.target.closest('#ticker'))return;jumpDave(mx);});
 
-function jumpBox(wi,el){
-  const inner=el.querySelector('.mbi');
-  inner.classList.remove('bumping');void inner.offsetWidth;inner.classList.add('bumping');
-  setTimeout(function(){inner.classList.remove('bumping');},380);
-  const rect=el.getBoundingClientRect();
-  spawnCoin(rect.left+rect.width/2-7,rect.top-14,'★');
-  isJ=true;dDir=rect.left>dX?1:-1;DB.style.setProperty('--f',dDir);DB.className='dw jump';
-  setTimeout(function(){isJ=false;DB.className='dw idle';goW(wi);},440);
-}
+window.jumpBox=function(wi,el){var inner=el.querySelector('.mbi');inner.classList.remove('bumping');void inner.offsetWidth;inner.classList.add('bumping');setTimeout(function(){inner.classList.remove('bumping');},380);var rect=el.getBoundingClientRect();spawnCoin(rect.left+rect.width/2-7,rect.top-14);isJ=true;dDir=rect.left>dX?1:-1;DB.style.setProperty('--f',dDir);DB.className='dw jump';setTimeout(function(){isJ=false;DB.className='dw idle';goW(wi);},440);};
 
-function openYT(id,title){
-  document.getElementById('lbframe').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';
-  document.getElementById('lbtitle').textContent=title.toUpperCase();
-  document.getElementById('lb').classList.add('open');
-  cur.style.display='none';cur2.style.display='none';
-}
-function closeLB(){
-  document.getElementById('lbframe').src='';
-  document.getElementById('lb').classList.remove('open');
-  cur.style.display='block';cur2.style.display='block';
-}
-document.getElementById('lb').addEventListener('click',function(e){if(e.target===this)closeLB();});
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape')closeLB();
-  const o=document.getElementById('lb').classList.contains('open');
-  if(!o&&e.key==='ArrowRight')goW(Math.min(WORLDS-1,cw+1));
-  if(!o&&e.key==='ArrowLeft')goW(Math.max(0,cw-1));
-});
-dots.forEach(function(d,i){d.addEventListener('click',function(){goW(i);});});
+window.openYT=function(id,title){document.getElementById('lbframe').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';document.getElementById('lbtitle').textContent=title.toUpperCase();document.getElementById('lb').classList.add('open');cur.style.display='none';cur2.style.display='none';};
+
+window.closeLB=function(){document.getElementById('lbframe').src='';document.getElementById('lb').classList.remove('open');cur.style.display='block';cur2.style.display='block';};
+
+document.getElementById('lb').addEventListener('click',function(e){if(e.target===this)window.closeLB();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')window.closeLB();var o=document.getElementById('lb').classList.contains('open');if(!o&&e.key==='ArrowRight')goW(Math.min(WORLDS-1,cw+1));if(!o&&e.key==='ArrowLeft')goW(Math.max(0,cw-1));});
+dots.forEach(function(d){d.addEventListener('click',function(){goW(parseInt(this.dataset.w));});});
+})();
 </script>
 </body>
 </html>
