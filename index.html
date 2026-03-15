@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>malanidoosra — always looking for what's next</title>
+<title>Malani Doosra — Filmmaker & Cinematographer, Mumbai</title>
+<meta name="description" content="Malani Doosra — filmmaker, cinematographer, AI-native builder based in Mumbai. Travel films, documentaries, BTS and ad films.">
+<meta property="og:title" content="Malani Doosra — Filmmaker & Cinematographer">
+<meta property="og:description" content="Can't sit still. Always asking what's next. I make videos. I build with AI.">
+<meta property="og:url" content="https://malanidoosra.vercel.app">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Malani Doosra — Filmmaker">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23060606'/><rect x='9' y='2' width='14' height='4' fill='%23cc2200'/><rect x='7' y='5' width='18' height='3' fill='%23cc2200'/><rect x='10' y='7' width='12' height='8' fill='%23f5c5a3'/><rect x='11' y='10' width='3' height='3' fill='%231a1a1a'/><rect x='18' y='10' width='3' height='3' fill='%231a1a1a'/><rect x='9' y='15' width='14' height='9' fill='%23eeeeee'/><rect x='3' y='16' width='5' height='8' fill='%23f5c5a3'/><rect x='24' y='16' width='5' height='8' fill='%23f5c5a3'/><rect x='9' y='24' width='14' height='6' fill='%231a6ab5'/><rect x='9' y='28' width='6' height='4' fill='%23111111'/><rect x='17' y='28' width='6' height='4' fill='%23111111'/></svg>">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Bebas+Neue&family=DM+Mono:wght@300;400&display=swap');
 :root{--k:#060606;--y:#FFE500;--w:#f0f0ee;--g:#00ff41;--r:#ff3333;}
@@ -178,6 +186,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 #lbmeta{margin-top:10px;display:flex;align-items:center;gap:16px;}
 #lbsource{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.4);letter-spacing:2px;}
 #lbdesc{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.9;margin-top:8px;}
+.back-btn{position:absolute;top:20px;left:56px;z-index:200;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.2);letter-spacing:2px;cursor:pointer;transition:color 0.2s;pointer-events:all;}
+.back-btn:hover{color:var(--y);}
+.vid-loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.15);letter-spacing:3px;z-index:5;animation:blink 1s steps(1) infinite;pointer-events:none;transition:opacity 0.5s;}
+.vid-loading.hidden{opacity:0;pointer-events:none;}
+#vibeNote{position:fixed;bottom:16px;left:56px;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.12);letter-spacing:1px;z-index:200;transition:opacity 0.4s;pointer-events:none;}
+#vibeNote.hide{opacity:0;}
 #mob{display:none;position:fixed;inset:0;background:var(--k);z-index:99999;overflow-y:auto;}
 @media(max-width:768px){
   #mob{display:block;}
@@ -352,6 +366,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 <div id="wct">01 / 05</div>
 <div id="hint">PLUG THE WIRE INTO A SOCKET TO ENTER A WORLD</div>
+<div id="vibeNote">* vibe-coded at 2am with claude</div>
 
 <div id="stage">
 
@@ -432,7 +447,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <video autoplay muted loop playsinline id="w1vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:1;pointer-events:none;transition:opacity 0.6s;"></video>
   <video muted loop playsinline id="w1vid2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;pointer-events:none;transition:opacity 0.6s;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
-
+  <!-- Loading indicator -->
+  <div class="vid-loading" id="w1loading">LOADING...</div>
+  <!-- Back button -->
+  <div class="back-btn" onclick="goW(0)">← BACK</div>
   <!-- World label top left -->
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
     <div class="wlabel">WORLD 01 &mdash; TRAVEL</div>
@@ -461,6 +479,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div class="world" id="w2" style="background:#060606;">
   <video preload="none" loop playsinline id="w2vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
+  <div class="vid-loading" id="w2loading">LOADING...</div>
+  <div class="back-btn" onclick="goW(0)">← BACK</div>
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
     <div class="wlabel">WORLD 02 &mdash; DOCUMENTARY</div>
     <div class="wtit"><span class="wy">REAL</span><br><span class="ww">STORIES</span></div>
@@ -475,6 +495,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <video preload="none" loop playsinline id="w3vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:1;pointer-events:none;transition:opacity 0.6s;"></video>
   <video preload="none" loop playsinline id="w3vid2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;pointer-events:none;transition:opacity 0.6s;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
+  <div class="vid-loading" id="w3loading">LOADING...</div>
+  <div class="back-btn" onclick="goW(0)">← BACK</div>
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
     <div class="wlabel">WORLD 03 &mdash; BTS</div>
     <div class="wtit" id="w3title"><span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span></div>
@@ -491,6 +513,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div class="world" id="w4" style="background:#060606;">
   <video preload="none" loop playsinline id="w4vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
+  <div class="vid-loading" id="w4loading">LOADING...</div>
+  <div class="back-btn" onclick="goW(0)">← BACK</div>
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
     <div class="wlabel">WORLD 04 &mdash; ADS</div>
     <div class="wtit"><span class="wy">WRITTEN &</span><br><span class="ww">DIRECTED</span></div>
@@ -568,8 +592,8 @@ function daveLoop(){
     }
     if(wireCanvas)wireCanvas.style.opacity='1';
   } else {
-    // Video worlds — Dave is the progress bar
-    if(wireCanvas)wireCanvas.style.opacity='0';
+    // Video worlds — Dave walks as progress bar, dragging wire from left edge
+    if(wireCanvas)wireCanvas.style.opacity='1';
     var vid=null;
     if(cw===1) vid=w1active===1?w1v1:w1v2;
     else if(cw===2) vid=document.getElementById('w2vid');
@@ -602,7 +626,21 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   document.getElementById('sbar').style.opacity=onVideo?'0':'1';
   document.getElementById('wct').style.opacity=onVideo?'0.3':'1';
   document.getElementById('hint').style.opacity=onVideo?'0':'1';
-  setWireVisible(cw===0);
+  // Vibe note — only on home
+  var vn=document.getElementById('vibeNote');
+  if(vn)vn.classList.toggle('hide',onVideo);
+  setWireVisible(true);
+  // Apply global mute state to newly entered world
+  var mVids=['w2vid','w3vid','w3vid2','w4vid'];
+  mVids.forEach(function(id){var v=document.getElementById(id);if(v)v.muted=globalMuted;});
+  if(onVideo)syncMuteButtons();
+  // Show loading for video worlds, hide for others
+  ['w1loading','w2loading','w3loading','w4loading'].forEach(function(id,idx){
+    var el=document.getElementById(id);
+    if(!el)return;
+    if(cw===idx+1){el.classList.remove('hidden');}
+    else{el.classList.add('hidden');}
+  });
   var w1vid=w1active===1?w1v1:w1v2;
   if(w1vid){if(cw===1)w1vid.play();else w1vid.pause();}
   var w2vid=document.getElementById('w2vid');
@@ -631,7 +669,7 @@ function spawnCoin(x,y){var c=document.createElement('div');c.className='cpop';c
 
 function jumpDave(tx){if(isJ)return;isJ=true;var dir=tx>dX?1:-1;dDir=dir;DB.style.setProperty('--f',dir);DB.className='dw jump';spawnCoin(dX+10,window.innerHeight-155);setTimeout(function(){isJ=false;DB.className='dw idle';},520);}
 
-document.addEventListener('click',function(e){if(e.target.closest('.mbox')||e.target.closest('#lb')||e.target.closest('.vc')||e.target.closest('.ndot')||e.target.closest('.nemail')||e.target.closest('.slink')||e.target.closest('#ticker')||e.target.closest('#w1mute')||e.target.closest('#w1prev')||e.target.closest('#w1next')||e.target.closest('#w3mute')||e.target.closest('#w3prev')||e.target.closest('#w3next')||e.target.closest('#w2mute')||e.target.closest('#w4mute'))return;jumpDave(mx);});
+document.addEventListener('click',function(e){if(e.target.closest('.mbox')||e.target.closest('#lb')||e.target.closest('.vc')||e.target.closest('.ndot')||e.target.closest('.nemail')||e.target.closest('.slink')||e.target.closest('#ticker')||e.target.closest('#w1mute')||e.target.closest('#w1prev')||e.target.closest('#w1next')||e.target.closest('#w3mute')||e.target.closest('#w3prev')||e.target.closest('#w3next')||e.target.closest('#w2mute')||e.target.closest('#w4mute')||e.target.closest('.back-btn')||e.target.closest('.psocket'))return;jumpDave(mx);});
 
 window.jumpBox=function(wi,el){var inner=el.querySelector('.mbi');inner.classList.remove('bumping');void inner.offsetWidth;inner.classList.add('bumping');setTimeout(function(){inner.classList.remove('bumping');},380);var rect=el.getBoundingClientRect();spawnCoin(rect.left+rect.width/2-7,rect.top-14);isJ=true;dDir=rect.left>dX?1:-1;DB.style.setProperty('--f',dDir);DB.className='dw jump';setTimeout(function(){isJ=false;DB.className='dw idle';goW(wi);},440);};
 
@@ -704,27 +742,41 @@ function drawJackConnector(x,y){
 function drawWireSystem(){
   if(!wctx){requestAnimationFrame(drawWireSystem);return;}
   wctx.clearRect(0,0,wireCanvas.width,wireCanvas.height);
-  if(cw!==0){requestAnimationFrame(drawWireSystem);return;}
 
-  var jack=getJackPoint();
-  var hand=getDaveHandPos();
-
-  // Always draw: jack → hand (solid, connected)
-  drawWireSegment(jack,hand,true);
-  drawJackConnector(jack.x,jack.y);
-
-  if(pluggedPsocket){
-    var sp=getPSocketCenter(pluggedPsocket);
-    // hand → socket (solid, plugged in)
-    drawWireSegment(hand,sp,true);
-    drawPlug(sp.x,sp.y,5,1.0);
+  if(cw===0){
+    // Home — wire from jack to Dave hand, then loose to cursor
+    var jack=getJackPoint();
+    var hand=getDaveHandPos();
+    drawWireSegment(jack,hand,true);
+    drawJackConnector(jack.x,jack.y);
+    if(pluggedPsocket){
+      var sp=getPSocketCenter(pluggedPsocket);
+      drawWireSegment(hand,sp,true);
+      drawPlug(sp.x,sp.y,5,1.0);
+      drawPlug(hand.x,hand.y,4,0.9);
+    } else {
+      drawWireSegment(hand,{x:mx,y:my},false);
+      drawPlug(hand.x,hand.y,4,0.85);
+      drawPlug(mx,my,4,0.6);
+    }
+  } else if(cw>=1&&cw<=4){
+    // Video worlds — wire from left edge socket to Dave's hand (trailing)
+    var leftSocket={x:18,y:dY+14};
+    var hand=getDaveHandPos();
+    // Left anchor socket
+    wctx.beginPath();
+    wctx.arc(leftSocket.x,leftSocket.y,5,0,Math.PI*2);
+    wctx.fillStyle='rgba(255,229,0,0.5)';
+    wctx.fill();
+    wctx.beginPath();
+    wctx.arc(leftSocket.x,leftSocket.y,8,0,Math.PI*2);
+    wctx.strokeStyle='rgba(255,229,0,0.15)';
+    wctx.lineWidth=1.5;
+    wctx.stroke();
+    // Wire trailing from left to Dave
+    drawWireSegment(leftSocket,hand,true);
+    // Plug in Dave's hand
     drawPlug(hand.x,hand.y,4,0.9);
-  } else {
-    // hand → cursor (dashed, loose end)
-    drawWireSegment(hand,{x:mx,y:my},false);
-    drawPlug(hand.x,hand.y,4,0.85);
-    // Loose plug tip at cursor
-    drawPlug(mx,my,4,0.6);
   }
 
   requestAnimationFrame(drawWireSystem);
@@ -884,22 +936,23 @@ function w1Load(idx,autoplay){
 function w1Next(){w1cur=(w1cur+1)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
 function w1Prev(){w1cur=(w1cur-1+w1videos.length)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
 
+// Global mute state — persists across worlds
+var globalMuted=false;
+
 function setDaveNotes(on){document.getElementById('dnote1').style.display=on?'block':'none';document.getElementById('dnote2').style.display=on?'block':'none';}
 
 function toggleW1Mute(){
-  w1muted=!w1muted;
-  w1v1.muted=w1muted;w1v2.muted=w1muted;
-  document.getElementById('w1muteico').textContent=w1muted?'🔇':'🔊';
-  document.getElementById('w1mutetxt').textContent=w1muted?'UNMUTE':'MUTE';
-  setDaveNotes(!w1muted);
+  globalMuted=!globalMuted;
+  w1muted=globalMuted;
+  w1v1.muted=globalMuted;w1v2.muted=globalMuted;
+  syncMuteButtons();
 }
 
 function toggleWMute(vidId,icoId,txtId){
+  globalMuted=!globalMuted;
   var vid=document.getElementById(vidId);
-  vid.muted=!vid.muted;
-  document.getElementById(icoId).textContent=vid.muted?'🔇':'🔊';
-  document.getElementById(txtId).textContent=vid.muted?'UNMUTE':'MUTE';
-  setDaveNotes(!vid.muted);
+  vid.muted=globalMuted;
+  syncMuteButtons();
 }
 
 // Init dY from Dave's actual position
@@ -908,6 +961,32 @@ w1v1.src=w1videos[0].src;
 w1v1.muted=false;
 w1v2.muted=false;
 w1v1.load();
+
+// Hide loading indicator when video starts playing
+function hideLoading(worldNum){
+  var el=document.getElementById('w'+worldNum+'loading');
+  if(el)el.classList.add('hidden');
+}
+w1v1.addEventListener('playing',function(){hideLoading(1);});
+w1v2.addEventListener('playing',function(){hideLoading(1);});
+document.getElementById('w2vid').addEventListener('playing',function(){hideLoading(2);});
+document.getElementById('w3vid').addEventListener('playing',function(){hideLoading(3);});
+document.getElementById('w3vid2').addEventListener('playing',function(){hideLoading(3);});
+document.getElementById('w4vid').addEventListener('playing',function(){hideLoading(4);});
+
+// Sync all mute buttons to globalMuted state
+function syncMuteButtons(){
+  var muted=globalMuted;
+  var ico=muted?'🔇':'🔊';
+  var txt=muted?'UNMUTE':'MUTE';
+  ['w1muteico','w2muteico','w3muteico','w4muteico'].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.textContent=ico;
+  });
+  ['w1mutetxt','w2mutetxt','w3mutetxt','w4mutetxt'].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.textContent=txt;
+  });
+  setDaveNotes(!muted);
+}
 
 // Snap Dave to left on video loop
 function snapDaveToStart(){dX=8;dave.style.left='8px';gndprog.style.transition='none';gndprog.style.width='0%';setTimeout(function(){gndprog.style.transition='width 0.8s linear';},50);}
@@ -965,11 +1044,10 @@ function w3Load(idx,autoplay){
 function w3Next(){w3cur=(w3cur+1)%w3videos.length;snapDaveToStart();w3Load(w3cur,true);}
 function w3Prev(){w3cur=(w3cur-1+w3videos.length)%w3videos.length;snapDaveToStart();w3Load(w3cur,true);}
 function toggleW3Mute(){
-  w3muted=!w3muted;
-  w3v1.muted=w3muted;w3v2.muted=w3muted;
-  document.getElementById('w3muteico').textContent=w3muted?'🔇':'🔊';
-  document.getElementById('w3mutetxt').textContent=w3muted?'UNMUTE':'MUTE';
-  setDaveNotes(!w3muted);
+  globalMuted=!globalMuted;
+  w3muted=globalMuted;
+  w3v1.muted=globalMuted;w3v2.muted=globalMuted;
+  syncMuteButtons();
 }
 
 window.openVideo=function(src,title,desc){
