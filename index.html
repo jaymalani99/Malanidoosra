@@ -28,11 +28,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .dc{width:14px;height:4px;background:#cc2200;top:0;left:4px;}
 .db2{width:17px;height:2px;background:#cc2200;top:3px;left:2px;}
 .dh{width:11px;height:8px;background:#f5c5a3;top:4px;left:5px;}
-.del{width:2px;height:2px;background:#1a1a1a;top:7px;left:6px;}
-.der{width:2px;height:2px;background:#1a1a1a;top:7px;left:12px;}
+.del{width:2px;height:2px;background:#1a1a1a;top:7px;left:12px;}
+.der{width:2px;height:2px;background:#1a1a1a;top:7px;left:14px;}
 .dt{width:13px;height:9px;background:#eee;border:1px solid #aaa;top:12px;left:4px;}
-.dal{width:4px;height:7px;background:#f5c5a3;top:13px;left:0px;}
-.dar{width:4px;height:7px;background:#f5c5a3;top:13px;left:17px;}
+.dal{width:4px;height:7px;background:#f5c5a3;top:13px;left:17px;}
+.dar{width:4px;height:7px;background:#f5c5a3;top:13px;left:0px;}
 .dp{width:14px;height:7px;background:#1a6ab5;top:21px;left:4px;}
 .dsl{width:6px;height:3px;background:#111;bottom:0;left:3px;}
 .dsr{width:6px;height:3px;background:#111;bottom:0;left:12px;}
@@ -54,6 +54,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .dw.wl{animation:wl 0.26s steps(2) infinite;}
 .dw.idle{animation:ib 1.4s steps(2) infinite;}
 .dw.jump{animation:jmp 0.52s ease-out forwards;}
+@keyframes notefly{0%{opacity:0;transform:translateY(0) scale(0.6);}20%{opacity:1;}100%{opacity:0;transform:translateY(-22px) scale(1) rotate(15deg);}}
+.dnote{position:absolute;top:-14px;font-size:8px;pointer-events:none;animation:notefly 1.2s ease-out infinite;}
+.dnote:nth-child(1){left:14px;animation-delay:0s;}
+.dnote:nth-child(2){left:20px;animation-delay:0.5s;font-size:6px;}
 #nav{position:fixed;top:0;left:0;right:0;padding:16px 36px;display:flex;justify-content:space-between;align-items:center;z-index:200;background:linear-gradient(to bottom,rgba(6,6,6,0.98),transparent);}
 .nlogo{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--y);letter-spacing:1px;}
 .nright{display:flex;align-items:center;gap:24px;}
@@ -291,6 +295,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="px dal"></div><div class="px dar"></div>
     <div class="px dt"></div><div class="px dp"></div>
     <div class="px dsl"></div><div class="px dsr"></div>
+    <div class="dnote" id="dnote1" style="display:none;">♪</div>
+    <div class="dnote" id="dnote2" style="display:none;">♫</div>
   </div>
 </div>
 <div id="nav">
@@ -532,7 +538,7 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
       w4vid.play();
     } else w4vid.pause();
   }
-  if(cw<1||cw>4){gndprog.style.opacity='0';dX=Math.max(8,Math.min(window.innerWidth-56,mx-22));}
+  if(cw<1||cw>4){gndprog.style.opacity='0';dX=Math.max(8,Math.min(window.innerWidth-56,mx-22));setDaveNotes(false);}
   else{dX=8;}// Reset dave to left on video worlds
   setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
 
@@ -577,11 +583,14 @@ function w1Load(idx,autoplay){
 function w1Next(){w1cur=(w1cur+1)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
 function w1Prev(){w1cur=(w1cur-1+w1videos.length)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
 
+function setDaveNotes(on){document.getElementById('dnote1').style.display=on?'block':'none';document.getElementById('dnote2').style.display=on?'block':'none';}
+
 function toggleW1Mute(){
   w1muted=!w1muted;
   w1v1.muted=w1muted;w1v2.muted=w1muted;
   document.getElementById('w1muteico').textContent=w1muted?'🔇':'🔊';
   document.getElementById('w1mutetxt').textContent=w1muted?'UNMUTE':'MUTE';
+  setDaveNotes(!w1muted);
 }
 
 function toggleWMute(vidId,icoId,txtId){
@@ -589,6 +598,7 @@ function toggleWMute(vidId,icoId,txtId){
   vid.muted=!vid.muted;
   document.getElementById(icoId).textContent=vid.muted?'🔇':'🔊';
   document.getElementById(txtId).textContent=vid.muted?'UNMUTE':'MUTE';
+  setDaveNotes(!vid.muted);
 }
 
 // Init first video
@@ -657,6 +667,7 @@ function toggleW3Mute(){
   w3v1.muted=w3muted;w3v2.muted=w3muted;
   document.getElementById('w3muteico').textContent=w3muted?'🔇':'🔊';
   document.getElementById('w3mutetxt').textContent=w3muted?'UNMUTE':'MUTE';
+  setDaveNotes(!w3muted);
 }
 
 window.openVideo=function(src,title,desc){
