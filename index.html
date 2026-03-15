@@ -101,8 +101,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 #sbar{transition:opacity 0.5s;}
 #wct{transition:opacity 0.5s;}
 #hint{transition:opacity 0.5s;}
-#gnd{position:fixed;bottom:46px;left:0;right:0;height:2px;z-index:50;pointer-events:none;transition:background 0.5s;}
-#gndprog{position:fixed;bottom:46px;left:0;height:2px;width:0%;z-index:51;pointer-events:none;background:var(--y);transition:width 0.8s linear;opacity:0;}
+#gnd{display:none;}
+#gndprog{display:none;}
 #dave{position:fixed;bottom:48px;z-index:9000;pointer-events:none;}
 .bcol{position:absolute;right:48px;bottom:120px;display:flex;flex-direction:row;gap:18px;z-index:10;align-items:flex-end;}
 .mbox{position:relative;cursor:none;display:flex;flex-direction:column;align-items:center;}
@@ -606,8 +606,6 @@ function daveLoop(){
       dave.style.left=dX+'px';
       if(dDir!==1){dDir=1;DB.style.setProperty('--f',1);}
       DB.className='dw wr';
-      gndprog.style.opacity='1';
-      gndprog.style.width=(pct*100)+'%';
     }
     if(!isTr&&!eCool){
       if(mx>window.innerWidth-52&&cw<WORLDS-1)goW(cw+1);
@@ -629,7 +627,8 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   // Vibe note — only on home
   var vn=document.getElementById('vibeNote');
   if(vn)vn.classList.toggle('hide',onVideo);
-  setWireVisible(true);
+  setWireVisible(cw===0);
+  if(wallJack)wallJack.style.opacity=cw===0?'1':'0';
   // Apply global mute state to newly entered world
   var mVids=['w2vid','w3vid','w3vid2','w4vid'];
   mVids.forEach(function(id){var v=document.getElementById(id);if(v)v.muted=globalMuted;});
@@ -660,7 +659,7 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
     } else w4vid.pause();
   }
   if(cw<1||cw>4){gndprog.style.opacity='0';dX=Math.max(8,Math.min(window.innerWidth-56,mx-22));setDaveNotes(false);}
-  else{dX=8;}
+  else{dX=8;gndprog.style.opacity='0';}
   // Reset wire state on home
   if(cw===0){pluggedPsocket=null;plugging=false;if(patchProgress)patchProgress.style.width='0%';}
   setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
@@ -686,7 +685,7 @@ window.addEventListener('resize',resizeWireCanvas);
 // Show/hide wire system based on world
 function setWireVisible(v){
   if(wireCanvas)wireCanvas.style.opacity=v?'1':'0';
-  if(wallJack)wallJack.style.opacity=v?'1':'0';
+  if(wallJack)wallJack.style.opacity=(cw===0)?'1':'0';
 }
 
 // Get wall jack exit point (fixed coords)
@@ -989,7 +988,7 @@ function syncMuteButtons(){
 }
 
 // Snap Dave to left on video loop
-function snapDaveToStart(){dX=8;dave.style.left='8px';gndprog.style.transition='none';gndprog.style.width='0%';setTimeout(function(){gndprog.style.transition='width 0.8s linear';},50);}
+function snapDaveToStart(){dX=8;dave.style.left='8px';}
 
 // Listen for video loops on all worlds
 w1v1.addEventListener('seeked',function(){if(w1v1.currentTime<1&&cw===1)snapDaveToStart();});
