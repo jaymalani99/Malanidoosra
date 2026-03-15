@@ -448,7 +448,52 @@ var dots=document.querySelectorAll('.ndot');
 var gndS=['repeating-linear-gradient(90deg,rgba(255,255,255,0.1) 0,rgba(255,255,255,0.1) 10px,transparent 10px,transparent 20px)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)'];
 var hintT=['MOVE CURSOR TO EXPLORE - CLICK TO JUMP','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS'];
 
-function daveLoop(){var tx=Math.max(8,Math.min(window.innerWidth-56,mx-22));var diff=tx-dX;if(Math.abs(diff)>2&&!isJ){dX+=diff*0.1;dave.style.left=dX+'px';var nd=diff>0?1:-1;if(nd!==dDir){dDir=nd;DB.style.setProperty('--f',dDir);}DB.className='dw '+(dDir>0?'wr':'wl');clearTimeout(wTO);wTO=setTimeout(function(){if(!isJ)DB.className='dw idle';},160);}if(!isTr&&!eCool){if(mx>window.innerWidth-52&&cw<WORLDS-1)goW(cw+1);else if(mx<52&&cw>0)goW(cw-1);}requestAnimationFrame(daveLoop);}
+function daveLoop(){
+  if(cw===0){
+    // Home world — follow cursor
+    var tx=Math.max(8,Math.min(window.innerWidth-56,mx-22));
+    var diff=tx-dX;
+    if(Math.abs(diff)>2&&!isJ){
+      dX+=diff*0.1;
+      dave.style.left=dX+'px';
+      var nd=diff>0?1:-1;
+      if(nd!==dDir){dDir=nd;DB.style.setProperty('--f',dDir);}
+      DB.className='dw '+(dDir>0?'wr':'wl');
+      clearTimeout(wTO);
+      wTO=setTimeout(function(){if(!isJ)DB.className='dw idle';},160);
+    }
+    if(!isTr&&!eCool){
+      if(mx>window.innerWidth-52&&cw<WORLDS-1)goW(cw+1);
+      else if(mx<52&&cw>0)goW(cw-1);
+    }
+  } else {
+    // Video worlds — Dave is the progress bar
+    var vid=null;
+    if(cw===1) vid=w1active===1?w1v1:w1v2;
+    else if(cw===2) vid=document.getElementById('w2vid');
+    else if(cw===3) vid=w3active===1?w3v1:w3v2;
+    else if(cw===4) vid=document.getElementById('w4vid');
+    if(vid&&vid.duration){
+      var pct=vid.currentTime/vid.duration;
+      var targetX=Math.floor(pct*(window.innerWidth-56));
+      // Smooth dave movement
+      dX+=(targetX-dX)*0.05;
+      dave.style.left=dX+'px';
+      // Always walking right
+      if(dDir!==1){dDir=1;DB.style.setProperty('--f',1);}
+      DB.className='dw wr';
+      // Update ground progress
+      gndprog.style.opacity='1';
+      gndprog.style.width=(pct*100)+'%';
+    }
+    // Still allow edge navigation on video worlds
+    if(!isTr&&!eCool){
+      if(mx>window.innerWidth-52&&cw<WORLDS-1)goW(cw+1);
+      else if(mx<52&&cw>0)goW(cw-1);
+    }
+  }
+  requestAnimationFrame(daveLoop);
+}
 daveLoop();
 
 function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity='0.06';setTimeout(function(){flash.style.opacity='0';},100);cw=i;stage.style.transform='translateX(-'+(cw*100)+'vw)';dots.forEach(function(d,j){d.classList.toggle('active',j===cw);});wct.textContent=String(cw+1).padStart(2,'0')+' / '+String(WORLDS).padStart(2,'0');hint.textContent=hintT[cw];gnd.style.background=gndS[cw];
@@ -477,7 +522,8 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
       w4vid.play();
     } else w4vid.pause();
   }
-  if(cw<1||cw>4){gndprog.style.opacity='0';}
+  if(cw<1||cw>4){gndprog.style.opacity='0';dX=Math.max(8,Math.min(window.innerWidth-56,mx-22));}
+  else{dX=8;}// Reset dave to left on video worlds
   setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
 
 function spawnCoin(x,y){var c=document.createElement('div');c.className='cpop';c.textContent='*';c.style.left=x+'px';c.style.top=y+'px';document.body.appendChild(c);setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},800);}
@@ -541,23 +587,8 @@ w1v1.muted=false;
 w1v2.muted=false;
 w1v1.load();
 
-// Video progress bar on ground line
 var gndprog=document.getElementById('gndprog');
-function updateProgress(){
-  var vid=null;
-  if(cw===1) vid=w1active===1?w1v1:w1v2;
-  else if(cw===2) vid=document.getElementById('w2vid');
-  else if(cw===3) vid=w3active===1?w3v1:w3v2;
-  else if(cw===4) vid=document.getElementById('w4vid');
-  if(vid&&vid.duration){
-    gndprog.style.opacity='1';
-    gndprog.style.width=(vid.currentTime/vid.duration*100)+'%';
-  } else {
-    gndprog.style.opacity='0';
-  }
-  requestAnimationFrame(updateProgress);
-}
-updateProgress();
+
 document.getElementById('w1next').addEventListener('click',function(e){e.stopPropagation();w1Next();});
 document.getElementById('w1prev').addEventListener('click',function(e){e.stopPropagation();w1Prev();});
 document.getElementById('w1mute').addEventListener('click',function(e){e.stopPropagation();toggleW1Mute();});
