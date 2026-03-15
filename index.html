@@ -231,14 +231,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="mob-section">
     <div class="mob-label">TRAVEL</div>
     <div class="mob-vid">
-      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/FramesFinal.mp4"></video>
+      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4"></video>
       <div class="mob-vid-overlay">
         <div class="mob-vid-title">WANDERING ON PURPOSE</div>
         <div class="mob-vid-desc">Solo trips. Strange places. No script.</div>
       </div>
     </div>
     <div class="mob-vid">
-      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20by%20the%20Ganga%20v1.mp4"></video>
+      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4"></video>
       <div class="mob-vid-overlay">
         <div class="mob-vid-title">LIFE BY THE GANGA</div>
         <div class="mob-vid-desc">The river. The people. The light.</div>
@@ -258,12 +258,30 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <div class="mob-section">
-    <div class="mob-label">AD / BTS</div>
+    <div class="mob-label">BTS</div>
     <div class="mob-vid">
-      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20BTS.mp4"></video>
+      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4"></video>
       <div class="mob-vid-overlay">
-        <div class="mob-vid-title">BRAND STORIES</div>
-        <div class="mob-vid-desc">Behind the brief. Inside the set.</div>
+        <div class="mob-vid-title">BEHIND THE SCENES</div>
+        <div class="mob-vid-desc">On set. Unscripted.</div>
+      </div>
+    </div>
+    <div class="mob-vid">
+      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4"></video>
+      <div class="mob-vid-overlay">
+        <div class="mob-vid-title">BEHIND THE SCENES</div>
+        <div class="mob-vid-desc">Lights. Camera. Chaos.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mob-section">
+    <div class="mob-label">WRITTEN & DIRECTED</div>
+    <div class="mob-vid">
+      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Blinkit%20Final%20Ad.mp4"></video>
+      <div class="mob-vid-overlay">
+        <div class="mob-vid-title">WRITTEN & DIRECTED</div>
+        <div class="mob-vid-desc">Every frame intentional.</div>
       </div>
     </div>
   </div>
@@ -288,6 +306,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 <div id="gnd"></div>
 <div id="gndprog"></div>
+
+<!-- Wall jack — fixed to left edge, only visible on home -->
+<div id="wallJack" style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:60;pointer-events:none;transition:opacity 0.4s;">
+  <div style="width:24px;height:80px;background:#111;border:1px solid #2a2a2a;border-left:none;border-radius:0 6px 6px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+    <div style="width:7px;height:7px;border-radius:50%;background:#1a1a1a;border:1px solid #333;"></div>
+    <div style="width:7px;height:7px;border-radius:50%;background:#1a1a1a;border:1px solid #333;"></div>
+    <div id="jackHot" style="width:8px;height:8px;border-radius:50%;background:var(--y);box-shadow:0 0 10px rgba(255,229,0,0.6);"></div>
+  </div>
+  <!-- Jack exit nub -->
+  <div style="position:absolute;right:-7px;top:50%;transform:translateY(-50%);width:7px;height:7px;background:var(--y);border-radius:50%;box-shadow:0 0 8px rgba(255,229,0,0.8);"></div>
+  <!-- Jack label -->
+  <div style="position:absolute;left:28px;top:50%;transform:translateY(-50%);font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.3);letter-spacing:1px;white-space:nowrap;">IN</div>
+</div>
+
+<!-- Plug tip that follows cursor on home -->
+<canvas id="wireCanvas" style="position:fixed;inset:0;z-index:55;pointer-events:none;opacity:0;transition:opacity 0.3s;"></canvas>
 <div id="dave" style="left:90px">
   <div class="dw idle" id="DB">
     <div class="px dc"></div><div class="px db2"></div>
@@ -317,33 +351,79 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <a href="https://www.instagram.com/malanidoosra/" target="_blank" class="slink">INSTAGRAM</a>
 </div>
 <div id="wct">01 / 05</div>
-<div id="hint">MOVE CURSOR &#8594; TO EXPLORE</div>
+<div id="hint">PLUG THE WIRE INTO A SOCKET TO ENTER A WORLD</div>
 
 <div id="stage">
 
 <div class="world" id="w0">
   <canvas id="sparks" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></canvas>
   <div id="floaters" style="position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;"></div>
-  <div class="hcontent">
-    <div class="hleft">
-      <div class="htag">&#8627; CURIOUS &middot; CREATOR &middot; AI-NATIVE</div>
-      <div class="hname">
-        <div class="wh">MALANI</div>
-        <div class="yl">DOOSRA</div>
+
+  <!-- Centered slate panel -->
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;">
+    <div style="width:min(680px,85vw);background:#080808;border:1px solid #1a1a1a;">
+
+      <!-- Yellow top bar -->
+      <div style="height:3px;background:var(--y);"></div>
+
+      <!-- Info strip -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #141414;">
+        <div style="padding:10px 16px;border-right:1px solid #141414;">
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">DIRECTOR</div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">MALANI DOOSRA</div>
+        </div>
+        <div style="padding:10px 16px;border-right:1px solid #141414;">
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">LOCATION</div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">MUMBAI, IN</div>
+        </div>
+        <div style="padding:10px 16px;">
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">STATUS</div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(0,255,65,0.7);">OPEN TO WORK</div>
+        </div>
       </div>
-      <p class="hbio">Can't sit still. Always asking <span class="hi">what's next.</span><br>I make videos. I build with AI.<br>I chase the things that don't exist yet.</p>
-      <div class="hstatus">
-        <div class="hsdot"></div>
-        <div class="hstext">CURRENTLY EXPLORING &middot; OPEN TO WORK</div>
+
+      <!-- Name -->
+      <div style="padding:24px 28px 16px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,120px);line-height:0.83;letter-spacing:-1px;">
+          <div style="color:var(--w);">MALANI</div>
+          <div style="color:var(--y);">DOOSRA</div>
+        </div>
+        <p style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.8;margin-top:14px;">filmmaker · cinematographer · ai-native<br>can't sit still. always asking what's next.</p>
       </div>
-      <div class="hdisc">* this site was mostly vibe-coded at 2am</div>
+
+      <!-- Divider -->
+      <div style="height:1px;background:#141414;"></div>
+
+      <!-- Patch bay label -->
+      <div style="padding:8px 16px 0;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.08);letter-spacing:3px;">PATCH BAY — SELECT A WORLD</div>
+
+      <!-- Sockets -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);">
+        <div class="psocket" data-world="1" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
+          <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.01</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.18);letter-spacing:1px;transition:color 0.2s;">TRAVEL</div>
+        </div>
+        <div class="psocket" data-world="2" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
+          <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.02</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.18);letter-spacing:1px;transition:color 0.2s;">DOCU</div>
+        </div>
+        <div class="psocket" data-world="3" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
+          <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.03</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.18);letter-spacing:1px;transition:color 0.2s;">BTS</div>
+        </div>
+        <div class="psocket" data-world="4" style="padding:16px;cursor:none;text-align:center;transition:background 0.2s;">
+          <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.04</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.18);letter-spacing:1px;transition:color 0.2s;">W&D</div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div style="height:2px;background:#0d0d0d;"><div id="patchProgress" style="height:100%;background:var(--y);width:0%;transition:none;"></div></div>
     </div>
-  </div>
-  <div class="bcol">
-    <div class="mbox" onclick="jumpBox(1,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">TRAVEL</div></div>
-    <div class="mbox" onclick="jumpBox(2,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">DOCU</div></div>
-    <div class="mbox" onclick="jumpBox(3,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">BTS</div></div>
-    <div class="mbox" onclick="jumpBox(4,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">ADS</div></div>
   </div>
 </div>
 
@@ -433,6 +513,7 @@ document.addEventListener('mousemove',function(e){
   mx=e.clientX;my=e.clientY;
   cur.style.left=mx+'px';cur.style.top=my+'px';
   cur2.style.left=mx+'px';cur2.style.top=my+'px';
+  if(cw===0)checkPSocketHover();
 });
 document.addEventListener('mousedown',function(){cur.classList.add('big');});
 document.addEventListener('mouseup',function(){cur.classList.remove('big');});
@@ -444,15 +525,7 @@ var fl=document.getElementById('floaters');
 function mkFloat(){var d=document.createElement('div');var chars=['?','!','>','*','+','.'];d.textContent=chars[Math.floor(Math.random()*chars.length)];d.style.cssText='position:absolute;font-family:"Press Start 2P",monospace;font-size:'+(Math.random()*10+7)+'px;color:rgba(255,229,0,'+(Math.random()*0.08+0.02)+');left:'+(Math.random()*100)+'%;bottom:-20px;animation:floatup '+(Math.random()*12+8)+'s linear forwards;pointer-events:none;';fl.appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},16000);}
 setInterval(mkFloat,800);
 
-function mkStars(id,n,col){var c=document.getElementById(id);if(!c)return;var h='';for(var i=0;i<n;i++){var s=Math.random()<0.78?1:Math.random()<0.5?2:1.5;var op=Math.random()*0.55+0.08;h+='<div style="position:absolute;width:'+s+'px;height:'+s+'px;background:'+(col||'rgba(255,255,255,'+op+')')+';border-radius:50%;top:'+(Math.random()*80)+'%;left:'+(Math.random()*100)+'%;animation:blink '+(Math.random()*3+1.5)+'s steps(1) '+(Math.random()*-3)+'s infinite;pointer-events:none;"></div>';}c.innerHTML=h;}
-mkStars('tstars',90);mkStars('mvstars',60,'rgba(180,100,255,0.4)');
-
-var mr=document.getElementById('mrain');
-if(mr){var ch='01ABCDE';var h='';for(var i=0;i<24;i++){var col='';var l=Math.floor(Math.random()*16+6);for(var j=0;j<l;j++)col+=ch[Math.floor(Math.random()*ch.length)]+'\n';h+='<div style="position:absolute;top:-80px;font-family:monospace;font-size:10px;color:#00ff41;line-height:14px;animation:mfall '+(Math.random()*9+5)+'s linear '+(Math.random()*-8)+'s infinite;opacity:'+(Math.random()*0.1+0.04)+';white-space:pre;writing-mode:vertical-lr;left:'+Math.round(i*4.3)+'%">'+col+'</div>';}mr.innerHTML=h;}
-
-document.querySelectorAll('.vc img').forEach(function(img){img.addEventListener('error',function(){if(this.dataset.tried)return;this.dataset.tried=1;this.src=this.src.replace('maxresdefault','hqdefault');this.addEventListener('error',function(){this.style.display='none';var fb=document.createElement('div');fb.className='thumb-fallback';fb.innerHTML='<span>YOUTUBE</span>';this.parentNode.insertBefore(fb,this);});});});
-
-var WORLDS=5,cw=0,dX=90,dDir=1,wTO,isJ=false,isTr=false,eCool=false;
+var WORLDS=5,cw=0,dX=90,dY=0,dDir=1,wTO,isJ=false,isTr=false,eCool=false;
 var stage=document.getElementById('stage');
 var flash=document.getElementById('flash');
 var dave=document.getElementById('dave');
@@ -462,28 +535,41 @@ var wct=document.getElementById('wct');
 var hint=document.getElementById('hint');
 var dots=document.querySelectorAll('.ndot');
 var gndS=['repeating-linear-gradient(90deg,rgba(255,255,255,0.1) 0,rgba(255,255,255,0.1) 10px,transparent 10px,transparent 20px)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)'];
-var hintT=['MOVE CURSOR TO EXPLORE - CLICK TO JUMP','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS'];
+var hintT=['PLUG THE WIRE INTO A SOCKET TO ENTER A WORLD','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS'];
+
+// Wire system vars — declared here so daveLoop can use them
+var wireCanvas=document.getElementById('wireCanvas');
+var wctx=wireCanvas?wireCanvas.getContext('2d'):null;
+var psockets=document.querySelectorAll('.psocket');
+var patchProgress=document.getElementById('patchProgress');
+var hovPsocket=null;
+var pluggedPsocket=null;
+var plugging=false;
+var plugFill=null;
+var wallJack=document.getElementById('wallJack');
+var gndprog=document.getElementById('gndprog');
 
 function daveLoop(){
   if(cw===0){
-    // Home world — follow cursor
-    var tx=Math.max(8,Math.min(window.innerWidth-56,mx-22));
-    var diff=tx-dX;
-    if(Math.abs(diff)>2&&!isJ){
-      dX+=diff*0.1;
-      dave.style.left=dX+'px';
-      var nd=diff>0?1:-1;
-      if(nd!==dDir){dDir=nd;DB.style.setProperty('--f',dDir);}
-      DB.className='dw '+(dDir>0?'wr':'wl');
-      clearTimeout(wTO);
-      wTO=setTimeout(function(){if(!isJ)DB.className='dw idle';},160);
+    // Home world — wire system
+    checkPSocketHover();
+    if(!plugging&&!pluggedPsocket){
+      var tx=Math.max(8,Math.min(window.innerWidth-56,mx-22));
+      var diff=tx-dX;
+      if(Math.abs(diff)>2&&!isJ){
+        dX+=diff*0.1;
+        dave.style.left=dX+'px';
+        var nd=diff>0?1:-1;
+        if(nd!==dDir){dDir=nd;DB.style.setProperty('--f',dDir);}
+        DB.className='dw '+(dDir>0?'wr':'wl');
+        clearTimeout(wTO);
+        wTO=setTimeout(function(){if(!isJ)DB.className='dw idle';},160);
+      }
     }
-    if(!isTr&&!eCool){
-      if(mx>window.innerWidth-52&&cw<WORLDS-1)goW(cw+1);
-      else if(mx<52&&cw>0)goW(cw-1);
-    }
+    if(wireCanvas)wireCanvas.style.opacity='1';
   } else {
     // Video worlds — Dave is the progress bar
+    if(wireCanvas)wireCanvas.style.opacity='0';
     var vid=null;
     if(cw===1) vid=w1active===1?w1v1:w1v2;
     else if(cw===2) vid=document.getElementById('w2vid');
@@ -492,17 +578,13 @@ function daveLoop(){
     if(vid&&vid.duration){
       var pct=vid.currentTime/vid.duration;
       var targetX=Math.floor(pct*(window.innerWidth-56));
-      // Smooth dave movement
       dX+=(targetX-dX)*0.05;
       dave.style.left=dX+'px';
-      // Always walking right
       if(dDir!==1){dDir=1;DB.style.setProperty('--f',1);}
       DB.className='dw wr';
-      // Update ground progress
       gndprog.style.opacity='1';
       gndprog.style.width=(pct*100)+'%';
     }
-    // Still allow edge navigation on video worlds
     if(!isTr&&!eCool){
       if(mx>window.innerWidth-52&&cw<WORLDS-1)goW(cw+1);
       else if(mx<52&&cw>0)goW(cw-1);
@@ -520,6 +602,7 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   document.getElementById('sbar').style.opacity=onVideo?'0':'1';
   document.getElementById('wct').style.opacity=onVideo?'0.3':'1';
   document.getElementById('hint').style.opacity=onVideo?'0':'1';
+  setWireVisible(cw===0);
   var w1vid=w1active===1?w1v1:w1v2;
   if(w1vid){if(cw===1)w1vid.play();else w1vid.pause();}
   var w2vid=document.getElementById('w2vid');
@@ -539,7 +622,9 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
     } else w4vid.pause();
   }
   if(cw<1||cw>4){gndprog.style.opacity='0';dX=Math.max(8,Math.min(window.innerWidth-56,mx-22));setDaveNotes(false);}
-  else{dX=8;}// Reset dave to left on video worlds
+  else{dX=8;}
+  // Reset wire state on home
+  if(cw===0){pluggedPsocket=null;plugging=false;if(patchProgress)patchProgress.style.width='0%';}
   setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
 
 function spawnCoin(x,y){var c=document.createElement('div');c.className='cpop';c.textContent='*';c.style.left=x+'px';c.style.top=y+'px';document.body.appendChild(c);setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},800);}
@@ -550,7 +635,223 @@ document.addEventListener('click',function(e){if(e.target.closest('.mbox')||e.ta
 
 window.jumpBox=function(wi,el){var inner=el.querySelector('.mbi');inner.classList.remove('bumping');void inner.offsetWidth;inner.classList.add('bumping');setTimeout(function(){inner.classList.remove('bumping');},380);var rect=el.getBoundingClientRect();spawnCoin(rect.left+rect.width/2-7,rect.top-14);isJ=true;dDir=rect.left>dX?1:-1;DB.style.setProperty('--f',dDir);DB.className='dw jump';setTimeout(function(){isJ=false;DB.className='dw idle';goW(wi);},440);};
 
-// World 01 video carousel
+// ── WIRE / PATCH BAY SYSTEM ──────────────────────────────
+
+function resizeWireCanvas(){
+  if(!wireCanvas)return;
+  wireCanvas.width=window.innerWidth;
+  wireCanvas.height=window.innerHeight;
+}
+resizeWireCanvas();
+window.addEventListener('resize',resizeWireCanvas);
+
+// Show/hide wire system based on world
+function setWireVisible(v){
+  if(wireCanvas)wireCanvas.style.opacity=v?'1':'0';
+  if(wallJack)wallJack.style.opacity=v?'1':'0';
+}
+
+// Get wall jack exit point (fixed coords)
+function getJackPoint(){
+  if(!wallJack)return{x:20,y:window.innerHeight/2};
+  var r=wallJack.getBoundingClientRect();
+  return{x:r.right-2,y:r.top+r.height/2};
+}
+
+// Get socket hole center (fixed coords)
+function getPSocketCenter(el){
+  var hole=el.querySelector('.phole');
+  var r=hole.getBoundingClientRect();
+  return{x:r.left+r.width/2,y:r.top+r.height/2};
+}
+
+// Dave hand position — right side at mid height
+function getDaveHandPos(){
+  return{x:dX+24,y:dY+14};
+}
+
+function drawPlug(x,y,size,alpha){
+  // Plug body
+  wctx.beginPath();
+  wctx.arc(x,y,size,0,Math.PI*2);
+  wctx.fillStyle='rgba(255,229,0,'+alpha+')';
+  wctx.fill();
+  // Plug prong
+  wctx.beginPath();
+  wctx.rect(x+size-1,y-1.5,size+1,3);
+  wctx.fillStyle='rgba(255,200,0,'+alpha+')';
+  wctx.fill();
+  // Glow
+  wctx.beginPath();
+  wctx.arc(x,y,size+3,0,Math.PI*2);
+  wctx.fillStyle='rgba(255,229,0,'+(alpha*0.15)+')';
+  wctx.fill();
+}
+
+function drawJackConnector(x,y){
+  // Jack socket ring
+  wctx.beginPath();
+  wctx.arc(x,y,6,0,Math.PI*2);
+  wctx.strokeStyle='rgba(255,229,0,0.6)';
+  wctx.lineWidth=1.5;
+  wctx.stroke();
+  wctx.beginPath();
+  wctx.arc(x,y,3,0,Math.PI*2);
+  wctx.fillStyle='rgba(255,229,0,0.9)';
+  wctx.fill();
+}
+
+function drawWireSystem(){
+  if(!wctx){requestAnimationFrame(drawWireSystem);return;}
+  wctx.clearRect(0,0,wireCanvas.width,wireCanvas.height);
+  if(cw!==0){requestAnimationFrame(drawWireSystem);return;}
+
+  var jack=getJackPoint();
+  var hand=getDaveHandPos();
+
+  // Always draw: jack → hand (solid, connected)
+  drawWireSegment(jack,hand,true);
+  drawJackConnector(jack.x,jack.y);
+
+  if(pluggedPsocket){
+    var sp=getPSocketCenter(pluggedPsocket);
+    // hand → socket (solid, plugged in)
+    drawWireSegment(hand,sp,true);
+    drawPlug(sp.x,sp.y,5,1.0);
+    drawPlug(hand.x,hand.y,4,0.9);
+  } else {
+    // hand → cursor (dashed, loose end)
+    drawWireSegment(hand,{x:mx,y:my},false);
+    drawPlug(hand.x,hand.y,4,0.85);
+    // Loose plug tip at cursor
+    drawPlug(mx,my,4,0.6);
+  }
+
+  requestAnimationFrame(drawWireSystem);
+}
+drawWireSystem();
+
+function drawWireSegment(a,b,solid){
+  var dx=b.x-a.x, dy=b.y-a.y;
+  var len=Math.sqrt(dx*dx+dy*dy);
+  var sag=Math.min(len*0.22,55);
+  var cx=(a.x+b.x)/2;
+  var cy=(a.y+b.y)/2+sag;
+
+  if(solid){
+    // Glow pass
+    wctx.beginPath();
+    wctx.moveTo(a.x,a.y);
+    wctx.quadraticCurveTo(cx,cy,b.x,b.y);
+    wctx.strokeStyle='rgba(255,229,0,0.08)';
+    wctx.lineWidth=8;
+    wctx.lineCap='round';
+    wctx.setLineDash([]);
+    wctx.stroke();
+    // Main wire
+    wctx.beginPath();
+    wctx.moveTo(a.x,a.y);
+    wctx.quadraticCurveTo(cx,cy,b.x,b.y);
+    wctx.strokeStyle='rgba(255,229,0,0.8)';
+    wctx.lineWidth=2;
+    wctx.stroke();
+  } else {
+    wctx.beginPath();
+    wctx.moveTo(a.x,a.y);
+    wctx.quadraticCurveTo(cx,cy,b.x,b.y);
+    wctx.setLineDash([5,4]);
+    wctx.strokeStyle='rgba(255,229,0,0.3)';
+    wctx.lineWidth=1.5;
+    wctx.lineCap='round';
+    wctx.stroke();
+    wctx.setLineDash([]);
+  }
+}
+
+// Patch socket hover detection
+function checkPSocketHover(){
+  if(cw!==0||pluggedPsocket)return;
+  var nearest=null,nearDist=50;
+  psockets.forEach(function(s){
+    var p=getPSocketCenter(s);
+    var d=Math.sqrt((mx-p.x)*(mx-p.x)+(my-p.y)*(my-p.y));
+    if(d<nearDist){nearest=s;nearDist=d;}
+  });
+  if(nearest!==hovPsocket){
+    if(hovPsocket){
+      hovPsocket.querySelector('.phole').style.borderColor='#252525';
+      hovPsocket.querySelector('.phole').style.boxShadow='none';
+      hovPsocket.querySelector('.pslabel').style.color='rgba(255,255,255,0.18)';
+      hovPsocket.style.background='transparent';
+    }
+    hovPsocket=nearest;
+    if(hovPsocket){
+      hovPsocket.querySelector('.phole').style.borderColor='var(--y)';
+      hovPsocket.querySelector('.phole').style.boxShadow='0 0 8px rgba(255,229,0,0.4)';
+      hovPsocket.querySelector('.pslabel').style.color='rgba(255,229,0,0.8)';
+      hovPsocket.style.background='rgba(255,229,0,0.03)';
+    }
+  }
+}
+
+// Click to plug in
+document.addEventListener('click',function(e){
+  if(cw!==0||pluggedPsocket||plugging)return;
+  if(e.target.closest('.psocket')||hovPsocket){
+    var target=e.target.closest('.psocket')||hovPsocket;
+    plugInSocket(target);
+  }
+});
+
+function plugInSocket(socket){
+  plugging=true;
+  pluggedPsocket=socket;
+  socket.querySelector('.phole').style.background='var(--y)';
+  socket.querySelector('.phole').style.boxShadow='0 0 12px rgba(255,229,0,0.6)';
+  // Walk dave toward socket
+  var sp=getPSocketCenter(socket);
+  daveWalkTo(sp.x-11,function(){
+    // Flash
+    flash.style.opacity='0.05';
+    setTimeout(function(){flash.style.opacity='0';},80);
+    // Fill progress then navigate
+    var pct=0;
+    plugFill=setInterval(function(){
+      pct+=2;
+      patchProgress.style.width=pct+'%';
+      if(pct>=100){
+        clearInterval(plugFill);
+        setTimeout(function(){
+          patchProgress.style.width='0%';
+          var world=parseInt(socket.dataset.world);
+          pluggedPsocket=null;
+          plugging=false;
+          socket.querySelector('.phole').style.background='#060606';
+          socket.querySelector('.phole').style.boxShadow='none';
+          goW(world);
+        },200);
+      }
+    },14);
+  });
+}
+
+function daveWalkTo(tx,cb){
+  var interval=setInterval(function(){
+    var diff=tx-dX;
+    if(Math.abs(diff)>3){
+      dX+=diff*0.1;
+      dave.style.left=Math.round(dX)+'px';
+      var nd=diff>0?1:-1;
+      if(nd!==dDir){dDir=nd;DB.style.setProperty('--f',dDir);}
+      if(dDir<0)DB.className='dw wl';else DB.className='dw wr';
+    } else {
+      clearInterval(interval);
+      DB.className='dw idle';
+      if(cb)cb();
+    }
+  },16);
+}
+// ── END WIRE SYSTEM ──────────────────────────────────────
 var w1videos=[
   {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4',title:'<span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span>',desc:'Solo trips. Strange places.<br>No script, just instinct + a camera.'},
   {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4',title:'<span class="wy">LIFE BY</span><br><span class="ww">THE GANGA</span>',desc:'The river. The people. The light.'}
@@ -601,7 +902,8 @@ function toggleWMute(vidId,icoId,txtId){
   setDaveNotes(!vid.muted);
 }
 
-// Init first video
+// Init dY from Dave's actual position
+dY=window.innerHeight-48-29;
 w1v1.src=w1videos[0].src;
 w1v1.muted=false;
 w1v2.muted=false;
