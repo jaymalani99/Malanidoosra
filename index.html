@@ -205,14 +205,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .mob-status{display:flex;align-items:center;gap:8px;margin-bottom:40px;}
   .mob-dot{width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pulse 2s ease-in-out infinite;}
   .mob-statustext{font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,65,0.5);letter-spacing:2px;}
-  .mob-section{margin-bottom:4px;}
-  .mob-label{font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.3);letter-spacing:3px;padding:0 20px;margin-bottom:8px;}
-  .mob-vid{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;margin-bottom:4px;}
+  .mob-section{margin-bottom:0;}
+  .mob-label{display:none;}
+  .mob-vid{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;margin-bottom:2px;}
   .mob-vid video{width:100%;height:100%;object-fit:cover;}
-  .mob-vid-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,0.85));display:flex;flex-direction:column;justify-content:flex-end;padding:16px;}
-  .mob-vid-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--w);line-height:1;}
-  .mob-vid-desc{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px;}
-  .mob-footer{padding:32px 20px;border-top:1px solid rgba(255,255,255,0.05);text-align:center;}
+  .mob-vid-overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,0.8));display:flex;flex-direction:column;justify-content:flex-end;padding:14px;}
+  .mob-vid-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--w);line-height:1;}
+  .mob-vid-desc{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);margin-top:3px;}
+  .mob-footer{padding:28px 20px 40px;border-top:1px solid rgba(255,255,255,0.05);text-align:center;}
   .mob-footer a{font-family:'Press Start 2P',monospace;font-size:6px;color:var(--y);text-decoration:none;border:1px solid rgba(255,229,0,0.3);padding:12px 20px;display:inline-block;}
 }
 .mobt{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--y);line-height:2;margin-bottom:8px;}
@@ -242,66 +242,37 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="mob-status"><div class="mob-dot"></div><div class="mob-statustext">CURRENTLY EXPLORING · OPEN TO WORK</div></div>
   </div>
 
-  <div class="mob-section">
-    <div class="mob-label">TRAVEL</div>
-    <div class="mob-vid">
-      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4"></video>
-      <div class="mob-vid-overlay">
-        <div class="mob-vid-title">WANDERING ON PURPOSE</div>
-        <div class="mob-vid-desc">Solo trips. Strange places. No script.</div>
-      </div>
-    </div>
-    <div class="mob-vid">
-      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4"></video>
-      <div class="mob-vid-overlay">
-        <div class="mob-vid-title">LIFE BY THE GANGA</div>
-        <div class="mob-vid-desc">The river. The people. The light.</div>
-      </div>
-    </div>
+  <div class="mob-vid">
+    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4"></video>
+    <div class="mob-vid-overlay"><div class="mob-vid-title">WANDERING ON PURPOSE</div><div class="mob-vid-desc">Solo trips. Strange places. No script.</div></div>
   </div>
-
-  <div class="mob-section">
-    <div class="mob-label">DOCUMENTARY</div>
-    <div class="mob-vid">
-      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Puneshow%20Final.mp4"></video>
-      <div class="mob-vid-overlay">
-        <div class="mob-vid-title">REAL STORIES</div>
-        <div class="mob-vid-desc">No studios. Just truth + a lens.</div>
-      </div>
-    </div>
+  <div class="mob-vid">
+    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4"></video>
+    <div class="mob-vid-overlay"><div class="mob-vid-title">LIFE BY THE GANGA</div><div class="mob-vid-desc">The river. The people. The light.</div></div>
   </div>
-
-  <div class="mob-section">
-    <div class="mob-label">BTS</div>
-    <div class="mob-vid">
-      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4"></video>
-      <div class="mob-vid-overlay">
-        <div class="mob-vid-title">BEHIND THE SCENES</div>
-        <div class="mob-vid-desc">On set. Unscripted.</div>
-      </div>
-    </div>
-    <div class="mob-vid">
-      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4"></video>
-      <div class="mob-vid-overlay">
-        <div class="mob-vid-title">BEHIND THE SCENES</div>
-        <div class="mob-vid-desc">Lights. Camera. Chaos.</div>
-      </div>
-    </div>
+  <div class="mob-vid">
+    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Puneshow%20Final.mp4"></video>
+    <div class="mob-vid-overlay"><div class="mob-vid-title">REAL STORIES</div><div class="mob-vid-desc">No studios. Just truth + a lens.</div></div>
   </div>
-
-  <div class="mob-section">
-    <div class="mob-label">WRITTEN & DIRECTED</div>
-    <div class="mob-vid">
-      <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Blinkit%20Final%20Ad.mp4"></video>
-      <div class="mob-vid-overlay">
-        <div class="mob-vid-title">WRITTEN & DIRECTED</div>
-        <div class="mob-vid-desc">Every frame intentional.</div>
-      </div>
-    </div>
+  <div class="mob-vid">
+    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4"></video>
+    <div class="mob-vid-overlay"><div class="mob-vid-title">BEHIND THE SCENES</div><div class="mob-vid-desc">On set. Unscripted.</div></div>
+  </div>
+  <div class="mob-vid">
+    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4"></video>
+    <div class="mob-vid-overlay"><div class="mob-vid-title">BEHIND THE SCENES II</div><div class="mob-vid-desc">Lights. Camera. Chaos.</div></div>
+  </div>
+  <div class="mob-vid">
+    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Blinkit%20Final%20Ad.mp4"></video>
+    <div class="mob-vid-overlay"><div class="mob-vid-title">WRITTEN & DIRECTED</div><div class="mob-vid-desc">Every frame intentional.</div></div>
   </div>
 
   <div class="mob-footer">
     <a href="mailto:malanidoosra@gmail.com">GET IN TOUCH ↗</a>
+    <div style="margin-top:16px;">
+      <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.15);letter-spacing:2px;margin-bottom:10px;">WANT THE FULL EXPERIENCE?</div>
+      <a onclick="document.getElementById('mob').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:5px;color:var(--y);text-decoration:none;border:1px solid rgba(255,229,0,0.3);padding:10px 14px;display:inline-block;cursor:pointer;">VIEW DESKTOP VERSION →</a>
+    </div>
   </div>
 </div>
 <div id="cur"></div>
