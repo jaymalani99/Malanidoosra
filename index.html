@@ -361,9 +361,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <div class="world" id="w2" style="background:#060606;">
-  <video autoplay loop playsinline id="w2vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;">
-    <source src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Puneshow%20Final.mp4" type="video/mp4">
-  </video>
+  <video preload="none" loop playsinline id="w2vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
     <div class="wlabel">WORLD 02 &mdash; DOCUMENTARY</div>
@@ -376,9 +374,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <div class="world" id="w3" style="background:#060606;">
-  <video autoplay loop playsinline id="w3vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;">
-    <source src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20BTS.mp4" type="video/mp4">
-  </video>
+  <video preload="none" loop playsinline id="w3vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
     <div class="wlabel">WORLD 03 &mdash; AD / BTS</div>
@@ -447,9 +443,19 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   var w1vid=w1active===1?w1v1:w1v2;
   if(w1vid){if(cw===1)w1vid.play();else w1vid.pause();}
   var w2vid=document.getElementById('w2vid');
-  if(w2vid){if(cw===2)w2vid.play();else w2vid.pause();}
+  if(w2vid){
+    if(cw===2){
+      if(!w2vid.src){w2vid.src='https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Puneshow%20Final.mp4';w2vid.load();}
+      w2vid.play();
+    } else w2vid.pause();
+  }
   var w3vid=document.getElementById('w3vid');
-  if(w3vid){if(cw===3)w3vid.play();else w3vid.pause();}
+  if(w3vid){
+    if(cw===3){
+      if(!w3vid.src){w3vid.src='https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20BTS.mp4';w3vid.load();}
+      w3vid.play();
+    } else w3vid.pause();
+  }
   if(cw<1||cw>3){gndprog.style.opacity='0';}
   setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
 
@@ -474,9 +480,11 @@ function w1Load(idx,autoplay){
   var data=w1videos[idx];
   var next=w1active===1?w1v2:w1v1;
   var curr=w1active===1?w1v1:w1v2;
-  next.src=data.src;
-  next.muted=w1muted;
-  next.load();
+  if(next.src!==data.src){
+    next.src=data.src;
+    next.muted=w1muted;
+    next.load();
+  }
   next.oncanplay=function(){
     if(autoplay)next.play();
     next.style.opacity='1';
