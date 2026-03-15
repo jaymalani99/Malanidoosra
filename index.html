@@ -192,6 +192,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .vid-loading.hidden{opacity:0;pointer-events:none;}
 #vibeNote{position:fixed;bottom:16px;left:56px;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.12);letter-spacing:1px;z-index:200;transition:opacity 0.4s;pointer-events:none;}
 #vibeNote.hide{opacity:0;}
+@keyframes navpulse{0%,100%{opacity:0.35;}50%{opacity:0.8;}}
+#worldPrev,#worldNext{position:fixed;top:50%;transform:translateY(-50%);z-index:250;cursor:pointer;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-family:'Press Start 2P',monospace;font-size:11px;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.35);background:rgba(0,0,0,0.5);transition:all 0.2s;pointer-events:all;opacity:0;}
+#worldPrev{left:16px;}
+#worldNext{right:16px;}
+#worldPrev:hover,#worldNext:hover{border-color:var(--y);color:var(--y);opacity:1!important;}
+#worldPrev.show,#worldNext.show{opacity:0.35;}
+#worldPrev.pulse,#worldNext.pulse{animation:navpulse 0.8s ease-in-out 3;}
 #mob{display:none;position:fixed;inset:0;background:var(--k);z-index:99999;overflow-y:auto;}
 @media(max-width:768px){
   #mob{display:block;}
@@ -278,6 +285,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div id="cur"></div>
 <div id="cur2"></div>
 <div id="flash"></div>
+<div id="worldPrev" onclick="goW(Math.max(0,cw-1))">←</div>
+<div id="worldNext" onclick="goW(Math.min(WORLDS-1,cw+1))">→</div>
 <div id="lb">
   <div id="lbback" onclick="closeLB()">BACK</div>
   <div id="lbvwrap">
@@ -591,11 +600,25 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   document.getElementById('sbar').style.opacity=onVideo?'0':'1';
   document.getElementById('wct').style.opacity=onVideo?'0.3':'1';
   document.getElementById('hint').style.opacity=onVideo?'0':'1';
-  // Vibe note — only on home
-  var vn=document.getElementById('vibeNote');
-  if(vn)vn.classList.toggle('hide',onVideo);
   setWireVisible(cw===0);
   if(wallJack)wallJack.style.opacity=cw===0?'1':'0';
+  var vn=document.getElementById('vibeNote');
+  if(vn)vn.classList.toggle('hide',onVideo);
+  var wp=document.getElementById('worldPrev');
+  var wn=document.getElementById('worldNext');
+  if(wp&&wn){
+    if(onVideo){
+      wp.className=cw>0?'show':'';
+      wn.className=cw<WORLDS-1?'show':'';
+      // Pulse arrows on first entry to hint user
+      setTimeout(function(){
+        if(cw>0){wp.classList.add('pulse');setTimeout(function(){wp.classList.remove('pulse');},2500);}
+        if(cw<WORLDS-1){wn.classList.add('pulse');setTimeout(function(){wn.classList.remove('pulse');},2500);}
+      },600);
+    } else {
+      wp.className='';wn.className='';
+    }
+  }
   // Apply global mute state to newly entered world
   var mVids=['w2vid','w3vid','w3vid2','w4vid'];
   mVids.forEach(function(id){var v=document.getElementById(id);if(v)v.muted=globalMuted;});
@@ -630,12 +653,13 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   // Reset wire state on home
   if(cw===0){pluggedPsocket=null;plugging=false;if(patchProgress)patchProgress.style.width='0%';}
   setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
+window.goW=goW;
 
 function spawnCoin(x,y){var c=document.createElement('div');c.className='cpop';c.textContent='*';c.style.left=x+'px';c.style.top=y+'px';document.body.appendChild(c);setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},800);}
 
 function jumpDave(tx){if(isJ)return;isJ=true;var dir=tx>dX?1:-1;dDir=dir;DB.style.setProperty('--f',dir);DB.className='dw jump';spawnCoin(dX+10,window.innerHeight-155);setTimeout(function(){isJ=false;DB.className='dw idle';},520);}
 
-document.addEventListener('click',function(e){if(e.target.closest('.mbox')||e.target.closest('#lb')||e.target.closest('.vc')||e.target.closest('.ndot')||e.target.closest('.nemail')||e.target.closest('.slink')||e.target.closest('#ticker')||e.target.closest('#w1mute')||e.target.closest('#w1prev')||e.target.closest('#w1next')||e.target.closest('#w3mute')||e.target.closest('#w3prev')||e.target.closest('#w3next')||e.target.closest('#w2mute')||e.target.closest('#w4mute')||e.target.closest('.back-btn')||e.target.closest('.psocket'))return;jumpDave(mx);});
+document.addEventListener('click',function(e){if(e.target.closest('.mbox')||e.target.closest('#lb')||e.target.closest('.vc')||e.target.closest('.ndot')||e.target.closest('.nemail')||e.target.closest('.slink')||e.target.closest('#ticker')||e.target.closest('#w1mute')||e.target.closest('#w1prev')||e.target.closest('#w1next')||e.target.closest('#w3mute')||e.target.closest('#w3prev')||e.target.closest('#w3next')||e.target.closest('#w2mute')||e.target.closest('#w4mute')||e.target.closest('.back-btn')||e.target.closest('.psocket')||e.target.closest('#worldPrev')||e.target.closest('#worldNext'))return;jumpDave(mx);});
 
 window.jumpBox=function(wi,el){var inner=el.querySelector('.mbi');inner.classList.remove('bumping');void inner.offsetWidth;inner.classList.add('bumping');setTimeout(function(){inner.classList.remove('bumping');},380);var rect=el.getBoundingClientRect();spawnCoin(rect.left+rect.width/2-7,rect.top-14);isJ=true;dDir=rect.left>dX?1:-1;DB.style.setProperty('--f',dDir);DB.className='dw jump';setTimeout(function(){isJ=false;DB.className='dw idle';goW(wi);},440);};
 
