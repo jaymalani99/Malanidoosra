@@ -291,6 +291,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div class="ndot" data-w="1"></div>
       <div class="ndot" data-w="2"></div>
       <div class="ndot" data-w="3"></div>
+      <div class="ndot" data-w="4"></div>
     </div>
     <a href="/cdn-cgi/l/email-protection#d7bab6bbb6b9beb3b8b8a4a5b697b0bab6bebbf9b4b8ba" class="nemail">HIRE ME ↗</a>
   </div>
@@ -299,7 +300,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <a href="https://www.youtube.com/@Malanidoosra" target="_blank" class="slink">YOUTUBE</a>
   <a href="https://www.instagram.com/malanidoosra/" target="_blank" class="slink">INSTAGRAM</a>
 </div>
-<div id="wct">01 / 04</div>
+<div id="wct">01 / 05</div>
 <div id="hint">MOVE CURSOR &#8594; TO EXPLORE</div>
 
 <div id="stage">
@@ -325,7 +326,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="bcol">
     <div class="mbox" onclick="jumpBox(1,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">TRAVEL</div></div>
     <div class="mbox" onclick="jumpBox(2,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">DOCU</div></div>
-    <div class="mbox" onclick="jumpBox(3,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">AD / BTS</div></div>
+    <div class="mbox" onclick="jumpBox(3,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">BTS</div></div>
+    <div class="mbox" onclick="jumpBox(4,this)"><div class="mbi"><span class="mbq">?</span></div><div class="mbl">ADS</div></div>
   </div>
 </div>
 
@@ -374,15 +376,32 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <div class="world" id="w3" style="background:#060606;">
-  <video preload="none" loop playsinline id="w3vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"></video>
+  <video preload="none" loop playsinline id="w3vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:1;pointer-events:none;transition:opacity 0.6s;"></video>
+  <video preload="none" loop playsinline id="w3vid2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;pointer-events:none;transition:opacity 0.6s;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
-    <div class="wlabel">WORLD 03 &mdash; AD / BTS</div>
-    <div class="wtit"><span class="wy">BRAND</span><br><span class="ww">STORIES</span></div>
-    <div class="wdesc" style="margin-top:10px;">Behind the brief. Inside the set.<br>Making brands feel like people.</div>
+    <div class="wlabel">WORLD 03 &mdash; BTS</div>
+    <div class="wtit" id="w3title"><span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span></div>
+    <div class="wdesc" id="w3desc" style="margin-top:10px;">On set. Unscripted.<br>Where the real work happens.</div>
   </div>
   <div id="w3mute" style="position:absolute;bottom:48px;left:56px;z-index:100;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.35);letter-spacing:2px;border:1px solid rgba(255,255,255,0.12);padding:8px 12px;transition:all 0.2s;background:rgba(0,0,0,0.4);pointer-events:all;">
     <span id="w3muteico">🔊</span><span id="w3mutetxt">MUTE</span>
+  </div>
+  <div id="w3counter" style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:100;font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.25);letter-spacing:3px;pointer-events:none;">01 / 02</div>
+  <div id="w3prev" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;width:48px;height:48px;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-family:'Press Start 2P',monospace;font-size:10px;color:rgba(255,255,255,0.25);background:rgba(0,0,0,0.3);transition:all 0.2s;pointer-events:all;">←</div>
+  <div id="w3next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;width:48px;height:48px;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-family:'Press Start 2P',monospace;font-size:10px;color:rgba(255,255,255,0.25);background:rgba(0,0,0,0.3);transition:all 0.2s;pointer-events:all;">→</div>
+</div>
+
+<div class="world" id="w4" style="background:#060606;">
+  <video preload="none" loop playsinline id="w4vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"></video>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
+  <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
+    <div class="wlabel">WORLD 04 &mdash; ADS</div>
+    <div class="wtit"><span class="wy">WRITTEN &</span><br><span class="ww">DIRECTED</span></div>
+    <div class="wdesc" style="margin-top:10px;">Concept to camera.<br>Every frame intentional.</div>
+  </div>
+  <div id="w4mute" style="position:absolute;bottom:48px;left:56px;z-index:100;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.35);letter-spacing:2px;border:1px solid rgba(255,255,255,0.12);padding:8px 12px;transition:all 0.2s;background:rgba(0,0,0,0.4);pointer-events:all;">
+    <span id="w4muteico">🔊</span><span id="w4mutetxt">MUTE</span>
   </div>
 </div>
 
@@ -417,7 +436,7 @@ if(mr){var ch='01ABCDE';var h='';for(var i=0;i<24;i++){var col='';var l=Math.flo
 
 document.querySelectorAll('.vc img').forEach(function(img){img.addEventListener('error',function(){if(this.dataset.tried)return;this.dataset.tried=1;this.src=this.src.replace('maxresdefault','hqdefault');this.addEventListener('error',function(){this.style.display='none';var fb=document.createElement('div');fb.className='thumb-fallback';fb.innerHTML='<span>YOUTUBE</span>';this.parentNode.insertBefore(fb,this);});});});
 
-var WORLDS=4,cw=0,dX=90,dDir=1,wTO,isJ=false,isTr=false,eCool=false;
+var WORLDS=5,cw=0,dX=90,dDir=1,wTO,isJ=false,isTr=false,eCool=false;
 var stage=document.getElementById('stage');
 var flash=document.getElementById('flash');
 var dave=document.getElementById('dave');
@@ -426,15 +445,15 @@ var gnd=document.getElementById('gnd');
 var wct=document.getElementById('wct');
 var hint=document.getElementById('hint');
 var dots=document.querySelectorAll('.ndot');
-var gndS=['repeating-linear-gradient(90deg,rgba(255,255,255,0.1) 0,rgba(255,255,255,0.1) 10px,transparent 10px,transparent 20px)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)'];
-var hintT=['MOVE CURSOR TO EXPLORE - CLICK TO JUMP','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS'];
+var gndS=['repeating-linear-gradient(90deg,rgba(255,255,255,0.1) 0,rgba(255,255,255,0.1) 10px,transparent 10px,transparent 20px)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)','rgba(255,229,0,0.15)'];
+var hintT=['MOVE CURSOR TO EXPLORE - CLICK TO JUMP','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS','NAVIGATE WITH ARROW KEYS'];
 
 function daveLoop(){var tx=Math.max(8,Math.min(window.innerWidth-56,mx-22));var diff=tx-dX;if(Math.abs(diff)>2&&!isJ){dX+=diff*0.1;dave.style.left=dX+'px';var nd=diff>0?1:-1;if(nd!==dDir){dDir=nd;DB.style.setProperty('--f',dDir);}DB.className='dw '+(dDir>0?'wr':'wl');clearTimeout(wTO);wTO=setTimeout(function(){if(!isJ)DB.className='dw idle';},160);}if(!isTr&&!eCool){if(mx>window.innerWidth-52&&cw<WORLDS-1)goW(cw+1);else if(mx<52&&cw>0)goW(cw-1);}requestAnimationFrame(daveLoop);}
 daveLoop();
 
 function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity='0.06';setTimeout(function(){flash.style.opacity='0';},100);cw=i;stage.style.transform='translateX(-'+(cw*100)+'vw)';dots.forEach(function(d,j){d.classList.toggle('active',j===cw);});wct.textContent=String(cw+1).padStart(2,'0')+' / '+String(WORLDS).padStart(2,'0');hint.textContent=hintT[cw];gnd.style.background=gndS[cw];
   // Fade nav on video worlds
-  var onVideo=cw>=1&&cw<=3;
+  var onVideo=cw>=1&&cw<=4;
   var navOpacity=onVideo?'0.15':'1';
   document.getElementById('nav').style.opacity=navOpacity;
   document.getElementById('sbar').style.opacity=onVideo?'0':'1';
@@ -449,28 +468,30 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
       w2vid.play();
     } else w2vid.pause();
   }
-  var w3vid=document.getElementById('w3vid');
-  if(w3vid){
-    if(cw===3){
-      if(!w3vid.src){w3vid.src='https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20BTS.mp4';w3vid.load();}
-      w3vid.play();
-    } else w3vid.pause();
+  var w3v=w3active===1?w3v1:w3v2;
+  if(w3v){if(cw===3){if(!w3v1.src){w3v1.src=w3videos[0].src;w3v1.load();}w3v.play();}else w3v.pause();}
+  var w4vid=document.getElementById('w4vid');
+  if(w4vid){
+    if(cw===4){
+      if(!w4vid.src){w4vid.src='https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Blinkit%20Final%20Ad.mp4';w4vid.load();}
+      w4vid.play();
+    } else w4vid.pause();
   }
-  if(cw<1||cw>3){gndprog.style.opacity='0';}
+  if(cw<1||cw>4){gndprog.style.opacity='0';}
   setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
 
 function spawnCoin(x,y){var c=document.createElement('div');c.className='cpop';c.textContent='*';c.style.left=x+'px';c.style.top=y+'px';document.body.appendChild(c);setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},800);}
 
 function jumpDave(tx){if(isJ)return;isJ=true;var dir=tx>dX?1:-1;dDir=dir;DB.style.setProperty('--f',dir);DB.className='dw jump';spawnCoin(dX+10,window.innerHeight-155);setTimeout(function(){isJ=false;DB.className='dw idle';},520);}
 
-document.addEventListener('click',function(e){if(e.target.closest('.mbox')||e.target.closest('#lb')||e.target.closest('.vc')||e.target.closest('.ndot')||e.target.closest('.nemail')||e.target.closest('.slink')||e.target.closest('#ticker')||e.target.closest('#w1mute')||e.target.closest('#w1prev')||e.target.closest('#w1next'))return;jumpDave(mx);});
+document.addEventListener('click',function(e){if(e.target.closest('.mbox')||e.target.closest('#lb')||e.target.closest('.vc')||e.target.closest('.ndot')||e.target.closest('.nemail')||e.target.closest('.slink')||e.target.closest('#ticker')||e.target.closest('#w1mute')||e.target.closest('#w1prev')||e.target.closest('#w1next')||e.target.closest('#w3mute')||e.target.closest('#w3prev')||e.target.closest('#w3next')||e.target.closest('#w2mute')||e.target.closest('#w4mute'))return;jumpDave(mx);});
 
 window.jumpBox=function(wi,el){var inner=el.querySelector('.mbi');inner.classList.remove('bumping');void inner.offsetWidth;inner.classList.add('bumping');setTimeout(function(){inner.classList.remove('bumping');},380);var rect=el.getBoundingClientRect();spawnCoin(rect.left+rect.width/2-7,rect.top-14);isJ=true;dDir=rect.left>dX?1:-1;DB.style.setProperty('--f',dDir);DB.className='dw jump';setTimeout(function(){isJ=false;DB.className='dw idle';goW(wi);},440);};
 
 // World 01 video carousel
 var w1videos=[
-  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/FramesFinal.mp4',title:'<span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span>',desc:'Solo trips. Strange places.<br>No script, just instinct + a camera.'},
-  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20by%20the%20Ganga%20v1.mp4',title:'<span class="wy">LIFE BY</span><br><span class="ww">THE GANGA</span>',desc:'The river. The people. The light.'}
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4',title:'<span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span>',desc:'Solo trips. Strange places.<br>No script, just instinct + a camera.'},
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4',title:'<span class="wy">LIFE BY</span><br><span class="ww">THE GANGA</span>',desc:'The river. The people. The light.'}
 ];
 var w1cur=0,w1muted=false,w1active=1;
 var w1v1=document.getElementById('w1vid');
@@ -526,7 +547,8 @@ function updateProgress(){
   var vid=null;
   if(cw===1) vid=w1active===1?w1v1:w1v2;
   else if(cw===2) vid=document.getElementById('w2vid');
-  else if(cw===3) vid=document.getElementById('w3vid');
+  else if(cw===3) vid=w3active===1?w3v1:w3v2;
+  else if(cw===4) vid=document.getElementById('w4vid');
   if(vid&&vid.duration){
     gndprog.style.opacity='1';
     gndprog.style.width=(vid.currentTime/vid.duration*100)+'%';
@@ -544,7 +566,48 @@ document.getElementById('w1next').addEventListener('mouseleave',function(){this.
 document.getElementById('w1prev').addEventListener('mouseenter',function(){this.style.borderColor='var(--y)';this.style.color='var(--y)';});
 document.getElementById('w1prev').addEventListener('mouseleave',function(){this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.25)';});
 document.getElementById('w2mute').addEventListener('click',function(e){e.stopPropagation();toggleWMute('w2vid','w2muteico','w2mutetxt');});
-document.getElementById('w3mute').addEventListener('click',function(e){e.stopPropagation();toggleWMute('w3vid','w3muteico','w3mutetxt');});
+document.getElementById('w3mute').addEventListener('click',function(e){e.stopPropagation();toggleW3Mute();});
+document.getElementById('w3next').addEventListener('click',function(e){e.stopPropagation();w3Next();});
+document.getElementById('w3prev').addEventListener('click',function(e){e.stopPropagation();w3Prev();});
+document.getElementById('w3next').addEventListener('mouseenter',function(){this.style.borderColor='var(--y)';this.style.color='var(--y)';});
+document.getElementById('w3next').addEventListener('mouseleave',function(){this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.25)';});
+document.getElementById('w3prev').addEventListener('mouseenter',function(){this.style.borderColor='var(--y)';this.style.color='var(--y)';});
+document.getElementById('w3prev').addEventListener('mouseleave',function(){this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.25)';});
+document.getElementById('w4mute').addEventListener('click',function(e){e.stopPropagation();toggleWMute('w4vid','w4muteico','w4mutetxt');});
+
+// World 03 BTS carousel
+var w3videos=[
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'On set. Unscripted.<br>Where the real work happens.'},
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'Lights. Camera. Chaos.'}
+];
+var w3cur=0,w3muted=false,w3active=1;
+var w3v1=document.getElementById('w3vid');
+var w3v2=document.getElementById('w3vid2');
+
+function w3Load(idx,autoplay){
+  var data=w3videos[idx];
+  var next=w3active===1?w3v2:w3v1;
+  var curr=w3active===1?w3v1:w3v2;
+  if(next.src!==data.src){next.src=data.src;next.muted=w3muted;next.load();}
+  next.oncanplay=function(){
+    if(autoplay)next.play();
+    next.style.opacity='1';
+    curr.style.opacity='0';
+    setTimeout(function(){curr.pause();curr.src='';},650);
+    w3active=w3active===1?2:1;
+  };
+  document.getElementById('w3title').innerHTML=data.title;
+  document.getElementById('w3desc').innerHTML=data.desc;
+  document.getElementById('w3counter').textContent=String(idx+1).padStart(2,'0')+' / '+String(w3videos.length).padStart(2,'0');
+}
+function w3Next(){w3cur=(w3cur+1)%w3videos.length;w3Load(w3cur,true);}
+function w3Prev(){w3cur=(w3cur-1+w3videos.length)%w3videos.length;w3Load(w3cur,true);}
+function toggleW3Mute(){
+  w3muted=!w3muted;
+  w3v1.muted=w3muted;w3v2.muted=w3muted;
+  document.getElementById('w3muteico').textContent=w3muted?'🔇':'🔊';
+  document.getElementById('w3mutetxt').textContent=w3muted?'UNMUTE':'MUTE';
+}
 
 window.openVideo=function(src,title,desc){
   var lb=document.getElementById('lb');
