@@ -268,6 +268,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div class="world" id="w0">
   <canvas id="sparks" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></canvas>
   <div id="floaters" style="position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;"></div>
+  <!-- Film crew canvas — background characters -->
+  <canvas id="crewCanvas" style="position:absolute;inset:0;z-index:4;pointer-events:none;"></canvas>
 
   <!-- Centered slate panel -->
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;">
@@ -1156,6 +1158,224 @@ function w4Next(){w4cur=(w4cur+1)%w4videos.length;snapDaveToStart();w4Load(w4cur
 function w4Prev(){w4cur=(w4cur-1+w4videos.length)%w4videos.length;snapDaveToStart();w4Load(w4cur,true);}
 function toggleW4Mute(){globalMuted=!globalMuted;document.getElementById("w4vid").muted=globalMuted;document.getElementById("w4vid2").muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
 function toggleWMute(vidId){globalMuted=!globalMuted;document.getElementById(vidId).muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
+
+// ── FILM CREW BACKGROUND SYSTEM ─────────────────────────
+var crewCanvas=document.getElementById('crewCanvas');
+var crc=crewCanvas?crewCanvas.getContext('2d'):null;
+if(crewCanvas){crewCanvas.width=window.innerWidth;crewCanvas.height=window.innerHeight;}
+window.addEventListener('resize',function(){if(crewCanvas){crewCanvas.width=window.innerWidth;crewCanvas.height=window.innerHeight;}});
+
+// Each crew member: type, fixed x zone, y, animation state
+var crew=[];
+var crewT=0;
+
+function initCrew(){
+  var W=window.innerWidth,H=window.innerHeight;
+  var ground=H-60;
+  crew=[
+    // Camera operator — far left, peering through camera
+    {type:'camera',x:W*0.06,y:ground,phase:0,speed:0.018,facing:1},
+    // Clapper loader — left of panel, ready to clap
+    {type:'clapper',x:W*0.18,y:ground,phase:1.2,speed:0.025,facing:1},
+    // Boom mic operator — top left area, holding mic high
+    {type:'boom',x:W*0.08,y:ground-30,phase:0.5,speed:0.012,facing:1},
+    // Director — far right, sitting, gesturing
+    {type:'director',x:W*0.88,y:ground,phase:0.8,speed:0.02,facing:-1},
+    // Actor — right of panel, dramatic pose
+    {type:'actor',x:W*0.78,y:ground,phase:2.1,speed:0.03,facing:-1},
+    // Lighting guy — top right, adjusting light
+    {type:'light',x:W*0.92,y:ground-20,phase:1.5,speed:0.015,facing:-1},
+    // Script supervisor — bottom left, looking at script
+    {type:'script',x:W*0.14,y:ground,phase:3.0,speed:0.022,facing:1},
+  ];
+}
+initCrew();
+window.addEventListener('resize',initCrew);
+
+// Pixel drawing helpers — all crew at 3x scale, muted palette
+var S=3; // pixel scale
+function px(ctx,x,y,w,h,col){ctx.fillStyle=col;ctx.fillRect(Math.round(x),Math.round(y),w*S,h*S);}
+
+function drawCamera(ctx,x,y,t,facing){
+  var s=facing<0?-1:1;
+  ctx.save();ctx.translate(x,y);if(facing<0){ctx.scale(-1,1);}
+  // Body — blue shirt
+  px(ctx,-6*S,-14*S,4,6,'rgba(50,80,140,0.7)');
+  // Head
+  px(ctx,-5*S,-20*S,3,5,'rgba(210,170,130,0.7)');
+  // Camera — extends in front, bobs slightly
+  var camBob=Math.sin(t*2)*1.5;
+  px(ctx,-2*S,-17*S+camBob,5,3,'rgba(30,30,30,0.8)');
+  px(ctx,3*S,-16*S+camBob,2,2,'rgba(80,80,80,0.7)');
+  // Lens
+  px(ctx,5*S,-17*S+camBob,2,4,'rgba(100,180,220,0.5)');
+  // Legs — slight sway
+  var legSway=Math.sin(t*1.5)*1;
+  px(ctx,-6*S,-8*S+legSway,2,8,'rgba(40,40,60,0.7)');
+  px(ctx,-4*S,-8*S-legSway,2,8,'rgba(40,40,60,0.7)');
+  // Eye at viewfinder
+  px(ctx,-4*S,-17*S+camBob,2,2,'rgba(30,30,30,0.9)');
+  ctx.restore();
+}
+
+function drawClapper(ctx,x,y,t,facing){
+  ctx.save();ctx.translate(x,y);if(facing<0){ctx.scale(-1,1);}
+  // Body
+  px(ctx,-5*S,-14*S,4,6,'rgba(140,60,60,0.7)');
+  // Head
+  px(ctx,-4*S,-20*S,3,5,'rgba(210,170,130,0.7)');
+  // Clapper board — arm raises and claps periodically
+  var clapCycle=(t*0.8)%(Math.PI*2);
+  var clapAngle=clapCycle<0.3?clapCycle*8:0;
+  ctx.save();ctx.translate(-2*S,-20*S);ctx.rotate(-clapAngle);
+  px(ctx,0,-4*S,6,4,'rgba(20,20,20,0.8)');
+  // Stripes on board
+  px(ctx,1*S,-4*S,1,4,'rgba(255,229,0,0.6)');
+  px(ctx,3*S,-4*S,1,4,'rgba(255,229,0,0.6)');
+  px(ctx,5*S,-4*S,1,4,'rgba(255,229,0,0.6)');
+  ctx.restore();
+  // Legs
+  px(ctx,-5*S,-8*S,2,8,'rgba(40,40,60,0.7)');
+  px(ctx,-3*S,-8*S,2,8,'rgba(40,40,60,0.7)');
+  ctx.restore();
+}
+
+function drawBoom(ctx,x,y,t,facing){
+  ctx.save();ctx.translate(x,y);if(facing<0){ctx.scale(-1,1);}
+  // Body
+  px(ctx,-5*S,-14*S,4,6,'rgba(60,100,60,0.7)');
+  // Head
+  px(ctx,-4*S,-20*S,3,5,'rgba(210,170,130,0.7)');
+  // Pole — extends upward with slight sway
+  var sway=Math.sin(t*0.8)*3;
+  ctx.save();ctx.translate(sway,0);
+  px(ctx,-1*S,-42*S,1,28,'rgba(180,180,180,0.6)');
+  // Mic at top
+  px(ctx,-2*S,-44*S,3,4,'rgba(60,60,60,0.8)');
+  // Fuzzy windshield
+  ctx.fillStyle='rgba(80,80,80,0.5)';
+  ctx.beginPath();ctx.arc(-1*S,-44*S,5,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+  // Arms raised
+  px(ctx,-8*S,-16*S,3,2,'rgba(210,170,130,0.6)');
+  px(ctx,-5*S,-18*S,3,2,'rgba(210,170,130,0.6)');
+  // Legs
+  px(ctx,-5*S,-8*S,2,8,'rgba(40,40,60,0.7)');
+  px(ctx,-3*S,-8*S,2,8,'rgba(40,40,60,0.7)');
+  ctx.restore();
+}
+
+function drawDirector(ctx,x,y,t,facing){
+  ctx.save();ctx.translate(x,y);if(facing<0){ctx.scale(-1,1);}
+  // Chair legs
+  px(ctx,-8*S,-4*S,2,4,'rgba(100,70,40,0.6)');
+  px(ctx,2*S,-4*S,2,4,'rgba(100,70,40,0.6)');
+  // Chair seat
+  px(ctx,-8*S,-8*S,12,2,'rgba(120,50,50,0.7)');
+  // Chair back
+  px(ctx,-8*S,-16*S,2,8,'rgba(120,50,50,0.7)');
+  // Body seated
+  px(ctx,-7*S,-15*S,10,8,'rgba(20,20,20,0.8)');
+  // Head — nods
+  var nod=Math.sin(t*1.2)*1.5;
+  px(ctx,-5*S,-22*S+nod,4,6,'rgba(210,170,130,0.7)');
+  // Megaphone / hand gesturing
+  var gestureY=Math.sin(t*0.9)*3;
+  px(ctx,4*S,-16*S+gestureY,4,2,'rgba(255,180,0,0.6)');
+  px(ctx,8*S,-17*S+gestureY,3,4,'rgba(255,180,0,0.5)');
+  // Legs dangling
+  px(ctx,-6*S,-8*S,3,8,'rgba(20,20,20,0.7)');
+  px(ctx,-2*S,-8*S,3,8,'rgba(20,20,20,0.7)');
+  ctx.restore();
+}
+
+function drawActor(ctx,x,y,t,facing){
+  ctx.save();ctx.translate(x,y);if(facing<0){ctx.scale(-1,1);}
+  // Body — dramatic pose, arm extended
+  var armRaise=Math.sin(t*0.7)*8;
+  px(ctx,-5*S,-14*S,4,7,'rgba(160,120,80,0.7)');
+  // Head — tilts dramatically
+  var tilt=Math.sin(t*0.5)*2;
+  px(ctx,-4*S,-21*S+tilt,4,6,'rgba(210,170,130,0.7)');
+  // Extended arm — sweeping gesture
+  px(ctx,-1*S,-16*S-armRaise,6,2,'rgba(210,170,130,0.6)');
+  // Other arm
+  px(ctx,-8*S,-14*S,3,2,'rgba(210,170,130,0.6)');
+  // Legs — weight shift
+  var weightShift=Math.sin(t*0.6)*2;
+  px(ctx,-5*S,-7*S+weightShift,2,7,'rgba(40,40,60,0.7)');
+  px(ctx,-3*S,-7*S-weightShift,2,7,'rgba(40,40,60,0.7)');
+  ctx.restore();
+}
+
+function drawLight(ctx,x,y,t,facing){
+  ctx.save();ctx.translate(x,y);if(facing<0){ctx.scale(-1,1);}
+  // Stand pole
+  px(ctx,-1*S,-40*S,2,30,'rgba(150,150,150,0.5)');
+  // Light head — pans slowly
+  var pan=Math.sin(t*0.4)*10;
+  ctx.save();ctx.translate(pan,0);
+  px(ctx,-4*S,-44*S,8,5,'rgba(60,60,60,0.7)');
+  // Light beam
+  ctx.fillStyle='rgba(255,240,180,0.06)';
+  ctx.beginPath();ctx.moveTo(-4*S,-39*S);ctx.lineTo(-20*S,0);ctx.lineTo(12*S,0);ctx.closePath();ctx.fill();
+  // Lens glow
+  ctx.fillStyle='rgba(255,240,180,0.4)';
+  ctx.beginPath();ctx.arc(0,-42*S,4,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+  // Body of person holding it
+  px(ctx,-4*S,-14*S,4,6,'rgba(60,60,100,0.7)');
+  px(ctx,-3*S,-20*S,3,5,'rgba(210,170,130,0.7)');
+  // Arms up holding stand
+  px(ctx,-6*S,-16*S,2,4,'rgba(210,170,130,0.6)');
+  px(ctx,0,-16*S,2,4,'rgba(210,170,130,0.6)');
+  // Legs
+  px(ctx,-4*S,-8*S,2,8,'rgba(40,40,60,0.7)');
+  px(ctx,-2*S,-8*S,2,8,'rgba(40,40,60,0.7)');
+  ctx.restore();
+}
+
+function drawScript(ctx,x,y,t,facing){
+  ctx.save();ctx.translate(x,y);if(facing<0){ctx.scale(-1,1);}
+  // Body — bent forward reading
+  px(ctx,-5*S,-14*S,4,5,'rgba(100,100,60,0.7)');
+  // Head bent down
+  var readBob=Math.sin(t*1.8)*1;
+  px(ctx,-5*S,-20*S+readBob,4,5,'rgba(210,170,130,0.7)');
+  // Script pages — held out, page turn animation
+  var pageTurn=Math.abs(Math.sin(t*0.3))*3;
+  px(ctx,-2*S,-16*S,7,5,'rgba(230,220,200,0.6)');
+  // Page lines
+  px(ctx,-1*S,-15*S,5,1,'rgba(100,100,100,0.3)');
+  px(ctx,-1*S,-13*S,4,1,'rgba(100,100,100,0.3)');
+  // Flipping page
+  if(pageTurn>1){px(ctx,4*S,-16*S+pageTurn,2,4,'rgba(230,220,200,0.4)');}
+  // Legs
+  px(ctx,-5*S,-9*S,2,9,'rgba(40,40,60,0.7)');
+  px(ctx,-3*S,-9*S,2,9,'rgba(40,40,60,0.7)');
+  ctx.restore();
+}
+
+function drawCrewFrame(){
+  if(!crc||cw!==0){requestAnimationFrame(drawCrewFrame);return;}
+  crc.clearRect(0,0,crewCanvas.width,crewCanvas.height);
+  crewT+=0.016;
+  crew.forEach(function(c){
+    var t=crewT*c.speed*60+c.phase;
+    switch(c.type){
+      case 'camera': drawCamera(crc,c.x,c.y,t,c.facing);break;
+      case 'clapper': drawClapper(crc,c.x,c.y,t,c.facing);break;
+      case 'boom': drawBoom(crc,c.x,c.y,t,c.facing);break;
+      case 'director': drawDirector(crc,c.x,c.y,t,c.facing);break;
+      case 'actor': drawActor(crc,c.x,c.y,t,c.facing);break;
+      case 'light': drawLight(crc,c.x,c.y,t,c.facing);break;
+      case 'script': drawScript(crc,c.x,c.y,t,c.facing);break;
+    }
+  });
+  requestAnimationFrame(drawCrewFrame);
+}
+drawCrewFrame();
+// ── END FILM CREW SYSTEM ─────────────────────────────────
 
 // Init
 dY=window.innerHeight-48-29;
