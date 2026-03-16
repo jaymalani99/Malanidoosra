@@ -186,10 +186,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div id="cur2"></div>
 <div id="flash"></div>
 
-<!-- Right wall socket — sits at Dave's ground level, tiny dot -->
-<div id="rightJack" style="position:fixed;right:0;bottom:48px;z-index:60;pointer-events:none;opacity:0;transition:opacity 0.4s;display:flex;align-items:center;">
-  <div style="width:8px;height:8px;border-radius:50%;background:var(--y);box-shadow:0 0 6px rgba(255,229,0,0.6);margin-right:0;"></div>
-  <div style="width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,229,0,0.3);position:absolute;right:0;top:50%;transform:translateY(-50%);"></div>
+<!-- Right wall socket — mirrors left jack, sits at Dave's ground level -->
+<div id="rightJack" style="position:fixed;right:0;bottom:34px;z-index:60;pointer-events:none;opacity:0;transition:opacity 0.4s;">
+  <div style="width:20px;height:48px;background:#111;border:1px solid #2a2a2a;border-right:none;border-radius:6px 0 0 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+    <div style="width:5px;height:5px;border-radius:50%;background:#1a1a1a;border:1px solid #333;"></div>
+    <div style="width:7px;height:7px;border-radius:50%;border:2px solid rgba(255,229,0,0.5);background:#060606;"></div>
+  </div>
+  <div style="position:absolute;left:-5px;top:50%;transform:translateY(-50%);width:5px;height:5px;background:var(--y);border-radius:50%;box-shadow:0 0 6px rgba(255,229,0,0.7);"></div>
+</div>
+
+<!-- Left ground socket — video worlds only, at Dave's ground level -->
+<div id="leftJack" style="position:fixed;left:0;bottom:34px;z-index:60;pointer-events:none;opacity:0;transition:opacity 0.4s;">
+  <div style="width:20px;height:48px;background:#111;border:1px solid #2a2a2a;border-left:none;border-radius:0 6px 6px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+    <div style="width:5px;height:5px;border-radius:50%;background:#1a1a1a;border:1px solid #333;"></div>
+    <div style="width:7px;height:7px;border-radius:50%;border:2px solid rgba(255,229,0,0.5);background:#060606;"></div>
+  </div>
+  <div style="position:absolute;right:-5px;top:50%;transform:translateY(-50%);width:5px;height:5px;background:var(--y);border-radius:50%;box-shadow:0 0 6px rgba(255,229,0,0.7);"></div>
 </div>
 <div id="wallJack" style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:60;pointer-events:none;transition:opacity 0.4s;">
   <div style="width:24px;height:80px;background:#111;border:1px solid #2a2a2a;border-left:none;border-radius:0 6px 6px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
@@ -226,7 +238,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div class="wnav-btn" data-w="3" onclick="goW(3)">WRITTEN & DIRECTED</div>
       <div class="wnav-btn" data-w="4" onclick="goW(4)">TRAVEL</div>
     </div>
-    <a href="mailto:contactmalanidoosra@gmail.com" class="nemail">HIRE ME ↗</a>
+    <span class="nemail" onclick="window.location.href='mailto:contactmalanidoosra@gmail.com'" style="cursor:pointer;">HIRE ME ↗</span>
   </div>
 </div>
 <div id="sbar">
@@ -372,7 +384,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function(){
 var cur=document.getElementById('cur');
 var cur2=document.getElementById('cur2');
@@ -467,6 +479,8 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   if(wallJack)wallJack.style.opacity=cw===0?'1':'0';
   var rj=document.getElementById('rightJack');
   if(rj)rj.style.opacity=onVideo?'1':'0';
+  var lj=document.getElementById('leftJack');
+  if(lj)lj.style.opacity=onVideo?'1':'0';
   var vn=document.getElementById('vibeNote');
   if(vn)vn.classList.toggle('hide',onVideo);
   var mVids=['w2vid','w3vid','w4vid','w4vid2'];
@@ -620,8 +634,10 @@ function drawWireSystem(){
       drawPlug(tipX,tipY,nearest?5:4,nearest?0.9:0.6);
     }
   } else if(cw>=1&&cw<=4){
-    // Video worlds — wire trails from left edge at Dave's height to his hand
-    var leftSocket={x:12,y:dY+14};
+    // Video worlds — wire trails from left ground socket to Dave's hand
+    var ljEl=document.getElementById('leftJack');
+    var ljRect=ljEl?ljEl.getBoundingClientRect():null;
+    var leftSocket=ljRect?{x:ljRect.right,y:ljRect.top+ljRect.height/2}:{x:20,y:dY+14};
     var hand=getDaveHandPos();
     // Left anchor socket
     wctx.beginPath();
