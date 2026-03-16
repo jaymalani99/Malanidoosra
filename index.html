@@ -237,6 +237,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="nlogo">malanidoosra</div>
   <div class="nright">
     <div id="worldnav" style="display:flex;gap:2px;">
+      <div class="wnav-btn" data-w="0" onclick="goW(0)">HOME</div>
       <div class="wnav-btn" data-w="1" onclick="goW(1)">BTS</div>
       <div class="wnav-btn" data-w="2" onclick="goW(2)">DOCUMENTARY</div>
       <div class="wnav-btn" data-w="3" onclick="goW(3)">WRITTEN & DIRECTED</div>
@@ -391,55 +392,79 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div id="w4next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">NEXT →</div>
 </div>
 
-<!-- W5: Contact -->
+<!-- W5: Contact — patch bay style like home -->
 <div class="world" id="w5" style="background:#060606;">
   <canvas id="sparks5" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></canvas>
+  <div id="floaters5" style="position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;"></div>
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;">
-    <div style="width:min(640px,85vw);background:#080808;border:1px solid #1a1a1a;">
-      <div style="height:3px;background:var(--y);"></div>
-      <div style="padding:32px 32px 12px;">
-        <div style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.3);letter-spacing:3px;margin-bottom:6px;">TRANSMISSION COMPLETE</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,88px);line-height:0.85;color:var(--w);">LET'S<br><span style="color:var(--y);">MAKE</span><br>SOMETHING.</div>
-        <p style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.9;margin-top:16px;">filmmaker · cinematographer · ai-native<br>mumbai, india</p>
+    <div style="width:min(680px,85vw);background:#080808;border:1px solid #1a1a1a;">
+      <!-- Green top bar for contact world -->
+      <div style="height:3px;background:rgba(0,255,100,0.8);"></div>
+      <!-- Info strip -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #141414;">
+        <div style="padding:10px 16px;border-right:1px solid #141414;">
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">WORLD 05</div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">CONTACT</div>
+        </div>
+        <div style="padding:10px 16px;border-right:1px solid #141414;">
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">LOCATION</div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">MUMBAI, IN</div>
+        </div>
+        <div style="padding:10px 16px;">
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">STATUS</div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(0,255,65,0.7);">OPEN TO WORK</div>
+        </div>
       </div>
-      <div style="height:1px;background:#141414;margin:0 32px;"></div>
-      <div style="padding:20px 32px 28px;display:flex;flex-direction:column;gap:12px;">
-        <!-- Email -->
-        <a href="mailto:contactmalanidoosra@gmail.com" style="display:flex;align-items:center;gap:16px;text-decoration:none;padding:14px 16px;border:1px solid rgba(255,255,255,0.06);background:transparent;transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,229,0,0.3)';this.style.background='rgba(255,229,0,0.03)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='transparent';">
-          <span style="font-family:'Press Start 2P',monospace;font-size:8px;">✉</span>
-          <div>
-            <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.4);letter-spacing:2px;margin-bottom:4px;">EMAIL</div>
-            <div style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);">contactmalanidoosra@gmail.com</div>
-          </div>
-        </a>
-        <!-- WhatsApp -->
-        <a href="https://wa.me/918169003694" target="_blank" style="display:flex;align-items:center;gap:16px;text-decoration:none;padding:14px 16px;border:1px solid rgba(255,255,255,0.06);background:transparent;transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,229,0,0.3)';this.style.background='rgba(255,229,0,0.03)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='transparent';">
-          <span style="font-family:'Press Start 2P',monospace;font-size:8px;">📱</span>
-          <div>
-            <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.4);letter-spacing:2px;margin-bottom:4px;">WHATSAPP</div>
-            <div style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);">+91 8169 003 694</div>
-          </div>
-        </a>
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/malanidoosra" target="_blank" style="display:flex;align-items:center;gap:16px;text-decoration:none;padding:14px 16px;border:1px solid rgba(255,255,255,0.06);background:transparent;transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,229,0,0.3)';this.style.background='rgba(255,229,0,0.03)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='transparent';">
-          <span style="font-family:'Press Start 2P',monospace;font-size:8px;">◈</span>
-          <div>
-            <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.4);letter-spacing:2px;margin-bottom:4px;">INSTAGRAM</div>
-            <div style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);">@malanidoosra</div>
-          </div>
-        </a>
-        <!-- YouTube -->
-        <a href="https://www.youtube.com/@Malanidoosra" target="_blank" style="display:flex;align-items:center;gap:16px;text-decoration:none;padding:14px 16px;border:1px solid rgba(255,255,255,0.06);background:transparent;transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,229,0,0.3)';this.style.background='rgba(255,229,0,0.03)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='transparent';">
-          <span style="font-family:'Press Start 2P',monospace;font-size:8px;">▶</span>
-          <div>
-            <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.4);letter-spacing:2px;margin-bottom:4px;">YOUTUBE</div>
-            <div style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);">@Malanidoosra</div>
-          </div>
-        </a>
+      <!-- Headline -->
+      <div style="padding:24px 28px 16px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,110px);line-height:0.83;">
+          <div style="color:var(--w);">LET'S</div>
+          <div style="color:rgba(0,255,100,0.9);">CONNECT.</div>
+        </div>
+        <p style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.8;margin-top:14px;">plug the wire into a socket to reach out.</p>
       </div>
-      <div style="height:2px;background:#0d0d0d;"></div>
+      <!-- Divider -->
+      <div style="height:1px;background:#141414;"></div>
+      <!-- Patch bay label -->
+      <div style="padding:8px 16px 0;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.08);letter-spacing:3px;">CONTACT BAY — SELECT A CHANNEL</div>
+      <!-- Contact sockets -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);" id="contactSockets">
+        <div class="csocket" data-url="https://wa.me/918169003694" data-target="_blank" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
+          <div class="chole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.25);margin-bottom:6px;">💬</div>
+          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">WHATSAPP</div>
+        </div>
+        <div class="csocket" data-url="mailto:contactmalanidoosra@gmail.com" data-target="_self" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
+          <div class="chole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.25);margin-bottom:6px;">✉</div>
+          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">EMAIL</div>
+        </div>
+        <div class="csocket" data-url="https://www.instagram.com/malanidoosra" data-target="_blank" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
+          <div class="chole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.25);margin-bottom:6px;">◈</div>
+          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">INSTAGRAM</div>
+        </div>
+        <div class="csocket" data-url="https://www.youtube.com/@Malanidoosra" data-target="_blank" style="padding:16px;cursor:none;text-align:center;transition:background 0.2s;">
+          <div class="chole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.25);margin-bottom:6px;">▶</div>
+          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">YOUTUBE</div>
+        </div>
+      </div>
+      <!-- Progress bar -->
+      <div style="height:2px;background:#0d0d0d;"><div id="contactProgress" style="height:100%;background:rgba(0,255,100,0.8);width:0%;transition:none;"></div></div>
     </div>
   </div>
+  <!-- Wall jack for contact world — green -->
+  <div id="contactJack" style="position:absolute;left:0;top:50%;transform:translateY(-50%);z-index:60;pointer-events:none;">
+    <div style="width:20px;height:68px;background:#111;border:1px solid #1a3a1a;border-left:none;border-radius:0 5px 5px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;">
+      <div style="width:6px;height:6px;border-radius:50%;background:#1a1a1a;border:1px solid #2a2a2a;"></div>
+      <div style="width:6px;height:6px;border-radius:50%;background:#1a1a1a;border:1px solid #2a2a2a;"></div>
+      <div style="width:7px;height:7px;border-radius:50%;background:rgba(0,255,100,0.8);box-shadow:0 0 8px rgba(0,255,100,0.5);"></div>
+    </div>
+    <div style="position:absolute;right:-5px;top:50%;transform:translateY(-50%);width:5px;height:5px;background:rgba(0,255,100,0.9);border-radius:50%;box-shadow:0 0 6px rgba(0,255,100,0.7);"></div>
+  </div>
+  <!-- Wire canvas for contact world -->
+  <canvas id="contactWireCanvas" style="position:absolute;inset:0;z-index:55;pointer-events:none;"></canvas>
 </div>
 
 </div>
@@ -483,6 +508,7 @@ var w4videos=[
 ];
 var w1active=1,w1cur=0;
 var w4active=1,w4cur=0;
+var cPlugging=false;
 
 // Wire system vars — declared here so daveLoop can use them
 var wireCanvas=document.getElementById('wireCanvas');
@@ -499,10 +525,10 @@ var wireColors=['rgba(255,229,0,','rgba(255,140,0,','rgba(220,220,220,','rgba(18
 function getWireColor(alpha){return wireColors[cw]+(alpha)+')';}
 
 function daveLoop(){
-  if(cw===0){
-    // Home world — wire system
-    checkPSocketHover();
-    if(!plugging&&!pluggedPsocket){
+  if(cw===0||cw===5){
+    // Home + Contact — Dave follows cursor
+    if(cw===0)checkPSocketHover();
+    if(!plugging&&!pluggedPsocket&&!cPlugging){
       var tx=Math.max(8,Math.min(window.innerWidth-56,mx-22));
       var diff=tx-dX;
       if(Math.abs(diff)>2&&!isJ){
@@ -515,9 +541,9 @@ function daveLoop(){
         wTO=setTimeout(function(){if(!isJ)DB.className='dw idle';},160);
       }
     }
-    if(wireCanvas)wireCanvas.style.opacity='1';
-  } else {
-    // Video worlds — Dave walks as progress bar, dragging wire from left edge
+    if(wireCanvas)wireCanvas.style.opacity=cw===0?'1':'0';
+  } else if(cw>=1&&cw<=4){
+    // Video worlds — Dave walks as progress bar
     if(wireCanvas)wireCanvas.style.opacity='1';
     var vid=null;
     if(cw===1) vid=w1active===1?document.getElementById('w1vid'):document.getElementById('w1vid2');
@@ -538,10 +564,17 @@ function daveLoop(){
 daveLoop();
 
 function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity='0.06';setTimeout(function(){flash.style.opacity='0';},100);cw=i;stage.style.transform='translateX(-'+(cw*100)+'vw)';
-  // Update wnav active state — none active on home, current world active on video worlds
+  // Update wnav active state
   document.querySelectorAll('.wnav-btn').forEach(function(b){
     b.classList.toggle('active',parseInt(b.dataset.w)===cw);
   });
+  // Update cursor + ring color to match wire color
+  var wc=wireColors[cw];
+  var rgb=wc.replace('rgba(','').split(',');
+  var curColor='rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',1)';
+  var curRingColor='rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',0.3)';
+  cur.style.background=curColor;
+  cur2.style.borderColor=curRingColor;
   hint.textContent=hintT[cw];
   var onVideo=cw>=1&&cw<=4;
   var onContent=cw>=1&&cw<=5;
@@ -596,6 +629,7 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   if(cw<1||cw>4){dX=Math.max(8,Math.min(window.innerWidth-56,mx-22));setDaveNotes(false);}
   else{dX=8;}
   if(cw===0){pluggedPsocket=null;plugging=false;if(patchProgress)patchProgress.style.width='0%';}
+  if(cw!==5){cPlugging=false;hovCsocket=null;if(contactProgress)contactProgress.style.width='0%';}
   rightSocketTriggered=false;
   setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
 window.goW=goW;
@@ -841,6 +875,123 @@ function daveWalkTo(tx,cb){
   },16);
 }
 // ── END WIRE SYSTEM ──────────────────────────────────────
+
+// ── CONTACT SOCKET SYSTEM ────────────────────────────────
+var csockets=document.querySelectorAll('.csocket');
+var hovCsocket=null;
+var cPlugging=false;
+var contactProgress=document.getElementById('contactProgress');
+var contactWireCanvas=document.getElementById('contactWireCanvas');
+var cWctx=contactWireCanvas?contactWireCanvas.getContext('2d'):null;
+if(contactWireCanvas){contactWireCanvas.width=window.innerWidth;contactWireCanvas.height=window.innerHeight;}
+
+function getContactJackPoint(){
+  var j=document.getElementById('contactJack');
+  if(!j)return{x:20,y:window.innerHeight/2};
+  var r=j.getBoundingClientRect();
+  return{x:r.right,y:r.top+r.height/2};
+}
+function getCSocketCenter(el){
+  var hole=el.querySelector('.chole');
+  var r=hole.getBoundingClientRect();
+  return{x:r.left+r.width/2,y:r.top+r.height/2};
+}
+
+function drawContactWire(){
+  if(!cWctx||cw!==5){if(contactWireCanvas)contactWireCanvas.style.opacity='0';requestAnimationFrame(drawContactWire);return;}
+  contactWireCanvas.style.opacity='1';
+  cWctx.clearRect(0,0,contactWireCanvas.width,contactWireCanvas.height);
+  var jack=getContactJackPoint();
+  var hand={x:dX+24,y:dY+14};
+  // Jack → Dave (solid green)
+  var dx1=hand.x-jack.x,dy1=hand.y-jack.y;
+  var sag1=Math.min(Math.sqrt(dx1*dx1+dy1*dy1)*0.22,55);
+  var cx1=(jack.x+hand.x)/2,cy1=(jack.y+hand.y)/2+sag1;
+  cWctx.beginPath();cWctx.moveTo(jack.x,jack.y);cWctx.quadraticCurveTo(cx1,cy1,hand.x,hand.y);
+  cWctx.strokeStyle='rgba(0,255,100,0.08)';cWctx.lineWidth=8;cWctx.lineCap='round';cWctx.setLineDash([]);cWctx.stroke();
+  cWctx.beginPath();cWctx.moveTo(jack.x,jack.y);cWctx.quadraticCurveTo(cx1,cy1,hand.x,hand.y);
+  cWctx.strokeStyle='rgba(0,255,100,0.8)';cWctx.lineWidth=2;cWctx.stroke();
+  // Jack connector dot
+  cWctx.beginPath();cWctx.arc(jack.x,jack.y,6,0,Math.PI*2);cWctx.strokeStyle='rgba(0,255,100,0.6)';cWctx.lineWidth=1.5;cWctx.stroke();
+  cWctx.beginPath();cWctx.arc(jack.x,jack.y,3,0,Math.PI*2);cWctx.fillStyle='rgba(0,255,100,0.9)';cWctx.fill();
+  // Dave → cursor (dashed, magnetic)
+  var tipX=mx,tipY=my;
+  var nearest=null,nearDist=140;
+  csockets.forEach(function(s){
+    var p=getCSocketCenter(s);
+    var d=Math.sqrt((mx-p.x)*(mx-p.x)+(my-p.y)*(my-p.y));
+    if(d<nearDist){nearest=s;nearDist=d;}
+  });
+  if(nearest){var sp=getCSocketCenter(nearest);var pull=(1-(nearDist/140))*0.65;tipX=mx+(sp.x-mx)*pull;tipY=my+(sp.y-my)*pull;}
+  var dx2=tipX-hand.x,dy2=tipY-hand.y;
+  var sag2=Math.min(Math.sqrt(dx2*dx2+dy2*dy2)*0.22,55);
+  var cx2=(hand.x+tipX)/2,cy2=(hand.y+tipY)/2+sag2;
+  cWctx.beginPath();cWctx.moveTo(hand.x,hand.y);cWctx.quadraticCurveTo(cx2,cy2,tipX,tipY);
+  cWctx.setLineDash([5,4]);cWctx.strokeStyle='rgba(0,255,100,0.3)';cWctx.lineWidth=1.5;cWctx.stroke();cWctx.setLineDash([]);
+  // Plug dots
+  cWctx.beginPath();cWctx.arc(hand.x,hand.y,4,0,Math.PI*2);cWctx.fillStyle='rgba(0,255,100,0.85)';cWctx.fill();
+  cWctx.beginPath();cWctx.arc(tipX,tipY,nearest?5:4,0,Math.PI*2);cWctx.fillStyle='rgba(0,255,100,'+(nearest?0.9:0.6)+')';cWctx.fill();
+  requestAnimationFrame(drawContactWire);
+}
+drawContactWire();
+
+// Contact socket hover
+document.addEventListener('mousemove',function(){
+  if(cw!==5||cPlugging)return;
+  var nearest=null,nearDist=50;
+  csockets.forEach(function(s){
+    var p=getCSocketCenter(s);
+    var d=Math.sqrt((mx-p.x)*(mx-p.x)+(my-p.y)*(my-p.y));
+    if(d<nearDist){nearest=s;nearDist=d;}
+  });
+  if(nearest!==hovCsocket){
+    if(hovCsocket){
+      hovCsocket.querySelector('.chole').style.borderColor='#252525';
+      hovCsocket.querySelector('.chole').style.boxShadow='none';
+      hovCsocket.querySelector('.cslabel').style.color='rgba(0,255,100,0.5)';
+      hovCsocket.style.background='transparent';
+    }
+    hovCsocket=nearest;
+    if(hovCsocket){
+      hovCsocket.querySelector('.chole').style.borderColor='rgba(0,255,100,0.8)';
+      hovCsocket.querySelector('.chole').style.boxShadow='0 0 8px rgba(0,255,100,0.4)';
+      hovCsocket.querySelector('.cslabel').style.color='rgba(0,255,100,1)';
+      hovCsocket.style.background='rgba(0,255,100,0.03)';
+    }
+  }
+});
+
+// Contact socket click
+document.addEventListener('click',function(e){
+  if(cw!==5||cPlugging)return;
+  var target=e.target.closest('.csocket')||hovCsocket;
+  if(!target)return;
+  cPlugging=true;
+  target.querySelector('.chole').style.background='rgba(0,255,100,0.8)';
+  target.querySelector('.chole').style.boxShadow='0 0 12px rgba(0,255,100,0.6)';
+  // Walk Dave to socket then open link
+  var sp=getCSocketCenter(target);
+  daveWalkTo(sp.x-11,function(){
+    flash.style.opacity='0.04';setTimeout(function(){flash.style.opacity='0';},80);
+    var pct=0;
+    var fill=setInterval(function(){
+      pct+=2;if(contactProgress)contactProgress.style.width=pct+'%';
+      if(pct>=100){
+        clearInterval(fill);
+        setTimeout(function(){
+          if(contactProgress)contactProgress.style.width='0%';
+          target.querySelector('.chole').style.background='#060606';
+          target.querySelector('.chole').style.boxShadow='none';
+          cPlugging=false;
+          var url=target.dataset.url;
+          var tgt=target.dataset.target||'_blank';
+          if(tgt==='_self')window.location.href=url;
+          else window.open(url,tgt);
+        },200);
+      }
+    },14);
+  });
+});
 
 // Wire color per world — home=yellow, BTS=orange, Docu=white, W&D=purple, Travel=cyan, Contact=green
 // Dave idle — sit/sleep after 30s of no movement
