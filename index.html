@@ -451,8 +451,8 @@ function daveLoop(){
     }
     if(wireCanvas)wireCanvas.style.opacity='1';
   } else {
-    // Video worlds — Dave walks as progress bar, wire hidden
-    if(wireCanvas)wireCanvas.style.opacity='0';
+    // Video worlds — Dave walks as progress bar, dragging wire from left edge
+    if(wireCanvas)wireCanvas.style.opacity='1';
     var vid=null;
     if(cw===1) vid=w1active===1?w1v1:w1v2;
     else if(cw===2) vid=document.getElementById('w2vid');
@@ -633,8 +633,8 @@ function drawWireSystem(){
       drawPlug(tipX,tipY,nearest?5:4,nearest?0.9:0.6);
     }
   } else if(cw>=1&&cw<=4){
-    // Video worlds — wire from left edge socket to Dave's hand (trailing)
-    var leftSocket={x:18,y:dY+14};
+    // Video worlds — wire trails from left edge at Dave's height to his hand
+    var leftSocket={x:12,y:dY+14};
     var hand=getDaveHandPos();
     // Left anchor socket
     wctx.beginPath();
