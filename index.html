@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Malani Doosra — Filmmaker">
+<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='1200' height='630' fill='%23060606'/%3E%3Ctext x='80' y='260' font-family='Arial Black,sans-serif' font-size='140' font-weight='900' fill='%23f0f0ee'%3EMALANI%3C/text%3E%3Ctext x='80' y='400' font-family='Arial Black,sans-serif' font-size='140' font-weight='900' fill='%23FFE500'%3EDOOSRA%3C/text%3E%3Ctext x='82' y='480' font-family='monospace' font-size='22' fill='rgba(255,255,255,0.4)'%3Efilmmaker %C2%B7 cinematographer %C2%B7 ai-native %C2%B7 mumbai%3C/text%3E%3C/svg%3E">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23060606'/><rect x='9' y='2' width='14' height='4' fill='%23cc2200'/><rect x='7' y='5' width='18' height='3' fill='%23cc2200'/><rect x='10' y='7' width='12' height='8' fill='%23f5c5a3'/><rect x='11' y='10' width='3' height='3' fill='%231a1a1a'/><rect x='18' y='10' width='3' height='3' fill='%231a1a1a'/><rect x='9' y='15' width='14' height='9' fill='%23eeeeee'/><rect x='3' y='16' width='5' height='8' fill='%23f5c5a3'/><rect x='24' y='16' width='5' height='8' fill='%23f5c5a3'/><rect x='9' y='24' width='14' height='6' fill='%231a6ab5'/><rect x='9' y='28' width='6' height='4' fill='%23111111'/><rect x='17' y='28' width='6' height='4' fill='%23111111'/></svg>">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Bebas+Neue&family=DM+Mono:wght@300;400&display=swap');
@@ -132,6 +133,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .mob-footer{padding:28px 20px 40px;border-top:1px solid rgba(255,255,255,0.05);text-align:center;}
   .mob-footer a{font-family:'Press Start 2P',monospace;font-size:6px;color:var(--y);text-decoration:none;border:1px solid rgba(255,229,0,0.3);padding:12px 20px;display:inline-block;}
 }
+@keyframes sit{0%,100%{transform:scaleX(var(--f,1)) translateY(4px)}50%{transform:scaleX(var(--f,1)) translateY(5px)}}
+@keyframes headbob{0%,100%{transform:scaleX(var(--f,1)) translateY(0)}25%{transform:scaleX(var(--f,1)) translateY(-4px)}75%{transform:scaleX(var(--f,1)) translateY(-2px)}}
+.dw.sit{animation:sit 2s ease-in-out infinite;}
+.dw.bob{animation:headbob 0.3s ease-in-out 3;}
 @keyframes floatup{from{transform:translateY(0) rotate(0deg);opacity:0.6}to{transform:translateY(-110vh) rotate(180deg);opacity:0}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
 </style>
@@ -237,6 +242,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div class="wnav-btn" data-w="2" onclick="goW(2)">DOCUMENTARY</div>
       <div class="wnav-btn" data-w="3" onclick="goW(3)">WRITTEN & DIRECTED</div>
       <div class="wnav-btn" data-w="4" onclick="goW(4)">TRAVEL</div>
+      <div class="wnav-btn" data-w="5" onclick="goW(5)">CONTACT</div>
     </div>
     <span class="nemail" onclick="window.location.href='mailto:contactmalanidoosra@gmail.com'" style="cursor:pointer;">HIRE ME ↗</span>
   </div>
@@ -293,26 +299,31 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div style="padding:8px 16px 0;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.08);letter-spacing:3px;">PATCH BAY — SELECT A WORLD</div>
 
       <!-- Sockets -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);">
-        <div class="psocket" data-world="1" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);">
+        <div class="psocket" data-world="1" style="padding:12px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.01</div>
           <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">BTS</div>
         </div>
-        <div class="psocket" data-world="2" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
+        <div class="psocket" data-world="2" style="padding:12px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.02</div>
           <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">DOCUMENTARY</div>
         </div>
-        <div class="psocket" data-world="3" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
+        <div class="psocket" data-world="3" style="padding:12px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.03</div>
           <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">WRITTEN & DIRECTED</div>
         </div>
-        <div class="psocket" data-world="4" style="padding:16px;cursor:none;text-align:center;transition:background 0.2s;">
+        <div class="psocket" data-world="4" style="padding:12px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.04</div>
           <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">TRAVEL</div>
+        </div>
+        <div class="psocket" data-world="5" style="padding:12px;cursor:none;text-align:center;transition:background 0.2s;">
+          <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.05</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">CONTACT</div>
         </div>
       </div>
 
@@ -382,6 +393,57 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div id="w4next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">NEXT →</div>
 </div>
 
+<!-- W5: Contact -->
+<div class="world" id="w5" style="background:#060606;">
+  <canvas id="sparks5" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></canvas>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;">
+    <div style="width:min(640px,85vw);background:#080808;border:1px solid #1a1a1a;">
+      <div style="height:3px;background:var(--y);"></div>
+      <div style="padding:32px 32px 12px;">
+        <div style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.3);letter-spacing:3px;margin-bottom:6px;">TRANSMISSION COMPLETE</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,88px);line-height:0.85;color:var(--w);">LET'S<br><span style="color:var(--y);">MAKE</span><br>SOMETHING.</div>
+        <p style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.9;margin-top:16px;">filmmaker · cinematographer · ai-native<br>mumbai, india</p>
+      </div>
+      <div style="height:1px;background:#141414;margin:0 32px;"></div>
+      <div style="padding:20px 32px 28px;display:flex;flex-direction:column;gap:12px;">
+        <!-- Email -->
+        <a href="mailto:contactmalanidoosra@gmail.com" style="display:flex;align-items:center;gap:16px;text-decoration:none;padding:14px 16px;border:1px solid rgba(255,255,255,0.06);background:transparent;transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,229,0,0.3)';this.style.background='rgba(255,229,0,0.03)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='transparent';">
+          <span style="font-family:'Press Start 2P',monospace;font-size:8px;">✉</span>
+          <div>
+            <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.4);letter-spacing:2px;margin-bottom:4px;">EMAIL</div>
+            <div style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);">contactmalanidoosra@gmail.com</div>
+          </div>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/918169003694" target="_blank" style="display:flex;align-items:center;gap:16px;text-decoration:none;padding:14px 16px;border:1px solid rgba(255,255,255,0.06);background:transparent;transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,229,0,0.3)';this.style.background='rgba(255,229,0,0.03)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='transparent';">
+          <span style="font-family:'Press Start 2P',monospace;font-size:8px;">📱</span>
+          <div>
+            <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.4);letter-spacing:2px;margin-bottom:4px;">WHATSAPP</div>
+            <div style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);">+91 8169 003 694</div>
+          </div>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/malanidoosra" target="_blank" style="display:flex;align-items:center;gap:16px;text-decoration:none;padding:14px 16px;border:1px solid rgba(255,255,255,0.06);background:transparent;transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,229,0,0.3)';this.style.background='rgba(255,229,0,0.03)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='transparent';">
+          <span style="font-family:'Press Start 2P',monospace;font-size:8px;">◈</span>
+          <div>
+            <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.4);letter-spacing:2px;margin-bottom:4px;">INSTAGRAM</div>
+            <div style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);">@malanidoosra</div>
+          </div>
+        </a>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@Malanidoosra" target="_blank" style="display:flex;align-items:center;gap:16px;text-decoration:none;padding:14px 16px;border:1px solid rgba(255,255,255,0.06);background:transparent;transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,229,0,0.3)';this.style.background='rgba(255,229,0,0.03)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='transparent';">
+          <span style="font-family:'Press Start 2P',monospace;font-size:8px;">▶</span>
+          <div>
+            <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.4);letter-spacing:2px;margin-bottom:4px;">YOUTUBE</div>
+            <div style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5);">@Malanidoosra</div>
+          </div>
+        </a>
+      </div>
+      <div style="height:2px;background:#0d0d0d;"></div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <script>
@@ -405,13 +467,24 @@ var fl=document.getElementById('floaters');
 function mkFloat(){var d=document.createElement('div');var chars=['?','!','>','*','+','.'];d.textContent=chars[Math.floor(Math.random()*chars.length)];d.style.cssText='position:absolute;font-family:"Press Start 2P",monospace;font-size:'+(Math.random()*10+7)+'px;color:rgba(255,229,0,'+(Math.random()*0.08+0.02)+');left:'+(Math.random()*100)+'%;bottom:-20px;animation:floatup '+(Math.random()*12+8)+'s linear forwards;pointer-events:none;';fl.appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},16000);}
 setInterval(mkFloat,800);
 
-var WORLDS=5,cw=0,dX=90,dY=0,dDir=1,wTO,isJ=false,isTr=false,eCool=false,rightSocketTriggered=false;
+var WORLDS=6,cw=0,dX=90,dY=0,dDir=1,wTO,isJ=false,isTr=false,eCool=false,rightSocketTriggered=false;
 var stage=document.getElementById('stage');
 var flash=document.getElementById('flash');
 var dave=document.getElementById('dave');
 var DB=document.getElementById('DB');
 var hint=document.getElementById('hint');
-var hintT=['PLUG THE WIRE INTO A SOCKET TO ENTER A WORLD','USE ← → ARROWS TO NAVIGATE','USE ← → ARROWS TO NAVIGATE','USE ← → ARROWS TO NAVIGATE','USE ← → ARROWS TO NAVIGATE'];
+var hintT=['PLUG THE WIRE INTO A SOCKET TO ENTER A WORLD','USE ← → ARROWS TO NAVIGATE','USE ← → ARROWS TO NAVIGATE','USE ← → ARROWS TO NAVIGATE','USE ← → ARROWS TO NAVIGATE','USE ← → ARROWS TO NAVIGATE'];
+// All video data declared early so goW can always access them
+var w1videos=[
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'On set. Unscripted.<br>Where the real work happens.'},
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'Lights. Camera. Chaos.'}
+];
+var w4videos=[
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4',title:'<span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span>',desc:'Solo trips. Strange places.<br>No script, just instinct + a camera.'},
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4',title:'<span class="wy">LIFE BY</span><br><span class="ww">THE GANGA</span>',desc:'The river. The people. The light.'}
+];
+var w1v1,w1v2,w1active=1,w1cur=0;
+var w4v1,w4v2,w4active=1,w4cur=0;
 
 // Wire system vars — declared here so daveLoop can use them
 var wireCanvas=document.getElementById('wireCanvas');
@@ -470,11 +543,12 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   });
   hint.textContent=hintT[cw];
   var onVideo=cw>=1&&cw<=4;
+  var onContent=cw>=1&&cw<=5;
   // Hide nav entirely on home (jack handles navigation), show on video worlds
-  document.getElementById('nav').style.opacity=onVideo?'1':'0';
-  document.getElementById('nav').style.pointerEvents=onVideo?'all':'none';
-  document.getElementById('sbar').style.opacity=onVideo?'0':'1';
-  document.getElementById('hint').style.opacity=onVideo?'0':'1';
+  document.getElementById('nav').style.opacity=onContent?'1':'0';
+  document.getElementById('nav').style.pointerEvents=onContent?'all':'none';
+  document.getElementById('sbar').style.opacity=onContent?'0':'1';
+  document.getElementById('hint').style.opacity=onContent?'0':'1';
   setWireVisible(cw===0);
   if(wallJack)wallJack.style.opacity=cw===0?'1':'0';
   var rj=document.getElementById('rightJack');
@@ -482,7 +556,7 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   var lj=document.getElementById('leftJack');
   if(lj)lj.style.opacity=onVideo?'1':'0';
   var vn=document.getElementById('vibeNote');
-  if(vn)vn.classList.toggle('hide',onVideo);
+  if(vn)vn.classList.toggle('hide',onContent);
   var mVids=['w2vid','w3vid','w4vid','w4vid2'];
   mVids.forEach(function(id){var v=document.getElementById(id);if(v)v.muted=globalMuted;});
   if(onVideo)syncMuteButtons();
@@ -667,31 +741,13 @@ function drawWireSegment(a,b,solid){
   var cy=(a.y+b.y)/2+sag;
 
   if(solid){
-    // Glow pass
-    wctx.beginPath();
-    wctx.moveTo(a.x,a.y);
-    wctx.quadraticCurveTo(cx,cy,b.x,b.y);
-    wctx.strokeStyle='rgba(255,229,0,0.08)';
-    wctx.lineWidth=8;
-    wctx.lineCap='round';
-    wctx.setLineDash([]);
-    wctx.stroke();
-    // Main wire
-    wctx.beginPath();
-    wctx.moveTo(a.x,a.y);
-    wctx.quadraticCurveTo(cx,cy,b.x,b.y);
-    wctx.strokeStyle='rgba(255,229,0,0.8)';
-    wctx.lineWidth=2;
-    wctx.stroke();
+    wctx.beginPath();wctx.moveTo(a.x,a.y);wctx.quadraticCurveTo(cx,cy,b.x,b.y);
+    wctx.strokeStyle=getWireColor('0.08');wctx.lineWidth=8;wctx.lineCap='round';wctx.setLineDash([]);wctx.stroke();
+    wctx.beginPath();wctx.moveTo(a.x,a.y);wctx.quadraticCurveTo(cx,cy,b.x,b.y);
+    wctx.strokeStyle=getWireColor('0.8');wctx.lineWidth=2;wctx.stroke();
   } else {
-    wctx.beginPath();
-    wctx.moveTo(a.x,a.y);
-    wctx.quadraticCurveTo(cx,cy,b.x,b.y);
-    wctx.setLineDash([5,4]);
-    wctx.strokeStyle='rgba(255,229,0,0.3)';
-    wctx.lineWidth=1.5;
-    wctx.lineCap='round';
-    wctx.stroke();
+    wctx.beginPath();wctx.moveTo(a.x,a.y);wctx.quadraticCurveTo(cx,cy,b.x,b.y);
+    wctx.setLineDash([5,4]);wctx.strokeStyle=getWireColor('0.3');wctx.lineWidth=1.5;wctx.lineCap='round';wctx.stroke();
     wctx.setLineDash([]);
   }
 }
@@ -781,26 +837,55 @@ function daveWalkTo(tx,cb){
 }
 // ── END WIRE SYSTEM ──────────────────────────────────────
 
-// ── VIDEO DATA ──────────────────────────────────────────
-// W1: BTS (2 videos)
-var w1videos=[
-  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'On set. Unscripted.<br>Where the real work happens.'},
-  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'Lights. Camera. Chaos.'}
-];
-// W4: Travel (2 videos)
-var w4videos=[
-  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4',title:'<span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span>',desc:'Solo trips. Strange places.<br>No script, just instinct + a camera.'},
-  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4',title:'<span class="wy">LIFE BY</span><br><span class="ww">THE GANGA</span>',desc:'The river. The people. The light.'}
-];
+// Wire color per world — home=yellow, BTS=orange, Docu=white, W&D=purple, Travel=cyan, Contact=green
+var wireColors=['rgba(255,229,0,','rgba(255,140,0,','rgba(220,220,220,','rgba(180,100,255,','rgba(0,210,200,','rgba(0,255,100,'];
+function getWireColor(alpha){return wireColors[cw]+(alpha)+')';}
 
+// Dave idle — sit/sleep after 30s of no movement
+var idleTimer=null;
+var daveIdle=false;
+// Init W5 sparks
+var sc5=document.getElementById('sparks5');
+if(sc5){sc5.width=window.innerWidth;sc5.height=window.innerHeight;var ctx5=sc5.getContext('2d');for(var i5=0;i5<120;i5++){ctx5.fillStyle='rgba(255,255,255,'+(Math.random()*0.3+0.03)+')';ctx5.beginPath();ctx5.arc(Math.random()*sc5.width,Math.random()*sc5.height,0.6,0,Math.PI*2);ctx5.fill();}}
+var daveIdle=false;
+function resetIdleTimer(){
+  if(idleTimer)clearTimeout(idleTimer);
+  daveIdle=false;
+  if(cw===0&&!isJ&&!plugging){DB.classList.remove('sit');}
+  idleTimer=setTimeout(function(){
+    if(cw===0&&!isJ&&!plugging){daveIdle=true;DB.className='dw sit';}
+  },30000);
+}
+document.addEventListener('mousemove',resetIdleTimer);
+document.addEventListener('click',resetIdleTimer);
+resetIdleTimer();
+
+// Film titles on socket hover — show film names in patch bay tooltip
+var socketTitles={
+  1:'Kareena Rosta · Shreeleela Rosta',
+  2:'The Pune Show',
+  3:'Blinkit Ad',
+  4:'Wandering on Purpose · Life by the Ganga',
+  5:'Get in Touch'
+};
+var pTooltip=document.createElement('div');
+pTooltip.style.cssText='position:fixed;bottom:120px;left:50%;transform:translateX(-50%);font-family:"Press Start 2P",monospace;font-size:5px;color:rgba(255,229,0,0.7);letter-spacing:1px;pointer-events:none;opacity:0;transition:opacity 0.2s;z-index:300;white-space:nowrap;';
+document.body.appendChild(pTooltip);
+psockets.forEach(function(s){
+  s.addEventListener('mouseenter',function(){
+    var w=parseInt(this.dataset.world);
+    pTooltip.textContent=socketTitles[w]||'';
+    pTooltip.style.opacity='1';
+  });
+  s.addEventListener('mouseleave',function(){pTooltip.style.opacity='0';});
+});
 // Global mute state — starts muted (browser autoplay policy)
 var globalMuted=true;
 function setDaveNotes(on){document.getElementById('dnote1').style.display=on?'block':'none';document.getElementById('dnote2').style.display=on?'block':'none';}
 
 // ── W1: BTS CAROUSEL ─────────────────────────────────────
-var w1cur=0,w1active=1;
-var w1v1=document.getElementById('w1vid');
-var w1v2=document.getElementById('w1vid2');
+w1v1=document.getElementById('w1vid');
+w1v2=document.getElementById('w1vid2');
 
 function w1Load(idx,autoplay){
   var data=w1videos[idx];
@@ -819,12 +904,12 @@ function w1Load(idx,autoplay){
 }
 function w1Next(){w1cur=(w1cur+1)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
 function w1Prev(){w1cur=(w1cur-1+w1videos.length)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
-function toggleW1Mute(){globalMuted=!globalMuted;w1v1.muted=globalMuted;w1v2.muted=globalMuted;syncMuteButtons();}
+function daveBob(){DB.className="dw bob";setTimeout(function(){DB.className="dw idle";},900);}
+function toggleW1Mute(){globalMuted=!globalMuted;w1v1.muted=globalMuted;w1v2.muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
 
 // ── W4: TRAVEL CAROUSEL ───────────────────────────────────
-var w4cur=0,w4active=1;
-var w4v1=document.getElementById('w4vid');
-var w4v2=document.getElementById('w4vid2');
+w4v1=document.getElementById('w4vid');
+w4v2=document.getElementById('w4vid2');
 
 function w4Load(idx,autoplay){
   var data=w4videos[idx];
@@ -843,8 +928,8 @@ function w4Load(idx,autoplay){
 }
 function w4Next(){w4cur=(w4cur+1)%w4videos.length;snapDaveToStart();w4Load(w4cur,true);}
 function w4Prev(){w4cur=(w4cur-1+w4videos.length)%w4videos.length;snapDaveToStart();w4Load(w4cur,true);}
-function toggleW4Mute(){globalMuted=!globalMuted;w4v1.muted=globalMuted;w4v2.muted=globalMuted;syncMuteButtons();}
-function toggleWMute(vidId){globalMuted=!globalMuted;document.getElementById(vidId).muted=globalMuted;syncMuteButtons();}
+function toggleW4Mute(){globalMuted=!globalMuted;w4v1.muted=globalMuted;w4v2.muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
+function toggleWMute(vidId){globalMuted=!globalMuted;document.getElementById(vidId).muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
 
 // Hide nav on home initially
 document.getElementById('nav').style.opacity='0';
@@ -881,7 +966,6 @@ function syncMuteButtons(){
 function snapDaveToStart(){dX=8;dave.style.left='8px';}
 
 // ── RIGHT WALL SOCKET — Dave reaches right edge, auto-advances ──
-var rightSocketTriggered=false;
 function checkRightSocket(){
   if(cw<1||cw>4||rightSocketTriggered)return;
   var vid=null;
