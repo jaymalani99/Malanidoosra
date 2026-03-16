@@ -81,9 +81,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 #flash{position:fixed;inset:0;background:var(--y);opacity:0;pointer-events:none;z-index:9990;transition:opacity 0.08s;}
 #ticker{display:none;}
 .tick-inner,.tick-item{display:none;}
-.wnav-btn{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.5);letter-spacing:1px;border:1px solid rgba(255,229,0,0.2);padding:6px 10px;cursor:pointer;transition:all 0.2s;background:transparent;}
-.wnav-btn:hover{color:rgba(255,229,0,0.9);border-color:rgba(255,229,0,0.5);}
+:root{--wc:255,229,0;}
+.wnav-btn{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(var(--wc),0.5);letter-spacing:1px;border:1px solid rgba(var(--wc),0.2);padding:6px 10px;cursor:pointer;transition:color 0.3s,border-color 0.3s;background:transparent;}
+.wnav-btn:hover{color:rgba(var(--wc),0.9);border-color:rgba(var(--wc),0.5);}
 .wnav-btn.active{color:rgba(255,255,255,0.2);background:transparent;border-color:rgba(255,255,255,0.08);}
+.mute-btn{position:absolute;bottom:72px;left:56px;z-index:100;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(var(--wc),0.5);letter-spacing:2px;border:1px solid rgba(var(--wc),0.2);padding:8px 12px;transition:color 0.3s,border-color 0.3s;background:rgba(0,0,0,0.4);pointer-events:all;}
+.mute-btn:hover{color:rgba(var(--wc),1);border-color:rgba(var(--wc),0.5);}
+.mute-btn.shaking{animation:shake 0.6s ease-in-out infinite;}
 /* ── LAYOUT ── */
 #nav{position:fixed;top:0;left:0;right:0;padding:16px 36px;display:flex;justify-content:space-between;align-items:center;z-index:200;background:linear-gradient(to bottom,rgba(6,6,6,0.98),transparent);transition:opacity 0.5s;opacity:0;pointer-events:none;}
 #sbar{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;z-index:200;transition:opacity 0.5s;}
@@ -102,13 +106,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .wtit .ww{color:var(--w);}
 .wdesc{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);margin-bottom:20px;line-height:1.8;letter-spacing:0.5px;}
 /* ── CAROUSEL ARROWS ── */
-#w1prev,#w1next,#w3prev,#w3next{transition:border-color 0.2s,color 0.2s;}
-#w1prev:hover,#w1next:hover,#w3prev:hover,#w3next:hover{border-color:rgba(255,229,0,0.5)!important;color:rgba(255,229,0,0.9)!important;}
+#w1prev,#w1next,#w3prev,#w3next,#w4prev,#w4next{transition:border-color 0.3s,color 0.3s;}
+#w1prev:hover,#w1next:hover,#w3prev:hover,#w3next:hover,#w4prev:hover,#w4next:hover{border-color:rgba(var(--wc),0.5)!important;color:rgba(var(--wc),0.9)!important;}
 /* ── VIDEO UI ── */
 @keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-4px)}30%{transform:translateX(4px)}45%{transform:translateX(-3px)}60%{transform:translateX(3px)}75%{transform:translateX(-2px)}90%{transform:translateX(2px)}}
-.mute-btn{position:absolute;bottom:72px;left:56px;z-index:100;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.5);letter-spacing:2px;border:1px solid rgba(255,229,0,0.2);padding:8px 12px;transition:all 0.2s;background:rgba(0,0,0,0.4);pointer-events:all;}
-.mute-btn:hover{color:var(--y);border-color:rgba(255,229,0,0.5);}
-.mute-btn.shaking{animation:shake 0.6s ease-in-out infinite;animation-delay:0s;}
 .vid-loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.15);letter-spacing:3px;z-index:5;animation:blink 1s steps(1) infinite;pointer-events:none;transition:opacity 0.5s;}
 .vid-loading.hidden{opacity:0;pointer-events:none;}
 @keyframes labelFadeOut{0%,40%{opacity:1;}100%{opacity:0;}}
@@ -154,10 +155,30 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <a href="mailto:contactmalanidoosra@gmail.com" class="mob-hire">HIRE ME ↗</a>
   </div>
   <div class="mob-hero">
-    <div class="mob-tag">↳ CURIOUS · CREATOR · AI-NATIVE</div>
-    <div class="mob-name"><span style="color:var(--w);">MALANI</span><br><span style="color:var(--y);">DOOSRA</span></div>
-    <div class="mob-bio">Can't sit still. Always asking what's next.<br>I make videos. I build with AI.</div>
-    <div class="mob-status"><div class="mob-dot"></div><div class="mob-statustext">CURRENTLY EXPLORING · OPEN TO WORK</div></div>
+    <div style="background:#080808;border:1px solid #1a1a1a;margin-bottom:16px;">
+      <div style="height:3px;background:var(--y);"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #141414;">
+        <div style="padding:8px 12px;border-right:1px solid #141414;">
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:4px;">DIRECTOR</div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.4);">JAY MALANI</div>
+        </div>
+        <div style="padding:8px 12px;">
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:4px;">STATUS</div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(0,255,65,0.7);">OPEN TO WORK</div>
+        </div>
+      </div>
+      <div style="padding:16px 16px 12px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:0.83;">
+          <div style="color:var(--w);">MALANI</div>
+          <div style="color:var(--y);">DOOSRA</div>
+        </div>
+        <p style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);line-height:1.8;margin-top:10px;">filmmaker · cinematographer · ai-native<br>mumbai, india</p>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:10px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pulse 2s ease-in-out infinite;"></div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,65,0.5);letter-spacing:2px;">CURRENTLY EXPLORING</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="mob-vid">
@@ -282,7 +303,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #141414;">
         <div style="padding:10px 16px;border-right:1px solid #141414;">
           <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">DIRECTOR</div>
-          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">MALANI DOOSRA</div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">JAY MALANI</div>
         </div>
         <div style="padding:10px 16px;border-right:1px solid #141414;">
           <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">LOCATION</div>
@@ -408,6 +429,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div class="world" id="w5" style="background:#060606;">
   <canvas id="sparks5" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></canvas>
   <div id="floaters5" style="position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;"></div>
+  <canvas id="crewCanvas5" style="position:absolute;inset:0;z-index:4;pointer-events:none;"></canvas>
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;">
     <div style="width:min(680px,85vw);background:#080808;border:1px solid #1a1a1a;">
       <!-- Green top bar for contact world -->
@@ -631,13 +653,26 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   document.querySelectorAll('.wnav-btn').forEach(function(b){
     b.classList.toggle('active',parseInt(b.dataset.w)===cw);
   });
-  // Update cursor + ring color to match wire color
+  // Update cursor + ring + CSS variable to match wire color
   var wc=wireColors[cw];
   var rgb=wc.replace('rgba(','').split(',');
-  var curColor='rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',1)';
-  var curRingColor='rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',0.3)';
+  var r=rgb[0].trim(),g=rgb[1].trim(),b=rgb[2].trim();
+  var curColor='rgba('+r+','+g+','+b+',1)';
+  var curRingColor='rgba('+r+','+g+','+b+',0.3)';
   cur.style.background=curColor;
   cur2.style.borderColor=curRingColor;
+  // Set CSS variable so nav buttons, mute buttons, jacks all match
+  document.documentElement.style.setProperty('--wc',r+','+g+','+b);
+  // Update left/right jack nub colors
+  var ljNub=document.querySelector('#leftJack div:last-child');
+  var rjNub=document.querySelector('#rightJack div:last-child');
+  if(ljNub)ljNub.style.background=curColor;
+  if(rjNub)rjNub.style.background=curColor;
+  // Update carousel arrow border on hover color via inline style
+  ['w1prev','w1next','w3prev','w3next','w4prev','w4next'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el){el.style.borderColor='rgba('+r+','+g+','+b+',0.15)';el.style.color='rgba('+r+','+g+','+b+',0.25)';}
+  });
   hint.textContent=hintT[cw];
   // Restart world label fadeout animation
   ['wlabel','wtit','wdesc'].forEach(function(cls){
@@ -882,10 +917,12 @@ function checkPSocketHover(){
     }
     hovPsocket=nearest;
     if(hovPsocket){
-      hovPsocket.querySelector('.phole').style.borderColor='var(--y)';
-      hovPsocket.querySelector('.phole').style.boxShadow='0 0 8px rgba(255,229,0,0.4)';
-      hovPsocket.querySelector('.pslabel').style.color='rgba(255,229,0,0.8)';
-      hovPsocket.style.background='rgba(255,229,0,0.03)';
+      var wRGB=wireColors[cw].replace('rgba(','').split(',');
+      var wR=wRGB[0].trim(),wG=wRGB[1].trim(),wB=wRGB[2].trim();
+      hovPsocket.querySelector('.phole').style.borderColor='rgba('+wR+','+wG+','+wB+',0.8)';
+      hovPsocket.querySelector('.phole').style.boxShadow='0 0 8px rgba('+wR+','+wG+','+wB+',0.4)';
+      hovPsocket.querySelector('.pslabel').style.color='rgba('+wR+','+wG+','+wB+',0.8)';
+      hovPsocket.style.background='rgba('+wR+','+wG+','+wB+',0.03)';
     }
   }
 }
@@ -902,8 +939,9 @@ document.addEventListener('click',function(e){
 function plugInSocket(socket){
   plugging=true;
   pluggedPsocket=socket;
-  socket.querySelector('.phole').style.background='var(--y)';
-  socket.querySelector('.phole').style.boxShadow='0 0 12px rgba(255,229,0,0.6)';
+  var wRGB=wireColors[0].replace('rgba(','').split(',');
+  socket.querySelector('.phole').style.background='rgba('+wRGB[0].trim()+','+wRGB[1].trim()+','+wRGB[2].trim()+',1)';
+  socket.querySelector('.phole').style.boxShadow='0 0 12px rgba('+wRGB[0].trim()+','+wRGB[1].trim()+','+wRGB[2].trim()+',0.6)';
   // Walk dave toward socket
   var sp=getPSocketCenter(socket);
   daveWalkTo(sp.x-11,function(){
@@ -1161,9 +1199,15 @@ function toggleWMute(vidId){globalMuted=!globalMuted;document.getElementById(vid
 
 // ── FILM CREW BACKGROUND SYSTEM ─────────────────────────
 var crewCanvas=document.getElementById('crewCanvas');
+var crewCanvas5=document.getElementById('crewCanvas5');
 var crc=crewCanvas?crewCanvas.getContext('2d'):null;
+var crc5=crewCanvas5?crewCanvas5.getContext('2d'):null;
 if(crewCanvas){crewCanvas.width=window.innerWidth;crewCanvas.height=window.innerHeight;}
-window.addEventListener('resize',function(){if(crewCanvas){crewCanvas.width=window.innerWidth;crewCanvas.height=window.innerHeight;}});
+if(crewCanvas5){crewCanvas5.width=window.innerWidth;crewCanvas5.height=window.innerHeight;}
+window.addEventListener('resize',function(){
+  if(crewCanvas){crewCanvas.width=window.innerWidth;crewCanvas.height=window.innerHeight;}
+  if(crewCanvas5){crewCanvas5.width=window.innerWidth;crewCanvas5.height=window.innerHeight;}
+});
 
 // Each crew member: type, fixed x zone, y, animation state
 var crew=[];
@@ -1357,19 +1401,24 @@ function drawScript(ctx,x,y,t,facing){
 }
 
 function drawCrewFrame(){
-  if(!crc||cw!==0){requestAnimationFrame(drawCrewFrame);return;}
-  crc.clearRect(0,0,crewCanvas.width,crewCanvas.height);
+  var onCrew=(cw===0||cw===5);
+  // Clear both canvases
+  if(crc)crc.clearRect(0,0,crewCanvas.width,crewCanvas.height);
+  if(crc5)crc5.clearRect(0,0,crewCanvas5.width,crewCanvas5.height);
+  if(!onCrew){requestAnimationFrame(drawCrewFrame);return;}
+  var ctx=cw===0?crc:crc5;
+  if(!ctx){requestAnimationFrame(drawCrewFrame);return;}
   crewT+=0.016;
   crew.forEach(function(c){
     var t=crewT*c.speed*60+c.phase;
     switch(c.type){
-      case 'camera': drawCamera(crc,c.x,c.y,t,c.facing);break;
-      case 'clapper': drawClapper(crc,c.x,c.y,t,c.facing);break;
-      case 'boom': drawBoom(crc,c.x,c.y,t,c.facing);break;
-      case 'director': drawDirector(crc,c.x,c.y,t,c.facing);break;
-      case 'actor': drawActor(crc,c.x,c.y,t,c.facing);break;
-      case 'light': drawLight(crc,c.x,c.y,t,c.facing);break;
-      case 'script': drawScript(crc,c.x,c.y,t,c.facing);break;
+      case 'camera': drawCamera(ctx,c.x,c.y,t,c.facing);break;
+      case 'clapper': drawClapper(ctx,c.x,c.y,t,c.facing);break;
+      case 'boom': drawBoom(ctx,c.x,c.y,t,c.facing);break;
+      case 'director': drawDirector(ctx,c.x,c.y,t,c.facing);break;
+      case 'actor': drawActor(ctx,c.x,c.y,t,c.facing);break;
+      case 'light': drawLight(ctx,c.x,c.y,t,c.facing);break;
+      case 'script': drawScript(ctx,c.x,c.y,t,c.facing);break;
     }
   });
   requestAnimationFrame(drawCrewFrame);
