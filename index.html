@@ -90,6 +90,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 #hint{transition:opacity 0.5s;}
 #gnd{display:none;}
 #dave{position:fixed;bottom:48px;z-index:9000;pointer-events:none;}
+#dave.grabbable{pointer-events:all;cursor:grab;}
+#dave.grabbing{cursor:grabbing;}
 /* ── EASTER EGG coin ── */
 @keyframes coinfly{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-80px) scale(0.3)}}
 .cpop{position:fixed;font-family:'Press Start 2P',monospace;font-size:13px;color:var(--y);pointer-events:none;z-index:9999;animation:coinfly 0.75s ease-out forwards;}
@@ -103,8 +105,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 #w1prev,#w1next,#w3prev,#w3next{transition:border-color 0.2s,color 0.2s;}
 #w1prev:hover,#w1next:hover,#w3prev:hover,#w3next:hover{border-color:rgba(255,229,0,0.5)!important;color:rgba(255,229,0,0.9)!important;}
 /* ── VIDEO UI ── */
-.mute-btn{position:absolute;bottom:48px;left:56px;z-index:100;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.5);letter-spacing:2px;border:1px solid rgba(255,229,0,0.2);padding:8px 12px;transition:all 0.2s;background:rgba(0,0,0,0.4);pointer-events:all;}
+@keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-4px)}30%{transform:translateX(4px)}45%{transform:translateX(-3px)}60%{transform:translateX(3px)}75%{transform:translateX(-2px)}90%{transform:translateX(2px)}}
+.mute-btn{position:absolute;bottom:72px;left:56px;z-index:100;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.5);letter-spacing:2px;border:1px solid rgba(255,229,0,0.2);padding:8px 12px;transition:all 0.2s;background:rgba(0,0,0,0.4);pointer-events:all;}
 .mute-btn:hover{color:var(--y);border-color:rgba(255,229,0,0.5);}
+.mute-btn.shaking{animation:shake 0.6s ease-in-out infinite;animation-delay:0s;}
 .vid-loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.15);letter-spacing:3px;z-index:5;animation:blink 1s steps(1) infinite;pointer-events:none;transition:opacity 0.5s;}
 .vid-loading.hidden{opacity:0;pointer-events:none;}
 #vibeNote{position:fixed;bottom:16px;left:56px;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.12);letter-spacing:1px;z-index:200;transition:opacity 0.4s;pointer-events:none;}
@@ -524,6 +528,51 @@ var wallJack=document.getElementById('wallJack');
 var wireColors=['rgba(255,229,0,','rgba(255,140,0,','rgba(220,220,220,','rgba(180,100,255,','rgba(0,210,200,','rgba(0,255,100,'];
 function getWireColor(alpha){return wireColors[cw]+(alpha)+')';}
 
+var daveDragging=false;
+var daveDragOffsetX=0;
+
+// Dave drag — mousedown on dave starts scrub on video worlds
+dave.addEventListener('mousedown',function(e){
+  if(cw<1||cw>4)return;
+  e.stopPropagation();
+  daveDragging=true;
+  daveDragOffsetX=e.clientX-dX;
+  DB.className='dw idle';
+  dave.classList.add('grabbing');
+});
+document.addEventListener('mouseup',function(){
+  if(!daveDragging)return;
+  daveDragging=false;
+  dave.classList.remove('grabbing');
+  var vid=getActiveVid();
+  if(vid&&vid.duration){
+    var pct=Math.max(0,Math.min(1,dX/(window.innerWidth-56)));
+    vid.currentTime=pct*vid.duration;
+  }
+});
+document.addEventListener('mousemove',function(e){
+  if(!daveDragging)return;
+  dX=Math.max(8,Math.min(window.innerWidth-56,e.clientX-daveDragOffsetX));
+  dave.style.left=dX+'px';
+  // Live seek while dragging
+  var vid=getActiveVid();
+  if(vid&&vid.duration){
+    var pct=Math.max(0,Math.min(1,dX/(window.innerWidth-56)));
+    vid.currentTime=pct*vid.duration;
+  }
+  var nd=e.movementX>0?1:-1;
+  if(nd!==dDir){dDir=nd;DB.style.setProperty('--f',dDir);}
+  DB.className='dw '+(dDir>0?'wr':'wl');
+});
+
+function getActiveVid(){
+  if(cw===1)return w1active===1?document.getElementById('w1vid'):document.getElementById('w1vid2');
+  if(cw===2)return document.getElementById('w2vid');
+  if(cw===3)return document.getElementById('w3vid');
+  if(cw===4)return w4active===1?document.getElementById('w4vid'):document.getElementById('w4vid2');
+  return null;
+}
+
 function daveLoop(){
   if(cw===0||cw===5){
     // Home + Contact — Dave follows cursor
@@ -543,20 +592,18 @@ function daveLoop(){
     }
     if(wireCanvas)wireCanvas.style.opacity=cw===0?'1':'0';
   } else if(cw>=1&&cw<=4){
-    // Video worlds — Dave walks as progress bar
+    // Video worlds — Dave walks as progress bar (skip if dragging)
     if(wireCanvas)wireCanvas.style.opacity='1';
-    var vid=null;
-    if(cw===1) vid=w1active===1?document.getElementById('w1vid'):document.getElementById('w1vid2');
-    else if(cw===2) vid=document.getElementById('w2vid');
-    else if(cw===3) vid=document.getElementById('w3vid');
-    else if(cw===4) vid=w4active===1?document.getElementById('w4vid'):document.getElementById('w4vid2');
-    if(vid&&vid.duration){
-      var pct=vid.currentTime/vid.duration;
-      var targetX=Math.floor(pct*(window.innerWidth-56));
-      dX+=(targetX-dX)*0.05;
-      dave.style.left=dX+'px';
-      if(dDir!==1){dDir=1;DB.style.setProperty('--f',1);}
-      DB.className='dw wr';
+    if(!daveDragging){
+      var vid=getActiveVid();
+      if(vid&&vid.duration){
+        var pct=vid.currentTime/vid.duration;
+        var targetX=Math.floor(pct*(window.innerWidth-56));
+        dX+=(targetX-dX)*0.05;
+        dave.style.left=dX+'px';
+        if(dDir!==1){dDir=1;DB.style.setProperty('--f',1);}
+        DB.className='dw wr';
+      }
     }
   }
   requestAnimationFrame(daveLoop);
@@ -589,6 +636,8 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   if(rj)rj.style.opacity=onVideo?'1':'0';
   var lj=document.getElementById('leftJack');
   if(lj)lj.style.opacity=onVideo?'1':'0';
+  // Dave is grabbable on video worlds
+  if(onVideo){dave.classList.add('grabbable');}else{dave.classList.remove('grabbable');}
   var vn=document.getElementById('vibeNote');
   if(vn)vn.classList.toggle('hide',onContent);
   var mVids=['w2vid','w3vid','w4vid','w4vid2'];
@@ -1088,6 +1137,8 @@ function toggleWMute(vidId){globalMuted=!globalMuted;document.getElementById(vid
 
 // Init
 dY=window.innerHeight-48-29;
+// Start mute buttons shaking since sound is off by default
+document.querySelectorAll('.mute-btn').forEach(function(btn){btn.classList.add('shaking');});
 var _initV=document.getElementById('w1vid');
 _initV.src=w1videos[0].src;
 _initV.muted=true;
@@ -1112,6 +1163,11 @@ function syncMuteButtons(){
   var txt=globalMuted?'UNMUTE':'MUTE';
   ['w1muteico','w2muteico','w3muteico','w4muteico'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=ico;});
   ['w1mutetxt','w2mutetxt','w3mutetxt','w4mutetxt'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=txt;});
+  // Shake when muted to grab attention
+  document.querySelectorAll('.mute-btn').forEach(function(btn){
+    if(globalMuted)btn.classList.add('shaking');
+    else btn.classList.remove('shaking');
+  });
   setDaveNotes(!globalMuted);
 }
 
