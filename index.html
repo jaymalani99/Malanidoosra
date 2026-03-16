@@ -65,27 +65,27 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 @keyframes notefly{0%{opacity:0;transform:translateY(0) scale(0.6);}20%{opacity:1;}100%{opacity:0;transform:translateY(-22px) scale(1) rotate(15deg);}}
 .dnote{position:absolute;top:-14px;font-size:8px;pointer-events:none;animation:notefly 1.2s ease-out infinite;}
 .dnote:nth-child(1){left:14px;animation-delay:0s;}
-.dnote:nth-child(2){left:20px;animation-delay:0.5s;font-size:6px;}
+.dnote:nth-child(2){left:20px;animation-delay:0.5s;font-size:11px;}
 #nav{position:fixed;top:0;left:0;right:0;padding:16px 36px;display:flex;justify-content:space-between;align-items:center;z-index:200;background:linear-gradient(to bottom,rgba(6,6,6,0.98),transparent);}
-.nlogo{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--y);letter-spacing:1px;}
+.nlogo{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--y);letter-spacing:1px;}
 .nright{display:flex;align-items:center;gap:24px;}
 #gnd{display:none;}
-.nemail{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);text-decoration:none;letter-spacing:1px;border:1px solid rgba(255,255,255,0.08);padding:6px 10px;transition:all 0.2s;}
+.nemail{font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.2);text-decoration:none;letter-spacing:1px;border:1px solid rgba(255,255,255,0.08);padding:6px 10px;transition:all 0.2s;}
 .nemail:hover{color:var(--y);border-color:var(--y);}
 #sbar{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;z-index:200;}
-.slink{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.15);text-decoration:none;writing-mode:vertical-rl;letter-spacing:2px;transition:color 0.2s;}
+.slink{font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.15);text-decoration:none;writing-mode:vertical-rl;letter-spacing:2px;transition:color 0.2s;}
 .slink:hover{color:var(--y);}
 #wct{display:none;}
-#hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.5);letter-spacing:3px;z-index:200;white-space:nowrap;animation:blink 2.2s steps(1) infinite;}
+#hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-family:'Press Start 2P',monospace;font-size:11px;color:rgba(255,229,0,0.5);letter-spacing:3px;z-index:200;white-space:nowrap;animation:blink 2.2s steps(1) infinite;}
 @keyframes blink{50%{opacity:0}}
 #flash{position:fixed;inset:0;background:var(--y);opacity:0;pointer-events:none;z-index:9990;transition:opacity 0.08s;}
 #ticker{display:none;}
 .tick-inner,.tick-item{display:none;}
 :root{--wc:255,229,0;}
-.wnav-btn{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(var(--wc),0.5);letter-spacing:1px;border:1px solid rgba(var(--wc),0.2);padding:6px 10px;cursor:pointer;transition:color 0.3s,border-color 0.3s;background:transparent;}
+.wnav-btn{font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(var(--wc),0.5);letter-spacing:1px;border:1px solid rgba(var(--wc),0.2);padding:6px 10px;cursor:pointer;transition:color 0.3s,border-color 0.3s;background:transparent;}
 .wnav-btn:hover{color:rgba(var(--wc),0.9);border-color:rgba(var(--wc),0.5);}
 .wnav-btn.active{color:rgba(255,255,255,0.2);background:transparent;border-color:rgba(255,255,255,0.08);}
-.mute-btn{position:absolute;bottom:72px;left:56px;z-index:100;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(var(--wc),0.5);letter-spacing:2px;border:1px solid rgba(var(--wc),0.2);padding:8px 12px;transition:color 0.3s,border-color 0.3s;background:rgba(0,0,0,0.4);pointer-events:all;}
+.mute-btn{position:absolute;bottom:72px;left:56px;z-index:100;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(var(--wc),0.5);letter-spacing:2px;border:1px solid rgba(var(--wc),0.2);padding:8px 12px;transition:color 0.3s,border-color 0.3s;background:rgba(0,0,0,0.4);pointer-events:all;}
 .mute-btn:hover{color:rgba(var(--wc),1);border-color:rgba(var(--wc),0.5);}
 .mute-btn.shaking{animation:shake 0.6s ease-in-out infinite;}
 /* ── LAYOUT ── */
@@ -100,21 +100,21 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 @keyframes coinfly{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-80px) scale(0.3)}}
 .cpop{position:fixed;font-family:'Press Start 2P',monospace;font-size:13px;color:var(--y);pointer-events:none;z-index:9999;animation:coinfly 0.75s ease-out forwards;}
 /* ── VIDEO WORLD LABELS ── */
-.wlabel{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.35);letter-spacing:5px;margin-bottom:10px;}
+.wlabel{font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,229,0,0.35);letter-spacing:5px;margin-bottom:10px;}
 .wtit{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,104px);line-height:0.86;letter-spacing:-1px;margin-bottom:6px;}
 .wtit .wy{color:var(--y);}
 .wtit .ww{color:var(--w);}
-.wdesc{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);margin-bottom:20px;line-height:1.8;letter-spacing:0.5px;}
+.wdesc{font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.2);margin-bottom:20px;line-height:1.8;letter-spacing:0.5px;}
 /* ── CAROUSEL ARROWS ── */
 #w1prev,#w1next,#w3prev,#w3next,#w4prev,#w4next{transition:border-color 0.3s,color 0.3s;}
 #w1prev:hover,#w1next:hover,#w3prev:hover,#w3next:hover,#w4prev:hover,#w4next:hover{border-color:rgba(var(--wc),0.5)!important;color:rgba(var(--wc),0.9)!important;}
 /* ── VIDEO UI ── */
 @keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-4px)}30%{transform:translateX(4px)}45%{transform:translateX(-3px)}60%{transform:translateX(3px)}75%{transform:translateX(-2px)}90%{transform:translateX(2px)}}
-.vid-loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.15);letter-spacing:3px;z-index:5;animation:blink 1s steps(1) infinite;pointer-events:none;transition:opacity 0.5s;}
+.vid-loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Press Start 2P',monospace;font-size:11px;color:rgba(255,255,255,0.15);letter-spacing:3px;z-index:5;animation:blink 1s steps(1) infinite;pointer-events:none;transition:opacity 0.5s;}
 .vid-loading.hidden{opacity:0;pointer-events:none;}
 @keyframes labelFadeOut{0%,40%{opacity:1;}100%{opacity:0;}}
 .wlabel,.wtit,.wdesc{animation:labelFadeOut 4s ease-out forwards;}
-#vibeNote{position:fixed;bottom:16px;left:56px;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.22);letter-spacing:1px;z-index:200;transition:opacity 0.4s;pointer-events:none;}
+#vibeNote{position:fixed;bottom:16px;left:56px;font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.22);letter-spacing:1px;z-index:200;transition:opacity 0.4s;pointer-events:none;}
 #vibeNote.hide{opacity:0;}
 /* ── MOBILE ── */
 #mob{display:none;position:fixed;inset:0;background:var(--k);z-index:99999;overflow-y:auto;}
@@ -122,23 +122,23 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   #mob{display:block;}
   .mob-nav{position:sticky;top:0;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,6,0.95);z-index:10;border-bottom:1px solid rgba(255,255,255,0.05);}
   .mob-logo{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--y);}
-  .mob-hire{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.3);text-decoration:none;border:1px solid rgba(255,255,255,0.1);padding:6px 10px;}
+  .mob-hire{font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.3);text-decoration:none;border:1px solid rgba(255,255,255,0.1);padding:6px 10px;}
   .mob-hero{padding:40px 20px 20px;}
-  .mob-tag{font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.4);letter-spacing:3px;margin-bottom:12px;}
+  .mob-tag{font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,229,0,0.4);letter-spacing:3px;margin-bottom:12px;}
   .mob-name{font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:0.85;margin-bottom:16px;}
-  .mob-bio{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.28);line-height:1.9;margin-bottom:24px;}
+  .mob-bio{font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.28);line-height:1.9;margin-bottom:24px;}
   .mob-status{display:flex;align-items:center;gap:8px;margin-bottom:40px;}
   .mob-dot{width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pulse 2s ease-in-out infinite;}
-  .mob-statustext{font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,65,0.5);letter-spacing:2px;}
+  .mob-statustext{font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,255,65,0.5);letter-spacing:2px;}
   .mob-section{margin-bottom:0;}
   .mob-label{display:none;}
   .mob-vid{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;margin-bottom:2px;}
   .mob-vid video{width:100%;height:100%;object-fit:cover;}
   .mob-vid-overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,0.8));display:flex;flex-direction:column;justify-content:flex-end;padding:14px;}
   .mob-vid-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--w);line-height:1;}
-  .mob-vid-desc{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);margin-top:3px;}
+  .mob-vid-desc{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px;}
   .mob-footer{padding:28px 20px 40px;border-top:1px solid rgba(255,255,255,0.05);text-align:center;}
-  .mob-footer a{font-family:'Press Start 2P',monospace;font-size:6px;color:var(--y);text-decoration:none;border:1px solid rgba(255,229,0,0.3);padding:12px 20px;display:inline-block;}
+  .mob-footer a{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--y);text-decoration:none;border:1px solid rgba(255,229,0,0.3);padding:12px 20px;display:inline-block;}
 }
 @keyframes sit{0%,100%{transform:scaleX(var(--f,1)) translateY(4px)}50%{transform:scaleX(var(--f,1)) translateY(5px)}}
 @keyframes headbob{0%,100%{transform:scaleX(var(--f,1)) translateY(0)}25%{transform:scaleX(var(--f,1)) translateY(-4px)}75%{transform:scaleX(var(--f,1)) translateY(-2px)}}
@@ -159,12 +159,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div style="height:3px;background:var(--y);"></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #141414;">
         <div style="padding:8px 12px;border-right:1px solid #141414;">
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:4px;">DIRECTOR</div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.4);">JAY MALANI</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:4px;">DIRECTOR</div>
+          <div style="font-family:'DM Mono',monospace;font-size:14px;color:rgba(255,255,255,0.4);">JAY MALANI</div>
         </div>
         <div style="padding:8px 12px;">
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:4px;">STATUS</div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(0,255,65,0.7);">OPEN TO WORK</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:4px;">STATUS</div>
+          <div style="font-family:'DM Mono',monospace;font-size:14px;color:rgba(0,255,65,0.7);">OPEN TO WORK</div>
         </div>
       </div>
       <div style="padding:16px 16px 12px;">
@@ -172,10 +172,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
           <div style="color:var(--w);">MALANI</div>
           <div style="color:var(--y);">DOOSRA</div>
         </div>
-        <p style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);line-height:1.8;margin-top:10px;">filmmaker · cinematographer · ai-native<br>mumbai, india</p>
+        <p style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.25);line-height:1.8;margin-top:10px;">filmmaker · cinematographer · ai-native<br>mumbai, india</p>
         <div style="display:flex;align-items:center;gap:8px;margin-top:10px;">
           <div style="width:6px;height:6px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pulse 2s ease-in-out infinite;"></div>
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,65,0.5);letter-spacing:2px;">CURRENTLY EXPLORING</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,255,65,0.5);letter-spacing:2px;">CURRENTLY EXPLORING</div>
         </div>
       </div>
     </div>
@@ -209,12 +209,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="mob-footer">
     <a href="mailto:contactmalanidoosra@gmail.com">GET IN TOUCH ↗</a>
     <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;">
-      <a href="https://wa.me/918169003694" target="_blank" style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(0,255,65,0.7);text-decoration:none;border:1px solid rgba(0,255,65,0.2);padding:8px 12px;">💬 WHATSAPP</a>
-      <a href="https://www.instagram.com/malanidoosra" target="_blank" style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.7);text-decoration:none;border:1px solid rgba(255,229,0,0.2);padding:8px 12px;">◈ INSTAGRAM</a>
+      <a href="https://wa.me/918169003694" target="_blank" style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(0,255,65,0.7);text-decoration:none;border:1px solid rgba(0,255,65,0.2);padding:8px 12px;">💬 WHATSAPP</a>
+      <a href="https://www.instagram.com/malanidoosra" target="_blank" style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,229,0,0.7);text-decoration:none;border:1px solid rgba(255,229,0,0.2);padding:8px 12px;">◈ INSTAGRAM</a>
     </div>
     <div style="margin-top:16px;">
-      <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.15);letter-spacing:2px;margin-bottom:10px;">WANT THE FULL EXPERIENCE?</div>
-      <a onclick="document.getElementById('mob').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:5px;color:var(--y);text-decoration:none;border:1px solid rgba(255,229,0,0.3);padding:10px 14px;display:inline-block;cursor:pointer;">VIEW DESKTOP VERSION →</a>
+      <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,255,255,0.15);letter-spacing:2px;margin-bottom:10px;">WANT THE FULL EXPERIENCE?</div>
+      <a onclick="document.getElementById('mob').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:8px;color:var(--y);text-decoration:none;border:1px solid rgba(255,229,0,0.3);padding:10px 14px;display:inline-block;cursor:pointer;">VIEW DESKTOP VERSION →</a>
     </div>
   </div>
 </div>
@@ -248,7 +248,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <!-- Jack exit nub -->
   <div style="position:absolute;right:-7px;top:50%;transform:translateY(-50%);width:7px;height:7px;background:var(--y);border-radius:50%;box-shadow:0 0 8px rgba(255,229,0,0.8);"></div>
   <!-- Jack label -->
-  <div style="position:absolute;left:28px;top:50%;transform:translateY(-50%);font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.3);letter-spacing:1px;white-space:nowrap;">IN</div>
+  <div style="position:absolute;left:28px;top:50%;transform:translateY(-50%);font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.3);letter-spacing:1px;white-space:nowrap;">IN</div>
 </div>
 
 <!-- Plug tip that follows cursor on home -->
@@ -294,24 +294,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
   <!-- Centered slate panel -->
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;">
-    <div style="width:min(680px,85vw);background:#080808;border:1px solid #1a1a1a;">
-
-      <!-- Yellow top bar -->
+    <div style="width:min(860px,92vw);background:#080808;border:1px solid #1a1a1a;">
       <div style="height:3px;background:var(--y);"></div>
 
       <!-- Info strip -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #141414;">
         <div style="padding:10px 16px;border-right:1px solid #141414;">
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">DIRECTOR</div>
-          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">JAY MALANI</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">DIRECTOR</div>
+          <div style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.4);">JAY MALANI</div>
         </div>
         <div style="padding:10px 16px;border-right:1px solid #141414;">
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">LOCATION</div>
-          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">MUMBAI, IN</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">LOCATION</div>
+          <div style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.4);">MUMBAI, IN</div>
         </div>
         <div style="padding:10px 16px;">
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">STATUS</div>
-          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(0,255,65,0.7);">OPEN TO WORK</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.25);letter-spacing:2px;margin-bottom:5px;">STATUS</div>
+          <div style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(0,255,65,0.7);">OPEN TO WORK</div>
         </div>
       </div>
 
@@ -321,41 +319,41 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
           <div style="color:var(--w);">MALANI</div>
           <div style="color:var(--y);">DOOSRA</div>
         </div>
-        <p style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.8;margin-top:14px;">filmmaker · cinematographer · ai-native<br>can't sit still. always asking what's next.</p>
+        <p style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.2);line-height:1.8;margin-top:14px;">filmmaker · cinematographer · ai-native<br>can't sit still. always asking what's next.</p>
       </div>
 
       <!-- Divider -->
       <div style="height:1px;background:#141414;"></div>
 
       <!-- Patch bay label -->
-      <div style="padding:8px 16px 0;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.08);letter-spacing:3px;">PATCH BAY — SELECT A WORLD</div>
+      <div style="padding:8px 16px 0;font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,255,255,0.08);letter-spacing:3px;">PATCH BAY — SELECT A WORLD</div>
 
       <!-- Sockets -->
       <div style="display:grid;grid-template-columns:repeat(5,1fr);">
         <div class="psocket" data-world="1" style="padding:12px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
-          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.01</div>
-          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">BTS</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.01</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;white-space:nowrap;">BTS</div>
         </div>
         <div class="psocket" data-world="2" style="padding:12px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
-          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.02</div>
-          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">DOCUMENTARY</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.02</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;white-space:nowrap;">DOCUMENTARY</div>
         </div>
         <div class="psocket" data-world="3" style="padding:12px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
-          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.03</div>
-          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">WRITTEN & DIRECTED</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.03</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;white-space:nowrap;">WRITTEN & DIRECTED</div>
         </div>
         <div class="psocket" data-world="4" style="padding:12px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
-          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.04</div>
-          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">TRAVEL</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.04</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;white-space:nowrap;">TRAVEL</div>
         </div>
         <div class="psocket" data-world="5" style="padding:12px;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
-          <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.05</div>
-          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">CONTACT</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.05</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;white-space:nowrap;">CONTACT</div>
         </div>
       </div>
 
@@ -377,9 +375,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="wdesc" id="w1desc" style="margin-top:10px;">On set. Unscripted.<br>Where the real work happens.</div>
   </div>
   <div id="w1mute" class="mute-btn"><span id="w1muteico">🔇</span><span id="w1mutetxt">UNMUTE</span></div>
-  <div id="w1counter" style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:100;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.6);letter-spacing:3px;pointer-events:none;">01 / 02</div>
-  <div id="w1prev" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">← PREV</div>
-  <div id="w1next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">NEXT →</div>
+  <div id="w1counter" style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:100;font-family:'Press Start 2P',monospace;font-size:11px;color:rgba(255,229,0,0.6);letter-spacing:3px;pointer-events:none;">01 / 02</div>
+  <div id="w1prev" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">← PREV</div>
+  <div id="w1next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">NEXT →</div>
 </div>
 
 <div class="world" id="w2" style="background:#060606;">
@@ -420,9 +418,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="wdesc" id="w4desc" style="margin-top:10px;">Solo trips. Strange places.<br>No script, just instinct + a camera.</div>
   </div>
   <div id="w4mute" class="mute-btn"><span id="w4muteico">🔇</span><span id="w4mutetxt">UNMUTE</span></div>
-  <div id="w4counter" style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:100;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.6);letter-spacing:3px;pointer-events:none;">01 / 02</div>
-  <div id="w4prev" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">← PREV</div>
-  <div id="w4next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">NEXT →</div>
+  <div id="w4counter" style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:100;font-family:'Press Start 2P',monospace;font-size:11px;color:rgba(255,229,0,0.6);letter-spacing:3px;pointer-events:none;">01 / 02</div>
+  <div id="w4prev" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">← PREV</div>
+  <div id="w4next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">NEXT →</div>
 </div>
 
 <!-- W5: Contact — patch bay style like home -->
@@ -437,16 +435,16 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <!-- Info strip -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #141414;">
         <div style="padding:10px 16px;border-right:1px solid #141414;">
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">DIRECTOR</div>
-          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">JAY MALANI</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">DIRECTOR</div>
+          <div style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.4);">JAY MALANI</div>
         </div>
         <div style="padding:10px 16px;border-right:1px solid #141414;">
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">LOCATION</div>
-          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">MUMBAI, IN</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">LOCATION</div>
+          <div style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.4);">MUMBAI, IN</div>
         </div>
         <div style="padding:10px 16px;">
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">STATUS</div>
-          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(0,255,65,0.7);">OPEN TO WORK</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">STATUS</div>
+          <div style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(0,255,65,0.7);">OPEN TO WORK</div>
         </div>
       </div>
       <!-- Headline -->
@@ -455,33 +453,33 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
           <div style="color:var(--w);">LET'S</div>
           <div style="color:rgba(0,255,100,0.9);">CONNECT.</div>
         </div>
-        <p style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.8;margin-top:14px;">plug the wire into a socket to reach out.</p>
+        <p style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.2);line-height:1.8;margin-top:14px;">plug the wire into a socket to reach out.</p>
       </div>
       <!-- Divider -->
       <div style="height:1px;background:#141414;"></div>
       <!-- Patch bay label -->
-      <div style="padding:8px 16px 0;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.08);letter-spacing:3px;">CONTACT BAY — SELECT A CHANNEL</div>
+      <div style="padding:8px 16px 0;font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,255,255,0.08);letter-spacing:3px;">CONTACT BAY — SELECT A CHANNEL</div>
       <!-- Contact sockets -->
       <div style="display:grid;grid-template-columns:repeat(4,1fr);" id="contactSockets">
         <div class="csocket" data-url="https://wa.me/918169003694" data-target="_blank" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="chole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.25);margin-bottom:6px;">💬</div>
-          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">WHATSAPP</div>
+          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">WHATSAPP</div>
         </div>
         <div class="csocket" data-url="mailto:contactmalanidoosra@gmail.com" data-target="_self" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="chole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.25);margin-bottom:6px;">✉</div>
-          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">EMAIL</div>
+          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">EMAIL</div>
         </div>
         <div class="csocket" data-url="https://www.instagram.com/malanidoosra" data-target="_blank" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="chole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.25);margin-bottom:6px;">◈</div>
-          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">INSTAGRAM</div>
+          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">INSTAGRAM</div>
         </div>
         <div class="csocket" data-url="https://www.youtube.com/@Malanidoosra" data-target="_blank" style="padding:16px;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="chole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:8px;color:rgba(255,255,255,0.25);margin-bottom:6px;">▶</div>
-          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">YOUTUBE</div>
+          <div class="cslabel" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,255,100,0.5);letter-spacing:1px;transition:color 0.2s;">YOUTUBE</div>
         </div>
       </div>
       <!-- Progress bar -->
@@ -1110,7 +1108,7 @@ var socketTitles={
   5:'Get in Touch'
 };
 var pTooltip=document.createElement('div');
-pTooltip.style.cssText='position:fixed;bottom:120px;left:50%;transform:translateX(-50%);font-family:"Press Start 2P",monospace;font-size:5px;color:rgba(255,229,0,0.7);letter-spacing:1px;pointer-events:none;opacity:0;transition:opacity 0.2s;z-index:300;white-space:nowrap;';
+pTooltip.style.cssText='position:fixed;bottom:120px;left:50%;transform:translateX(-50%);font-family:"Press Start 2P",monospace;font-size:8px;color:rgba(255,229,0,0.7);letter-spacing:1px;pointer-events:none;opacity:0;transition:opacity 0.2s;z-index:300;white-space:nowrap;';
 document.body.appendChild(pTooltip);
 psockets.forEach(function(s){
   s.addEventListener('mouseenter',function(){
