@@ -111,7 +111,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .mute-btn.shaking{animation:shake 0.6s ease-in-out infinite;animation-delay:0s;}
 .vid-loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.15);letter-spacing:3px;z-index:5;animation:blink 1s steps(1) infinite;pointer-events:none;transition:opacity 0.5s;}
 .vid-loading.hidden{opacity:0;pointer-events:none;}
-#vibeNote{position:fixed;bottom:16px;left:56px;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.12);letter-spacing:1px;z-index:200;transition:opacity 0.4s;pointer-events:none;}
+@keyframes labelFadeOut{0%,40%{opacity:1;}100%{opacity:0;}}
+.wlabel,.wtit,.wdesc{animation:labelFadeOut 4s ease-out forwards;}
+#vibeNote{position:fixed;bottom:16px;left:56px;font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.22);letter-spacing:1px;z-index:200;transition:opacity 0.4s;pointer-events:none;}
 #vibeNote.hide{opacity:0;}
 /* ── MOBILE ── */
 #mob{display:none;position:fixed;inset:0;background:var(--k);z-index:99999;overflow-y:auto;}
@@ -159,32 +161,36 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <div class="mob-vid">
-    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4"></video>
+    <video loop playsinline data-src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4"></video>
     <div class="mob-vid-overlay"><div class="mob-vid-title">BEHIND THE SCENES</div><div class="mob-vid-desc">On set. Unscripted.</div></div>
   </div>
   <div class="mob-vid">
-    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4"></video>
+    <video loop playsinline data-src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4"></video>
     <div class="mob-vid-overlay"><div class="mob-vid-title">BEHIND THE SCENES II</div><div class="mob-vid-desc">Lights. Camera. Chaos.</div></div>
   </div>
   <div class="mob-vid">
-    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Puneshow%20Final.mp4"></video>
+    <video loop playsinline data-src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Puneshow%20Final.mp4"></video>
     <div class="mob-vid-overlay"><div class="mob-vid-title">REAL STORIES</div><div class="mob-vid-desc">No studios. Just truth + a lens.</div></div>
   </div>
   <div class="mob-vid">
-    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Blinkit%20Final%20Ad.mp4"></video>
+    <video loop playsinline data-src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Blinkit%20Final%20Ad.mp4"></video>
     <div class="mob-vid-overlay"><div class="mob-vid-title">WRITTEN & DIRECTED</div><div class="mob-vid-desc">Every frame intentional.</div></div>
   </div>
   <div class="mob-vid">
-    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4"></video>
+    <video loop playsinline data-src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4"></video>
     <div class="mob-vid-overlay"><div class="mob-vid-title">WANDERING ON PURPOSE</div><div class="mob-vid-desc">Solo trips. Strange places. No script.</div></div>
   </div>
   <div class="mob-vid">
-    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4"></video>
+    <video loop playsinline data-src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4"></video>
     <div class="mob-vid-overlay"><div class="mob-vid-title">LIFE BY THE GANGA</div><div class="mob-vid-desc">The river. The people. The light.</div></div>
   </div>
 
   <div class="mob-footer">
     <a href="mailto:contactmalanidoosra@gmail.com">GET IN TOUCH ↗</a>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;">
+      <a href="https://wa.me/918169003694" target="_blank" style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(0,255,65,0.7);text-decoration:none;border:1px solid rgba(0,255,65,0.2);padding:8px 12px;">💬 WHATSAPP</a>
+      <a href="https://www.instagram.com/malanidoosra" target="_blank" style="font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,229,0,0.7);text-decoration:none;border:1px solid rgba(255,229,0,0.2);padding:8px 12px;">◈ INSTAGRAM</a>
+    </div>
     <div style="margin-top:16px;">
       <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.15);letter-spacing:2px;margin-bottom:10px;">WANT THE FULL EXPERIENCE?</div>
       <a onclick="document.getElementById('mob').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:5px;color:var(--y);text-decoration:none;border:1px solid rgba(255,229,0,0.3);padding:10px 14px;display:inline-block;cursor:pointer;">VIEW DESKTOP VERSION →</a>
@@ -407,8 +413,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <!-- Info strip -->
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #141414;">
         <div style="padding:10px 16px;border-right:1px solid #141414;">
-          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">WORLD 05</div>
-          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">CONTACT</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">DIRECTOR</div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);">JAY MALANI</div>
         </div>
         <div style="padding:10px 16px;border-right:1px solid #141414;">
           <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(0,255,100,0.3);letter-spacing:2px;margin-bottom:5px;">LOCATION</div>
@@ -469,6 +475,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
   <!-- Wire canvas for contact world -->
   <canvas id="contactWireCanvas" style="position:absolute;inset:0;z-index:55;pointer-events:none;"></canvas>
+  <!-- Right socket on contact world (decorative, matches left) -->
+  <div style="position:absolute;right:0;bottom:34px;z-index:60;pointer-events:none;">
+    <div style="width:20px;height:48px;background:#111;border:1px solid #1a3a1a;border-right:none;border-radius:6px 0 0 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+      <div style="width:5px;height:5px;border-radius:50%;background:#1a1a1a;border:1px solid #2a2a2a;"></div>
+      <div style="width:7px;height:7px;border-radius:50%;border:2px solid rgba(0,255,100,0.4);background:#060606;"></div>
+    </div>
+    <div style="position:absolute;left:-5px;top:50%;transform:translateY(-50%);width:5px;height:5px;background:rgba(0,255,100,0.8);border-radius:50%;box-shadow:0 0 6px rgba(0,255,100,0.5);"></div>
+  </div>
 </div>
 
 </div>
@@ -623,6 +637,14 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   cur.style.background=curColor;
   cur2.style.borderColor=curRingColor;
   hint.textContent=hintT[cw];
+  // Restart world label fadeout animation
+  ['wlabel','wtit','wdesc'].forEach(function(cls){
+    document.querySelectorAll('.'+cls).forEach(function(el){
+      el.style.animation='none';
+      void el.offsetWidth;
+      el.style.animation='';
+    });
+  });
   var onVideo=cw>=1&&cw<=4;
   var onContent=cw>=1&&cw<=5;
   // Hide nav entirely on home (jack handles navigation), show on video worlds
@@ -1226,7 +1248,29 @@ document.getElementById('w4mute').addEventListener('click',function(e){e.stopPro
 document.addEventListener('keydown',function(e){
   if(e.key==='ArrowRight')goW(Math.min(WORLDS-1,cw+1));
   if(e.key==='ArrowLeft')goW(Math.max(0,cw-1));
+  if(e.key==='m'||e.key==='M'){
+    if(cw===1)toggleW1Mute();
+    else if(cw===2)toggleWMute('w2vid');
+    else if(cw===3)toggleWMute('w3vid');
+    else if(cw===4)toggleW4Mute();
+  }
+  if(e.key==='Escape'&&cw!==0)goW(0);
 });
+
+// Mobile lazy loading
+if('IntersectionObserver' in window){
+  var mobVids=document.querySelectorAll('#mob video[data-src]');
+  var vidObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var v=entry.target;
+        if(!v.src){v.src=v.dataset.src;v.muted=true;v.play();}
+        vidObs.unobserve(v);
+      }
+    });
+  },{threshold:0.2});
+  mobVids.forEach(function(v){vidObs.observe(v);});
+}
 
 document.querySelectorAll('.wnav-btn').forEach(function(b){
   b.addEventListener('click',function(e){e.stopPropagation();goW(parseInt(this.dataset.w));});
