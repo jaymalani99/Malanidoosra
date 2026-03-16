@@ -830,10 +830,11 @@ function hideLoading(worldNum){
 }
 w1v1.addEventListener('playing',function(){hideLoading(1);});
 w1v2.addEventListener('playing',function(){hideLoading(1);});
-document.getElementById('w2vid').addEventListener('playing',function(){hideLoading(2);});
-document.getElementById('w3vid').addEventListener('playing',function(){hideLoading(3);});
-document.getElementById('w3vid2').addEventListener('playing',function(){hideLoading(3);});
-document.getElementById('w4vid').addEventListener('playing',function(){hideLoading(4);});
+// W2/W3/W4 are lazy-loaded so attach via timeupdate which fires after src is set
+document.getElementById('w2vid').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(2);});
+document.getElementById('w3vid').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(3);});
+document.getElementById('w3vid2').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(3);});
+document.getElementById('w4vid').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(4);});
 
 // Sync all mute buttons to globalMuted state
 function syncMuteButtons(){
