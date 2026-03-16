@@ -140,7 +140,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div id="mob">
   <div class="mob-nav">
     <div class="mob-logo">malanidoosra</div>
-    <a href="mailto:malanidoosra@gmail.com" class="mob-hire">HIRE ME ↗</a>
+    <a href="mailto:contactmalanidoosra@gmail.com" class="mob-hire">HIRE ME ↗</a>
   </div>
   <div class="mob-hero">
     <div class="mob-tag">↳ CURIOUS · CREATOR · AI-NATIVE</div>
@@ -150,18 +150,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <div class="mob-vid">
-    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4"></video>
-    <div class="mob-vid-overlay"><div class="mob-vid-title">WANDERING ON PURPOSE</div><div class="mob-vid-desc">Solo trips. Strange places. No script.</div></div>
-  </div>
-  <div class="mob-vid">
-    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4"></video>
-    <div class="mob-vid-overlay"><div class="mob-vid-title">LIFE BY THE GANGA</div><div class="mob-vid-desc">The river. The people. The light.</div></div>
-  </div>
-  <div class="mob-vid">
-    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Puneshow%20Final.mp4"></video>
-    <div class="mob-vid-overlay"><div class="mob-vid-title">REAL STORIES</div><div class="mob-vid-desc">No studios. Just truth + a lens.</div></div>
-  </div>
-  <div class="mob-vid">
     <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4"></video>
     <div class="mob-vid-overlay"><div class="mob-vid-title">BEHIND THE SCENES</div><div class="mob-vid-desc">On set. Unscripted.</div></div>
   </div>
@@ -170,12 +158,24 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="mob-vid-overlay"><div class="mob-vid-title">BEHIND THE SCENES II</div><div class="mob-vid-desc">Lights. Camera. Chaos.</div></div>
   </div>
   <div class="mob-vid">
+    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Puneshow%20Final.mp4"></video>
+    <div class="mob-vid-overlay"><div class="mob-vid-title">REAL STORIES</div><div class="mob-vid-desc">No studios. Just truth + a lens.</div></div>
+  </div>
+  <div class="mob-vid">
     <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Blinkit%20Final%20Ad.mp4"></video>
     <div class="mob-vid-overlay"><div class="mob-vid-title">WRITTEN & DIRECTED</div><div class="mob-vid-desc">Every frame intentional.</div></div>
   </div>
+  <div class="mob-vid">
+    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4"></video>
+    <div class="mob-vid-overlay"><div class="mob-vid-title">WANDERING ON PURPOSE</div><div class="mob-vid-desc">Solo trips. Strange places. No script.</div></div>
+  </div>
+  <div class="mob-vid">
+    <video autoplay muted loop playsinline src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4"></video>
+    <div class="mob-vid-overlay"><div class="mob-vid-title">LIFE BY THE GANGA</div><div class="mob-vid-desc">The river. The people. The light.</div></div>
+  </div>
 
   <div class="mob-footer">
-    <a href="mailto:malanidoosra@gmail.com">GET IN TOUCH ↗</a>
+    <a href="mailto:contactmalanidoosra@gmail.com">GET IN TOUCH ↗</a>
     <div style="margin-top:16px;">
       <div style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,255,255,0.15);letter-spacing:2px;margin-bottom:10px;">WANT THE FULL EXPERIENCE?</div>
       <a onclick="document.getElementById('mob').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:5px;color:var(--y);text-decoration:none;border:1px solid rgba(255,229,0,0.3);padding:10px 14px;display:inline-block;cursor:pointer;">VIEW DESKTOP VERSION →</a>
@@ -186,7 +186,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div id="cur2"></div>
 <div id="flash"></div>
 
-<!-- Wall jack — fixed to left edge, only visible on home -->
+<!-- Right wall socket — sits at Dave's ground level, tiny dot -->
+<div id="rightJack" style="position:fixed;right:0;bottom:48px;z-index:60;pointer-events:none;opacity:0;transition:opacity 0.4s;display:flex;align-items:center;">
+  <div style="width:8px;height:8px;border-radius:50%;background:var(--y);box-shadow:0 0 6px rgba(255,229,0,0.6);margin-right:0;"></div>
+  <div style="width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,229,0,0.3);position:absolute;right:0;top:50%;transform:translateY(-50%);"></div>
+</div>
 <div id="wallJack" style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:60;pointer-events:none;transition:opacity 0.4s;">
   <div style="width:24px;height:80px;background:#111;border:1px solid #2a2a2a;border-left:none;border-radius:0 6px 6px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
     <div style="width:7px;height:7px;border-radius:50%;background:#1a1a1a;border:1px solid #333;"></div>
@@ -217,12 +221,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="nright">
     <div id="worldnav" style="display:flex;gap:2px;">
       <div class="wnav-btn" data-w="0" onclick="goW(0)">HOME</div>
-      <div class="wnav-btn" data-w="1" onclick="goW(1)">TRAVEL</div>
+      <div class="wnav-btn" data-w="1" onclick="goW(1)">BTS</div>
       <div class="wnav-btn" data-w="2" onclick="goW(2)">DOCUMENTARY</div>
-      <div class="wnav-btn" data-w="3" onclick="goW(3)">BTS</div>
-      <div class="wnav-btn" data-w="4" onclick="goW(4)">WRITTEN & DIRECTED</div>
+      <div class="wnav-btn" data-w="3" onclick="goW(3)">WRITTEN & DIRECTED</div>
+      <div class="wnav-btn" data-w="4" onclick="goW(4)">TRAVEL</div>
     </div>
-    <a href="/cdn-cgi/l/email-protection#d7bab6bbb6b9beb3b8b8a4a5b697b0bab6bebbf9b4b8ba" class="nemail">HIRE ME ↗</a>
+    <a href="mailto:contactmalanidoosra@gmail.com" class="nemail">HIRE ME ↗</a>
   </div>
 </div>
 <div id="sbar">
@@ -281,7 +285,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <div class="psocket" data-world="1" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.01</div>
-          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">TRAVEL</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">BTS</div>
         </div>
         <div class="psocket" data-world="2" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
@@ -291,12 +295,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <div class="psocket" data-world="3" style="padding:16px;border-right:1px solid #141414;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.03</div>
-          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">BTS</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">WRITTEN & DIRECTED</div>
         </div>
         <div class="psocket" data-world="4" style="padding:16px;cursor:none;text-align:center;transition:background 0.2s;">
           <div class="phole" style="width:16px;height:16px;border-radius:50%;border:2px solid #252525;background:#060606;margin:0 auto 8px;transition:all 0.2s;"></div>
           <div style="font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,229,0,0.2);letter-spacing:1px;margin-bottom:4px;">SC.04</div>
-          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">WRITTEN & DIRECTED</div>
+          <div class="pslabel" style="font-family:'Press Start 2P',monospace;font-size:4px;color:rgba(255,229,0,0.5);letter-spacing:1px;transition:color 0.2s;">TRAVEL</div>
         </div>
       </div>
 
@@ -307,85 +311,64 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <div class="world" id="w1">
-  <!-- Video layers -->
+  <!-- W1: BTS (2 videos, carousel) -->
   <video autoplay muted loop playsinline id="w1vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:1;pointer-events:none;transition:opacity 0.6s;"></video>
   <video muted loop playsinline id="w1vid2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;pointer-events:none;transition:opacity 0.6s;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
-  <!-- Loading indicator -->
   <div class="vid-loading" id="w1loading">LOADING...</div>
-  <!-- Back button -->
-
-  <!-- World label top left -->
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
-    <div class="wlabel">WORLD 01 &mdash; TRAVEL</div>
-    <div class="wtit" id="w1title"><span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span></div>
-    <div class="wdesc" id="w1desc" style="margin-top:10px;">Solo trips. Strange places.<br>No script, just instinct + a camera.</div>
+    <div class="wlabel">WORLD 01 &mdash; BTS</div>
+    <div class="wtit" id="w1title"><span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span></div>
+    <div class="wdesc" id="w1desc" style="margin-top:10px;">On set. Unscripted.<br>Where the real work happens.</div>
   </div>
-
-  <!-- Unmute button -->
-  <div id="w1mute" class="mute-btn">
-    <span id="w1muteico">🔇</span><span id="w1mutetxt">UNMUTE</span>
-  </div>
-
-
+  <div id="w1mute" class="mute-btn"><span id="w1muteico">🔇</span><span id="w1mutetxt">UNMUTE</span></div>
   <div id="w1counter" style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:100;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.6);letter-spacing:3px;pointer-events:none;">01 / 02</div>
-
-  <!-- Prev film -->
   <div id="w1prev" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">← PREV</div>
-
-  <!-- Next film -->
   <div id="w1next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">NEXT →</div>
 </div>
 
 <div class="world" id="w2" style="background:#060606;">
+  <!-- W2: Documentary (single video) -->
   <video preload="none" loop playsinline id="w2vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
   <div class="vid-loading" id="w2loading">LOADING...</div>
-
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
     <div class="wlabel">WORLD 02 &mdash; DOCUMENTARY</div>
     <div class="wtit"><span class="wy">REAL</span><br><span class="ww">STORIES</span></div>
     <div class="wdesc" style="margin-top:10px;">Documentaries built on the streets.<br>No studios. Just truth + a lens.</div>
   </div>
-  <div id="w2mute" class="mute-btn">
-    <span id="w2muteico">🔇</span><span id="w2mutetxt">UNMUTE</span>
-  </div>
+  <div id="w2mute" class="mute-btn"><span id="w2muteico">🔇</span><span id="w2mutetxt">UNMUTE</span></div>
 </div>
 
 <div class="world" id="w3" style="background:#060606;">
-  <video preload="none" loop playsinline id="w3vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:1;pointer-events:none;transition:opacity 0.6s;"></video>
-  <video preload="none" loop playsinline id="w3vid2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;pointer-events:none;transition:opacity 0.6s;"></video>
+  <!-- W3: Written & Directed (single video) -->
+  <video preload="none" loop playsinline id="w3vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
   <div class="vid-loading" id="w3loading">LOADING...</div>
-
   <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
-    <div class="wlabel">WORLD 03 &mdash; BTS</div>
-    <div class="wtit" id="w3title"><span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span></div>
-    <div class="wdesc" id="w3desc" style="margin-top:10px;">On set. Unscripted.<br>Where the real work happens.</div>
-  </div>
-  <div id="w3mute" class="mute-btn">
-    <span id="w3muteico">🔇</span><span id="w3mutetxt">UNMUTE</span>
-  </div>
-  <div id="w3counter" style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:100;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.6);letter-spacing:3px;pointer-events:none;">01 / 02</div>
-  <div id="w3prev" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">← PREV</div>
-  <div id="w3next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">NEXT →</div>
-</div>
-
-<div class="world" id="w4" style="background:#060606;">
-  <video preload="none" loop playsinline id="w4vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;"></video>
-  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
-  <div class="vid-loading" id="w4loading">LOADING...</div>
-
-  <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
-    <div class="wlabel">WORLD 04 &mdash; ADS</div>
+    <div class="wlabel">WORLD 03 &mdash; WRITTEN & DIRECTED</div>
     <div class="wtit"><span class="wy">WRITTEN &</span><br><span class="ww">DIRECTED</span></div>
     <div class="wdesc" style="margin-top:10px;">Concept to camera.<br>Every frame intentional.</div>
   </div>
-  <div id="w4mute" class="mute-btn">
-    <span id="w4muteico">🔇</span><span id="w4mutetxt">UNMUTE</span>
-  </div>
+  <div id="w3mute" class="mute-btn"><span id="w3muteico">🔇</span><span id="w3mutetxt">UNMUTE</span></div>
 </div>
 
+<div class="world" id="w4" style="background:#060606;">
+  <!-- W4: Travel (2 videos, carousel) -->
+  <video preload="none" loop playsinline id="w4vid" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:1;pointer-events:none;transition:opacity 0.6s;"></video>
+  <video preload="none" loop playsinline id="w4vid2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;pointer-events:none;transition:opacity 0.6s;"></video>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.05) 40%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
+  <div class="vid-loading" id="w4loading">LOADING...</div>
+  <div style="position:absolute;top:60px;left:56px;z-index:3;pointer-events:none;">
+    <div class="wlabel">WORLD 04 &mdash; TRAVEL</div>
+    <div class="wtit" id="w4title"><span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span></div>
+    <div class="wdesc" id="w4desc" style="margin-top:10px;">Solo trips. Strange places.<br>No script, just instinct + a camera.</div>
+  </div>
+  <div id="w4mute" class="mute-btn"><span id="w4muteico">🔇</span><span id="w4mutetxt">UNMUTE</span></div>
+  <div id="w4counter" style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:100;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.6);letter-spacing:3px;pointer-events:none;">01 / 02</div>
+  <div id="w4prev" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">← PREV</div>
+  <div id="w4next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100;cursor:pointer;padding:10px 14px;border:1px solid rgba(255,255,255,0.1);font-family:'Press Start 2P',monospace;font-size:5px;color:rgba(255,255,255,0.2);background:rgba(0,0,0,0.4);transition:all 0.2s;pointer-events:all;letter-spacing:1px;">NEXT →</div>
+</div>
 
 </div>
 
@@ -410,7 +393,7 @@ var fl=document.getElementById('floaters');
 function mkFloat(){var d=document.createElement('div');var chars=['?','!','>','*','+','.'];d.textContent=chars[Math.floor(Math.random()*chars.length)];d.style.cssText='position:absolute;font-family:"Press Start 2P",monospace;font-size:'+(Math.random()*10+7)+'px;color:rgba(255,229,0,'+(Math.random()*0.08+0.02)+');left:'+(Math.random()*100)+'%;bottom:-20px;animation:floatup '+(Math.random()*12+8)+'s linear forwards;pointer-events:none;';fl.appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},16000);}
 setInterval(mkFloat,800);
 
-var WORLDS=5,cw=0,dX=90,dY=0,dDir=1,wTO,isJ=false,isTr=false,eCool=false;
+var WORLDS=5,cw=0,dX=90,dY=0,dDir=1,wTO,isJ=false,isTr=false,eCool=false,rightSocketTriggered=false;
 var stage=document.getElementById('stage');
 var flash=document.getElementById('flash');
 var dave=document.getElementById('dave');
@@ -453,8 +436,8 @@ function daveLoop(){
     var vid=null;
     if(cw===1) vid=w1active===1?w1v1:w1v2;
     else if(cw===2) vid=document.getElementById('w2vid');
-    else if(cw===3) vid=w3active===1?w3v1:w3v2;
-    else if(cw===4) vid=document.getElementById('w4vid');
+    else if(cw===3) vid=document.getElementById('w3vid');
+    else if(cw===4) vid=w4active===1?w4v1:w4v2;
     if(vid&&vid.duration){
       var pct=vid.currentTime/vid.duration;
       var targetX=Math.floor(pct*(window.innerWidth-56));
@@ -482,9 +465,11 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
   document.getElementById('hint').style.opacity=onVideo?'0':'1';
   setWireVisible(cw===0);
   if(wallJack)wallJack.style.opacity=cw===0?'1':'0';
+  var rj=document.getElementById('rightJack');
+  if(rj)rj.style.opacity=onVideo?'1':'0';
   var vn=document.getElementById('vibeNote');
   if(vn)vn.classList.toggle('hide',onVideo);
-  var mVids=['w2vid','w3vid','w3vid2','w4vid'];
+  var mVids=['w2vid','w3vid','w4vid','w4vid2'];
   mVids.forEach(function(id){var v=document.getElementById(id);if(v)v.muted=globalMuted;});
   if(onVideo)syncMuteButtons();
   ['w1loading','w2loading','w3loading','w4loading'].forEach(function(id,idx){
@@ -493,8 +478,10 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
     if(cw===idx+1){el.classList.remove('hidden');}
     else{el.classList.add('hidden');}
   });
+  // W1: BTS carousel
   var w1vid=w1active===1?w1v1:w1v2;
   if(w1vid){if(cw===1)w1vid.play();else w1vid.pause();}
+  // W2: Documentary
   var w2vid=document.getElementById('w2vid');
   if(w2vid){
     if(cw===2){
@@ -502,18 +489,21 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
       w2vid.play();
     } else w2vid.pause();
   }
-  var w3v=w3active===1?w3v1:w3v2;
-  if(w3v){if(cw===3){if(!w3v1.src){w3v1.src=w3videos[0].src;w3v1.load();}w3v.play();}else w3v.pause();}
-  var w4vid=document.getElementById('w4vid');
-  if(w4vid){
-    if(cw===4){
-      if(!w4vid.src){w4vid.src='https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Blinkit%20Final%20Ad.mp4';w4vid.load();}
-      w4vid.play();
-    } else w4vid.pause();
+  // W3: Written & Directed
+  var w3vid=document.getElementById('w3vid');
+  if(w3vid){
+    if(cw===3){
+      if(!w3vid.src){w3vid.src='https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Blinkit%20Final%20Ad.mp4';w3vid.load();}
+      w3vid.play();
+    } else w3vid.pause();
   }
+  // W4: Travel carousel
+  var w4curVid=w4active===1?w4v1:w4v2;
+  if(w4curVid){if(cw===4){if(!w4v1.src){w4v1.src=w4videos[0].src;w4v1.load();}w4curVid.play();}else w4curVid.pause();}
   if(cw<1||cw>4){dX=Math.max(8,Math.min(window.innerWidth-56,mx-22));setDaveNotes(false);}
   else{dX=8;}
   if(cw===0){pluggedPsocket=null;plugging=false;if(patchProgress)patchProgress.style.width='0%';}
+  rightSocketTriggered=false;
   setTimeout(function(){isTr=false;},1000);setTimeout(function(){eCool=false;},1400);}
 window.goW=goW;
 
@@ -523,8 +513,8 @@ function jumpDave(tx){if(isJ)return;isJ=true;var dir=tx>dX?1:-1;dDir=dir;DB.styl
 
 document.addEventListener('click',function(e){
   if(e.target.closest('#w1mute')||e.target.closest('#w1prev')||e.target.closest('#w1next')||
-     e.target.closest('#w3mute')||e.target.closest('#w3prev')||e.target.closest('#w3next')||
-     e.target.closest('#w2mute')||e.target.closest('#w4mute')||
+     e.target.closest('#w2mute')||e.target.closest('#w3mute')||
+     e.target.closest('#w4mute')||e.target.closest('#w4prev')||e.target.closest('#w4next')||
      e.target.closest('.psocket')||e.target.closest('.wnav-btn'))return;
   jumpDave(mx);
 });
@@ -774,14 +764,24 @@ function daveWalkTo(tx,cb){
   },16);
 }
 // ── END WIRE SYSTEM ──────────────────────────────────────
+
+// ── VIDEO DATA ──────────────────────────────────────────
+// W1: BTS (2 videos)
 var w1videos=[
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'On set. Unscripted.<br>Where the real work happens.'},
+  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'Lights. Camera. Chaos.'}
+];
+// W4: Travel (2 videos)
+var w4videos=[
   {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4',title:'<span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span>',desc:'Solo trips. Strange places.<br>No script, just instinct + a camera.'},
   {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4',title:'<span class="wy">LIFE BY</span><br><span class="ww">THE GANGA</span>',desc:'The river. The people. The light.'}
 ];
+
 // Global mute state — starts muted (browser autoplay policy)
 var globalMuted=true;
 function setDaveNotes(on){document.getElementById('dnote1').style.display=on?'block':'none';document.getElementById('dnote2').style.display=on?'block':'none';}
 
+// ── W1: BTS CAROUSEL ─────────────────────────────────────
 var w1cur=0,w1active=1;
 var w1v1=document.getElementById('w1vid');
 var w1v2=document.getElementById('w1vid2');
@@ -790,15 +790,10 @@ function w1Load(idx,autoplay){
   var data=w1videos[idx];
   var next=w1active===1?w1v2:w1v1;
   var curr=w1active===1?w1v1:w1v2;
-  if(next.src!==data.src){
-    next.src=data.src;
-    next.muted=globalMuted;
-    next.load();
-  }
+  if(next.src!==data.src){next.src=data.src;next.muted=globalMuted;next.load();}
   next.oncanplay=function(){
     if(autoplay)next.play();
-    next.style.opacity='1';
-    curr.style.opacity='0';
+    next.style.opacity='1';curr.style.opacity='0';
     setTimeout(function(){curr.pause();curr.src='';},650);
     w1active=w1active===1?2:1;
   };
@@ -806,113 +801,137 @@ function w1Load(idx,autoplay){
   document.getElementById('w1desc').innerHTML=data.desc;
   document.getElementById('w1counter').textContent=String(idx+1).padStart(2,'0')+' / '+String(w1videos.length).padStart(2,'0');
 }
-
 function w1Next(){w1cur=(w1cur+1)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
 function w1Prev(){w1cur=(w1cur-1+w1videos.length)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
 function toggleW1Mute(){globalMuted=!globalMuted;w1v1.muted=globalMuted;w1v2.muted=globalMuted;syncMuteButtons();}
+
+// ── W4: TRAVEL CAROUSEL ───────────────────────────────────
+var w4cur=0,w4active=1;
+var w4v1=document.getElementById('w4vid');
+var w4v2=document.getElementById('w4vid2');
+
+function w4Load(idx,autoplay){
+  var data=w4videos[idx];
+  var next=w4active===1?w4v2:w4v1;
+  var curr=w4active===1?w4v1:w4v2;
+  if(next.src!==data.src){next.src=data.src;next.muted=globalMuted;next.load();}
+  next.oncanplay=function(){
+    if(autoplay)next.play();
+    next.style.opacity='1';curr.style.opacity='0';
+    setTimeout(function(){curr.pause();curr.src='';},650);
+    w4active=w4active===1?2:1;
+  };
+  document.getElementById('w4title').innerHTML=data.title;
+  document.getElementById('w4desc').innerHTML=data.desc;
+  document.getElementById('w4counter').textContent=String(idx+1).padStart(2,'0')+' / '+String(w4videos.length).padStart(2,'0');
+}
+function w4Next(){w4cur=(w4cur+1)%w4videos.length;snapDaveToStart();w4Load(w4cur,true);}
+function w4Prev(){w4cur=(w4cur-1+w4videos.length)%w4videos.length;snapDaveToStart();w4Load(w4cur,true);}
+function toggleW4Mute(){globalMuted=!globalMuted;w4v1.muted=globalMuted;w4v2.muted=globalMuted;syncMuteButtons();}
 function toggleWMute(vidId){globalMuted=!globalMuted;document.getElementById(vidId).muted=globalMuted;syncMuteButtons();}
 
 // Hide nav on home initially
 document.getElementById('nav').style.opacity='0';
 document.getElementById('nav').style.pointerEvents='none';
 
-// Init dY from Dave's actual position
+// Init
 dY=window.innerHeight-48-29;
 w1v1.src=w1videos[0].src;
-w1v1.muted=true;
-w1v2.muted=true;
+w1v1.muted=true;w1v2.muted=true;
 w1v1.load();
 
-// Hide loading indicator when video starts playing
+// Loading indicators
 function hideLoading(worldNum){
   var el=document.getElementById('w'+worldNum+'loading');
   if(el)el.classList.add('hidden');
 }
 w1v1.addEventListener('playing',function(){hideLoading(1);});
 w1v2.addEventListener('playing',function(){hideLoading(1);});
-// W2/W3/W4 are lazy-loaded so attach via timeupdate which fires after src is set
 document.getElementById('w2vid').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(2);});
 document.getElementById('w3vid').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(3);});
-document.getElementById('w3vid2').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(3);});
 document.getElementById('w4vid').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(4);});
+document.getElementById('w4vid2').addEventListener('playing',function(){hideLoading(4);});
 
-// Sync all mute buttons to globalMuted state
+// Sync mute buttons
 function syncMuteButtons(){
-  var muted=globalMuted;
-  var ico=muted?'🔇':'🔊';
-  var txt=muted?'UNMUTE':'MUTE';
-  ['w1muteico','w2muteico','w3muteico','w4muteico'].forEach(function(id){
-    var el=document.getElementById(id);if(el)el.textContent=ico;
-  });
-  ['w1mutetxt','w2mutetxt','w3mutetxt','w4mutetxt'].forEach(function(id){
-    var el=document.getElementById(id);if(el)el.textContent=txt;
-  });
-  setDaveNotes(!muted);
+  var ico=globalMuted?'🔇':'🔊';
+  var txt=globalMuted?'UNMUTE':'MUTE';
+  ['w1muteico','w2muteico','w3muteico','w4muteico'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=ico;});
+  ['w1mutetxt','w2mutetxt','w3mutetxt','w4mutetxt'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=txt;});
+  setDaveNotes(!globalMuted);
 }
 
-// Snap Dave to left on video loop
+// Snap Dave to left on video loop/switch
 function snapDaveToStart(){dX=8;dave.style.left='8px';}
 
-// Detect loops via timeupdate — when currentTime jumps back to near 0
-var w1v1Last=0,w1v2Last=0;
+// ── RIGHT WALL SOCKET — Dave reaches right edge, auto-advances ──
+var rightSocketTriggered=false;
+function checkRightSocket(){
+  if(cw<1||cw>4||rightSocketTriggered)return;
+  var vid=null;
+  if(cw===1)vid=w1active===1?w1v1:w1v2;
+  else if(cw===2)vid=document.getElementById('w2vid');
+  else if(cw===3)vid=document.getElementById('w3vid');
+  else if(cw===4)vid=w4active===1?w4v1:w4v2;
+  if(!vid||!vid.duration)return;
+  var pct=vid.currentTime/vid.duration;
+  if(pct>=0.98){
+    rightSocketTriggered=true;
+    // Flash the right edge
+    flash.style.opacity='0.06';setTimeout(function(){flash.style.opacity='0';},100);
+    // Decide: advance video or advance world
+    if(cw===1&&w1cur<w1videos.length-1){
+      // BTS: go to next film
+      setTimeout(function(){w1Next();rightSocketTriggered=false;},300);
+    } else if(cw===4&&w4cur<w4videos.length-1){
+      // Travel: go to next film
+      setTimeout(function(){w4Next();rightSocketTriggered=false;},300);
+    } else {
+      // Last video in world — go to next world (or home if last)
+      var next=cw<WORLDS-1?cw+1:0;
+      setTimeout(function(){goW(next);rightSocketTriggered=false;},400);
+    }
+  }
+}
+
+// Detect video loops for Dave reset
+var w1v1Last=0,w1v2Last=0,w4v1Last=0,w4v2Last=0;
 w1v1.addEventListener('timeupdate',function(){
   if(w1v1Last>this.duration-0.8&&this.currentTime<0.5&&cw===1)snapDaveToStart();
-  w1v1Last=this.currentTime;
+  w1v1Last=this.currentTime;checkRightSocket();
 });
 w1v2.addEventListener('timeupdate',function(){
   if(w1v2Last>this.duration-0.8&&this.currentTime<0.5&&cw===1)snapDaveToStart();
-  w1v2Last=this.currentTime;
+  w1v2Last=this.currentTime;checkRightSocket();
 });
-['w2vid','w3vid','w3vid2','w4vid'].forEach(function(id){
-  var v=document.getElementById(id);
-  if(!v)return;
+['w2vid','w3vid'].forEach(function(id){
+  var v=document.getElementById(id);if(!v)return;
   var last=0;
   v.addEventListener('timeupdate',function(){
     if(last>this.duration-0.8&&this.currentTime<0.5)snapDaveToStart();
-    last=this.currentTime;
+    last=this.currentTime;checkRightSocket();
   });
 });
+document.getElementById('w4vid').addEventListener('timeupdate',function(){
+  if(w4v1Last>this.duration-0.8&&this.currentTime<0.5&&cw===4)snapDaveToStart();
+  w4v1Last=this.currentTime;checkRightSocket();
+});
+document.getElementById('w4vid2').addEventListener('timeupdate',function(){
+  if(w4v2Last>this.duration-0.8&&this.currentTime<0.5&&cw===4)snapDaveToStart();
+  w4v2Last=this.currentTime;checkRightSocket();
+});
 
+// Event listeners
 document.getElementById('w1next').addEventListener('click',function(e){e.stopPropagation();w1Next();});
 document.getElementById('w1prev').addEventListener('click',function(e){e.stopPropagation();w1Prev();});
 document.getElementById('w1mute').addEventListener('click',function(e){e.stopPropagation();toggleW1Mute();});
 document.getElementById('w2mute').addEventListener('click',function(e){e.stopPropagation();toggleWMute('w2vid');});
-document.getElementById('w3mute').addEventListener('click',function(e){e.stopPropagation();toggleW3Mute();});
-document.getElementById('w3next').addEventListener('click',function(e){e.stopPropagation();w3Next();});
-document.getElementById('w3prev').addEventListener('click',function(e){e.stopPropagation();w3Prev();});
-document.getElementById('w4mute').addEventListener('click',function(e){e.stopPropagation();toggleWMute('w4vid');});
-
-// World 03 BTS carousel
-var w3videos=[
-  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'On set. Unscripted.<br>Where the real work happens.'},
-  {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Shreeleela%20Rosta%20Bts.mp4',title:'<span class="wy">BEHIND</span><br><span class="ww">THE SCENES</span>',desc:'Lights. Camera. Chaos.'}
-];
-var w3cur=0,w3active=1;
-var w3v1=document.getElementById('w3vid');
-var w3v2=document.getElementById('w3vid2');
-
-function w3Load(idx,autoplay){
-  var data=w3videos[idx];
-  var next=w3active===1?w3v2:w3v1;
-  var curr=w3active===1?w3v1:w3v2;
-  if(next.src!==data.src){next.src=data.src;next.muted=globalMuted;next.load();}
-  next.oncanplay=function(){
-    if(autoplay)next.play();
-    next.style.opacity='1';
-    curr.style.opacity='0';
-    setTimeout(function(){curr.pause();curr.src='';},650);
-    w3active=w3active===1?2:1;
-  };
-  document.getElementById('w3title').innerHTML=data.title;
-  document.getElementById('w3desc').innerHTML=data.desc;
-  document.getElementById('w3counter').textContent=String(idx+1).padStart(2,'0')+' / '+String(w3videos.length).padStart(2,'0');
-}
-function w3Next(){w3cur=(w3cur+1)%w3videos.length;snapDaveToStart();w3Load(w3cur,true);}
-function w3Prev(){w3cur=(w3cur-1+w3videos.length)%w3videos.length;snapDaveToStart();w3Load(w3cur,true);}
-function toggleW3Mute(){globalMuted=!globalMuted;w3v1.muted=globalMuted;w3v2.muted=globalMuted;syncMuteButtons();}
+document.getElementById('w3mute').addEventListener('click',function(e){e.stopPropagation();toggleWMute('w3vid');});
+document.getElementById('w4next').addEventListener('click',function(e){e.stopPropagation();w4Next();});
+document.getElementById('w4prev').addEventListener('click',function(e){e.stopPropagation();w4Prev();});
+document.getElementById('w4mute').addEventListener('click',function(e){e.stopPropagation();toggleW4Mute();});
 
 document.addEventListener('keydown',function(e){
-  var o=false;
   if(e.key==='ArrowRight')goW(Math.min(WORLDS-1,cw+1));
   if(e.key==='ArrowLeft')goW(Math.max(0,cw-1));
 });
