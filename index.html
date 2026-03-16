@@ -85,7 +85,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .wnav-btn:hover{color:rgba(255,229,0,0.9);border-color:rgba(255,229,0,0.5);}
 .wnav-btn.active{color:rgba(255,255,255,0.2);background:transparent;border-color:rgba(255,255,255,0.08);}
 /* ── LAYOUT ── */
-#nav{position:fixed;top:0;left:0;right:0;padding:16px 36px;display:flex;justify-content:space-between;align-items:center;z-index:200;background:linear-gradient(to bottom,rgba(6,6,6,0.98),transparent);transition:opacity 0.5s;}
+#nav{position:fixed;top:0;left:0;right:0;padding:16px 36px;display:flex;justify-content:space-between;align-items:center;z-index:200;background:linear-gradient(to bottom,rgba(6,6,6,0.98),transparent);transition:opacity 0.5s;opacity:0;pointer-events:none;}
 #sbar{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;z-index:200;transition:opacity 0.5s;}
 #hint{transition:opacity 0.5s;}
 #gnd{display:none;}
@@ -221,7 +221,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <!-- Plug tip that follows cursor on home -->
-<canvas id="wireCanvas" style="position:fixed;inset:0;z-index:55;pointer-events:none;opacity:0;transition:opacity 0.3s;"></canvas>
+<canvas id="wireCanvas" style="position:fixed;inset:0;z-index:55;pointer-events:none;opacity:1;transition:opacity 0.3s;"></canvas>
 <div id="dave" style="left:90px">
   <div class="dw idle" id="DB">
     <div class="px dc"></div><div class="px db2"></div>
@@ -237,14 +237,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="nlogo">malanidoosra</div>
   <div class="nright">
     <div id="worldnav" style="display:flex;gap:2px;">
-      <div class="wnav-btn" data-w="0" onclick="goW(0)">HOME</div>
       <div class="wnav-btn" data-w="1" onclick="goW(1)">BTS</div>
       <div class="wnav-btn" data-w="2" onclick="goW(2)">DOCUMENTARY</div>
       <div class="wnav-btn" data-w="3" onclick="goW(3)">WRITTEN & DIRECTED</div>
       <div class="wnav-btn" data-w="4" onclick="goW(4)">TRAVEL</div>
       <div class="wnav-btn" data-w="5" onclick="goW(5)">CONTACT</div>
     </div>
-    <span class="nemail" onclick="window.location.href='mailto:contactmalanidoosra@gmail.com'" style="cursor:pointer;">HIRE ME ↗</span>
   </div>
 </div>
 <div id="sbar">
@@ -483,8 +481,8 @@ var w4videos=[
   {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Framesfinal.mp4',title:'<span class="wy">WANDERING</span><br><span class="ww">ON PURPOSE</span>',desc:'Solo trips. Strange places.<br>No script, just instinct + a camera.'},
   {src:'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Life%20By%20The%20Ganga%20V1.mp4',title:'<span class="wy">LIFE BY</span><br><span class="ww">THE GANGA</span>',desc:'The river. The people. The light.'}
 ];
-var w1v1,w1v2,w1active=1,w1cur=0;
-var w4v1,w4v2,w4active=1,w4cur=0;
+var w1active=1,w1cur=0;
+var w4active=1,w4cur=0;
 
 // Wire system vars — declared here so daveLoop can use them
 var wireCanvas=document.getElementById('wireCanvas');
@@ -496,6 +494,9 @@ var pluggedPsocket=null;
 var plugging=false;
 var plugFill=null;
 var wallJack=document.getElementById('wallJack');
+// Wire colors per world — must be declared before drawWireSystem runs
+var wireColors=['rgba(255,229,0,','rgba(255,140,0,','rgba(220,220,220,','rgba(180,100,255,','rgba(0,210,200,','rgba(0,255,100,'];
+function getWireColor(alpha){return wireColors[cw]+(alpha)+')';}
 
 function daveLoop(){
   if(cw===0){
@@ -519,10 +520,10 @@ function daveLoop(){
     // Video worlds — Dave walks as progress bar, dragging wire from left edge
     if(wireCanvas)wireCanvas.style.opacity='1';
     var vid=null;
-    if(cw===1) vid=w1active===1?w1v1:w1v2;
+    if(cw===1) vid=w1active===1?document.getElementById('w1vid'):document.getElementById('w1vid2');
     else if(cw===2) vid=document.getElementById('w2vid');
     else if(cw===3) vid=document.getElementById('w3vid');
-    else if(cw===4) vid=w4active===1?w4v1:w4v2;
+    else if(cw===4) vid=w4active===1?document.getElementById('w4vid'):document.getElementById('w4vid2');
     if(vid&&vid.duration){
       var pct=vid.currentTime/vid.duration;
       var targetX=Math.floor(pct*(window.innerWidth-56));
@@ -567,7 +568,9 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
     else{el.classList.add('hidden');}
   });
   // W1: BTS carousel
-  var w1vid=w1active===1?w1v1:w1v2;
+  var _w1v1=document.getElementById('w1vid');
+  var _w1v2=document.getElementById('w1vid2');
+  var w1vid=w1active===1?_w1v1:_w1v2;
   if(w1vid){if(cw===1)w1vid.play();else w1vid.pause();}
   // W2: Documentary
   var w2vid=document.getElementById('w2vid');
@@ -586,8 +589,10 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
     } else w3vid.pause();
   }
   // W4: Travel carousel
-  var w4curVid=w4active===1?w4v1:w4v2;
-  if(w4curVid){if(cw===4){if(!w4v1.src){w4v1.src=w4videos[0].src;w4v1.load();}w4curVid.play();}else w4curVid.pause();}
+  var _w4v1=document.getElementById('w4vid');
+  var _w4v2=document.getElementById('w4vid2');
+  var w4curVid=w4active===1?_w4v1:_w4v2;
+  if(w4curVid){if(cw===4){if(!_w4v1.src){_w4v1.src=w4videos[0].src;_w4v1.load();}w4curVid.play();}else w4curVid.pause();}
   if(cw<1||cw>4){dX=Math.max(8,Math.min(window.innerWidth-56,mx-22));setDaveNotes(false);}
   else{dX=8;}
   if(cw===0){pluggedPsocket=null;plugging=false;if(patchProgress)patchProgress.style.width='0%';}
@@ -838,8 +843,7 @@ function daveWalkTo(tx,cb){
 // ── END WIRE SYSTEM ──────────────────────────────────────
 
 // Wire color per world — home=yellow, BTS=orange, Docu=white, W&D=purple, Travel=cyan, Contact=green
-var wireColors=['rgba(255,229,0,','rgba(255,140,0,','rgba(220,220,220,','rgba(180,100,255,','rgba(0,210,200,','rgba(0,255,100,'];
-function getWireColor(alpha){return wireColors[cw]+(alpha)+')';}
+// Dave idle — sit/sleep after 30s of no movement
 
 // Dave idle — sit/sleep after 30s of no movement
 var idleTimer=null;
@@ -884,11 +888,11 @@ var globalMuted=true;
 function setDaveNotes(on){document.getElementById('dnote1').style.display=on?'block':'none';document.getElementById('dnote2').style.display=on?'block':'none';}
 
 // ── W1: BTS CAROUSEL ─────────────────────────────────────
-w1v1=document.getElementById('w1vid');
-w1v2=document.getElementById('w1vid2');
 
 function w1Load(idx,autoplay){
   var data=w1videos[idx];
+  var w1v1=document.getElementById('w1vid');
+  var w1v2=document.getElementById('w1vid2');
   var next=w1active===1?w1v2:w1v1;
   var curr=w1active===1?w1v1:w1v2;
   if(next.src!==data.src){next.src=data.src;next.muted=globalMuted;next.load();}
@@ -905,14 +909,14 @@ function w1Load(idx,autoplay){
 function w1Next(){w1cur=(w1cur+1)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
 function w1Prev(){w1cur=(w1cur-1+w1videos.length)%w1videos.length;snapDaveToStart();w1Load(w1cur,true);}
 function daveBob(){DB.className="dw bob";setTimeout(function(){DB.className="dw idle";},900);}
-function toggleW1Mute(){globalMuted=!globalMuted;w1v1.muted=globalMuted;w1v2.muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
+function toggleW1Mute(){globalMuted=!globalMuted;document.getElementById("w1vid").muted=globalMuted;document.getElementById("w1vid2").muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
 
 // ── W4: TRAVEL CAROUSEL ───────────────────────────────────
-w4v1=document.getElementById('w4vid');
-w4v2=document.getElementById('w4vid2');
 
 function w4Load(idx,autoplay){
   var data=w4videos[idx];
+  var w4v1=document.getElementById('w4vid');
+  var w4v2=document.getElementById('w4vid2');
   var next=w4active===1?w4v2:w4v1;
   var curr=w4active===1?w4v1:w4v2;
   if(next.src!==data.src){next.src=data.src;next.muted=globalMuted;next.load();}
@@ -928,26 +932,24 @@ function w4Load(idx,autoplay){
 }
 function w4Next(){w4cur=(w4cur+1)%w4videos.length;snapDaveToStart();w4Load(w4cur,true);}
 function w4Prev(){w4cur=(w4cur-1+w4videos.length)%w4videos.length;snapDaveToStart();w4Load(w4cur,true);}
-function toggleW4Mute(){globalMuted=!globalMuted;w4v1.muted=globalMuted;w4v2.muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
+function toggleW4Mute(){globalMuted=!globalMuted;document.getElementById("w4vid").muted=globalMuted;document.getElementById("w4vid2").muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
 function toggleWMute(vidId){globalMuted=!globalMuted;document.getElementById(vidId).muted=globalMuted;syncMuteButtons();if(!globalMuted)daveBob();}
-
-// Hide nav on home initially
-document.getElementById('nav').style.opacity='0';
-document.getElementById('nav').style.pointerEvents='none';
 
 // Init
 dY=window.innerHeight-48-29;
-w1v1.src=w1videos[0].src;
-w1v1.muted=true;w1v2.muted=true;
-w1v1.load();
+var _initV=document.getElementById('w1vid');
+_initV.src=w1videos[0].src;
+_initV.muted=true;
+document.getElementById('w1vid2').muted=true;
+_initV.load();
 
 // Loading indicators
 function hideLoading(worldNum){
   var el=document.getElementById('w'+worldNum+'loading');
   if(el)el.classList.add('hidden');
 }
-w1v1.addEventListener('playing',function(){hideLoading(1);});
-w1v2.addEventListener('playing',function(){hideLoading(1);});
+document.getElementById('w1vid').addEventListener('playing',function(){hideLoading(1);});
+document.getElementById('w1vid2').addEventListener('playing',function(){hideLoading(1);});
 document.getElementById('w2vid').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(2);});
 document.getElementById('w3vid').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(3);});
 document.getElementById('w4vid').addEventListener('timeupdate',function(){if(this.currentTime>0)hideLoading(4);});
@@ -969,25 +971,20 @@ function snapDaveToStart(){dX=8;dave.style.left='8px';}
 function checkRightSocket(){
   if(cw<1||cw>4||rightSocketTriggered)return;
   var vid=null;
-  if(cw===1)vid=w1active===1?w1v1:w1v2;
+  if(cw===1)vid=w1active===1?document.getElementById('w1vid'):document.getElementById('w1vid2');
   else if(cw===2)vid=document.getElementById('w2vid');
   else if(cw===3)vid=document.getElementById('w3vid');
-  else if(cw===4)vid=w4active===1?w4v1:w4v2;
+  else if(cw===4)vid=w4active===1?document.getElementById('w4vid'):document.getElementById('w4vid2');
   if(!vid||!vid.duration)return;
   var pct=vid.currentTime/vid.duration;
   if(pct>=0.98){
     rightSocketTriggered=true;
-    // Flash the right edge
     flash.style.opacity='0.06';setTimeout(function(){flash.style.opacity='0';},100);
-    // Decide: advance video or advance world
     if(cw===1&&w1cur<w1videos.length-1){
-      // BTS: go to next film
       setTimeout(function(){w1Next();rightSocketTriggered=false;},300);
     } else if(cw===4&&w4cur<w4videos.length-1){
-      // Travel: go to next film
       setTimeout(function(){w4Next();rightSocketTriggered=false;},300);
     } else {
-      // Last video in world — go to next world (or home if last)
       var next=cw<WORLDS-1?cw+1:0;
       setTimeout(function(){goW(next);rightSocketTriggered=false;},400);
     }
@@ -996,29 +993,17 @@ function checkRightSocket(){
 
 // Detect video loops for Dave reset
 var w1v1Last=0,w1v2Last=0,w4v1Last=0,w4v2Last=0;
-w1v1.addEventListener('timeupdate',function(){
-  if(w1v1Last>this.duration-0.8&&this.currentTime<0.5&&cw===1)snapDaveToStart();
-  w1v1Last=this.currentTime;checkRightSocket();
-});
-w1v2.addEventListener('timeupdate',function(){
-  if(w1v2Last>this.duration-0.8&&this.currentTime<0.5&&cw===1)snapDaveToStart();
-  w1v2Last=this.currentTime;checkRightSocket();
-});
-['w2vid','w3vid'].forEach(function(id){
-  var v=document.getElementById(id);if(!v)return;
+['w1vid','w1vid2','w2vid','w3vid','w4vid','w4vid2'].forEach(function(id){
+  var v=document.getElementById(id);
+  if(!v)return;
   var last=0;
   v.addEventListener('timeupdate',function(){
-    if(last>this.duration-0.8&&this.currentTime<0.5)snapDaveToStart();
-    last=this.currentTime;checkRightSocket();
+    var isW1=(id==='w1vid'||id==='w1vid2')&&cw===1;
+    var isW4=(id==='w4vid'||id==='w4vid2')&&cw===4;
+    if(last>this.duration-0.8&&this.currentTime<0.5&&(isW1||cw===2||cw===3||isW4))snapDaveToStart();
+    last=this.currentTime;
+    checkRightSocket();
   });
-});
-document.getElementById('w4vid').addEventListener('timeupdate',function(){
-  if(w4v1Last>this.duration-0.8&&this.currentTime<0.5&&cw===4)snapDaveToStart();
-  w4v1Last=this.currentTime;checkRightSocket();
-});
-document.getElementById('w4vid2').addEventListener('timeupdate',function(){
-  if(w4v2Last>this.duration-0.8&&this.currentTime<0.5&&cw===4)snapDaveToStart();
-  w4v2Last=this.currentTime;checkRightSocket();
 });
 
 // Event listeners
