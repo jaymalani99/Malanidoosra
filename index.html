@@ -216,7 +216,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="nlogo">malanidoosra</div>
   <div class="nright">
     <div id="worldnav" style="display:flex;gap:2px;">
-      <div class="wnav-btn active" data-w="1" onclick="goW(1)">TRAVEL</div>
+      <div class="wnav-btn" data-w="0" onclick="goW(0)">HOME</div>
+      <div class="wnav-btn" data-w="1" onclick="goW(1)">TRAVEL</div>
       <div class="wnav-btn" data-w="2" onclick="goW(2)">DOCUMENTARY</div>
       <div class="wnav-btn" data-w="3" onclick="goW(3)">BTS</div>
       <div class="wnav-btn" data-w="4" onclick="goW(4)">WRITTEN & DIRECTED</div>
@@ -450,8 +451,8 @@ function daveLoop(){
     }
     if(wireCanvas)wireCanvas.style.opacity='1';
   } else {
-    // Video worlds — Dave walks as progress bar, dragging wire from left edge
-    if(wireCanvas)wireCanvas.style.opacity='1';
+    // Video worlds — Dave walks as progress bar, wire hidden
+    if(wireCanvas)wireCanvas.style.opacity='0';
     var vid=null;
     if(cw===1) vid=w1active===1?w1v1:w1v2;
     else if(cw===2) vid=document.getElementById('w2vid');
