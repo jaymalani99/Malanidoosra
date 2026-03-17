@@ -80,6 +80,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .slink:hover{color:var(--y);}
 #wct{display:none;}
 #hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-family:'Press Start 2P',monospace;font-size:11px;color:rgba(255,229,0,0.5);letter-spacing:3px;z-index:200;white-space:nowrap;animation:blink 2.2s steps(1) infinite;}
+#hint.small{font-size:6px;color:rgba(255,255,255,0.18);letter-spacing:2px;animation:none;}
 @keyframes blink{50%{opacity:0}}
 #flash{position:fixed;inset:0;background:var(--y);opacity:0;pointer-events:none;z-index:9990;transition:opacity 0.08s;}
 #ticker{display:none;}
@@ -676,6 +677,7 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
     if(el){el.style.borderColor='rgba('+r+','+g+','+b+',0.15)';el.style.color='rgba('+r+','+g+','+b+',0.25)';}
   });
   hint.textContent=hintT[cw];
+  hint.classList.toggle('small', cw>=1&&cw<=4);
   // Restart world label fadeout animation
   ['wlabel','wtit','wdesc'].forEach(function(cls){
     document.querySelectorAll('.'+cls).forEach(function(el){
