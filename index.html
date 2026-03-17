@@ -149,9 +149,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .m-hint{position:absolute;bottom:8px;width:100%;text-align:center;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.25);letter-spacing:2px;animation:blink 2s steps(1) infinite;}
   /* Wire canvas for mobile */
   #mWire{position:absolute;inset:0;pointer-events:none;z-index:2;}
-  /* Mobile Dave — clone of desktop pixel art, scaled up 2x */
-  #mDave{position:absolute;bottom:22px;z-index:3;transform-origin:bottom center;}
-  #mDave .dw{transform:scale(2);transform-origin:bottom left;}
   /* Video screens */
   .ms-vid{background:#060606;}
   .ms-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
@@ -184,7 +181,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 }
 @media(max-width:768px){
   #dave,#wireCanvas,#cur,#cur2,#nav,#sbar,#hint,#vibeNote,#stage,#flash,#rightJack,#leftJack,#wallJack{display:none!important;}
-  #mDave{display:block;}
+  #mDave{display:block;position:fixed;z-index:99999;}
+  #mDave .dw{transform:scale(2);transform-origin:bottom left;}
   body{overflow:hidden;}
 }
 @media(min-width:769px){
@@ -201,7 +199,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div id="mob">
 
   <!-- Mobile Dave — real pixel art, positioned in strips -->
-  <div id="mDave" style="left:40px;position:fixed;display:none;z-index:99999;pointer-events:all;cursor:pointer;">
+  <div id="mDave" style="left:40px;position:fixed;z-index:99999;pointer-events:none;cursor:pointer;">
     <div class="dw idle" id="mDB">
       <div class="px dc"></div><div class="px db2"></div>
       <div class="px dh"></div><div class="px del"></div><div class="px der"></div>
@@ -1744,28 +1742,24 @@ if(window.innerWidth<=768){
   function drawMWire(){
     if(!mWctx){requestAnimationFrame(drawMWire);return;}
     mWctx.clearRect(0,0,mWire.width,mWire.height);
-    var col=mCur===0?'255,229,0':mCur===7?'0,255,100':
-      mColors[mCur]?mColors[mCur].replace('#','').match(/.{2}/g).map(function(h){return parseInt(h,16);}).join(','):'255,229,0';
-    // Dave hand pos
+    // Parse color
+    var colStr='255,229,0';
+    if(mCur===7)colStr='0,255,100';
+    else if(mCur>=1&&mCur<=6&&mColors[mCur]){
+      var hx2=mColors[mCur].replace('#','');
+      colStr=parseInt(hx2.slice(0,2),16)+','+parseInt(hx2.slice(2,4),16)+','+parseInt(hx2.slice(4,6),16);
+    }
     var dr=mDave.getBoundingClientRect();
-    var hx=dr.left+dr.width*0.75,hy=dr.top+dr.height*0.45;
-    // Video progress wire on right side
+    var dhx=dr.left+dr.width*0.75,dhy=dr.top+dr.height*0.45;
     if(mCur>=1&&mCur<=6){
-      var vid=mVids[mCur-1];
-      var pct=vid&&vid.duration?vid.currentTime/vid.duration:0;
-      // right edge anchor
       var rx=mWire.width-12,ry=getMDaveStripY()+16;
-      // solid wire from right anchor to Dave
-      mWctx.beginPath();mWctx.moveTo(rx,ry);
-      var mx2=(rx+hx)/2,my2=Math.max(ry,hy)+20;
-      mWctx.quadraticCurveTo(mx2,my2,hx,hy);
-      mWctx.strokeStyle='rgba('+col+',0.7)';mWctx.lineWidth=2;mWctx.setLineDash([]);mWctx.stroke();
-      // progress dot on right edge
-      mWctx.beginPath();mWctx.arc(rx,ry,5,0,Math.PI*2);mWctx.fillStyle='rgba('+col+',0.8)';mWctx.fill();
+      var cmx=(rx+dhx)/2,cmy=Math.max(ry,dhy)+20;
+      mWctx.beginPath();mWctx.moveTo(rx,ry);mWctx.quadraticCurveTo(cmx,cmy,dhx,dhy);
+      mWctx.strokeStyle='rgba('+colStr+',0.7)';mWctx.lineWidth=2;mWctx.setLineDash([]);mWctx.stroke();
+      mWctx.beginPath();mWctx.arc(rx,ry,5,0,Math.PI*2);mWctx.fillStyle='rgba('+colStr+',0.8)';mWctx.fill();
     } else if(mCur===0){
-      // dashed wire trailing right from Dave on hero
       mWctx.setLineDash([6,4]);
-      mWctx.beginPath();mWctx.moveTo(hx,hy);mWctx.lineTo(mWire.width,hy);
+      mWctx.beginPath();mWctx.moveTo(dhx,dhy);mWctx.lineTo(mWire.width,dhy);
       mWctx.strokeStyle='rgba(255,229,0,0.3)';mWctx.lineWidth=1.5;mWctx.stroke();
       mWctx.setLineDash([]);
     }
@@ -1773,90 +1767,83 @@ if(window.innerWidth<=768){
   }
   drawMWire();
 
+  // Single rAF loop for Dave position on video
+  function mDaveLoop(){
+    if(!mTrans&&mCur>=1&&mCur<=6){
+      var v=mVids[mCur-1];
+      if(v&&v.duration&&!isNaN(v.duration)){
+        var pct=v.currentTime/v.duration;
+        var target=Math.max(20,Math.min(window.innerWidth-80,pct*(window.innerWidth-80)));
+        mDaveX+=(target-mDaveX)*0.05;
+        mDave.style.left=Math.round(mDaveX)+'px';
+        mDave.style.top=getMDaveStripY()+'px';
+        mDB.className=Math.abs(target-mDaveX)>4?'dw wr':'dw idle';
+      }
+    }
+    requestAnimationFrame(mDaveLoop);
+  }
+  mDaveLoop();
+
   // Navigate to screen idx
   function mGo(idx){
     if(mTrans||idx===mCur||idx<0||idx>7)return;
     mTrans=true;
     var dir=idx>mCur?1:-1;
-    // Walk Dave off screen
+    // Walk Dave off screen using rAF
     var walkTarget=dir>0?window.innerWidth+20:-80;
     mDB.className='dw '+(dir>0?'wr':'wl');
-    var walkSteps=0,walkMax=18;
-    var walkInterval=setInterval(function(){
-      walkSteps++;
-      mDaveX+=(walkTarget-mDaveX)*0.18;
-      mDave.style.left=mDaveX+'px';
-      if(walkSteps>=walkMax){
-        clearInterval(walkInterval);
-        // Slide screens
-        mScreens[mCur].style.transform='translateY('+(dir<0?'100%':'-100%')+')';
-        mScreens[idx].style.transform='translateY('+(dir>0?'100%':'-100%')+')';
-        requestAnimationFrame(function(){
-          requestAnimationFrame(function(){
-            mScreens[idx].style.transition='transform 0.5s cubic-bezier(0.77,0,0.175,1)';
-            mScreens[idx].style.transform='translateY(0)';
-          });
-        });
-        // Pause old video
-        if(mCur>=1&&mCur<=6)mVids[mCur-1].pause();
-        mCur=idx;
-        // Load + play new video
-        if(mCur>=1&&mCur<=6){
-          var v=mVids[mCur-1];
-          if(!v.src&&mSrcs[mCur]){v.src=mSrcs[mCur];v.load();}
-          v.muted=mMobMuted;
-          v.play().catch(function(){});
-          // Preload next
-          if(mCur<6){var nv=mVids[mCur];if(!nv.src&&mSrcs[mCur+1]){nv.src=mSrcs[mCur+1];nv.load();}}
-          // Restart label animation
-          var lab=document.getElementById('mlab'+mCur);
-          if(lab){lab.classList.remove('fading');void lab.offsetWidth;lab.classList.add('fading');}
-        }
-        setTimeout(function(){
-          // Walk Dave in from opposite side
-          mDaveX=dir>0?-80:window.innerWidth+20;
-          mDave.style.left=mDaveX+'px';
-          mDB.className='dw '+(dir>0?'wr':'wl');
-          var walkIn=setInterval(function(){
-            var target=Math.min(window.innerWidth-100,Math.max(30,window.innerWidth*0.15));
-            if(mCur>=1&&mCur<=6){
-              // walk to progress position
-              var v=mVids[mCur-1];
-              var pct=v&&v.duration?v.currentTime/v.duration:0;
-              target=Math.max(20,Math.min(window.innerWidth-80,pct*(window.innerWidth-80)));
-            }
-            mDaveX+=(target-mDaveX)*0.12;
-            mDave.style.left=mDaveX+'px';
-            mDave.style.top=(getMDaveStripY())+'px';
-            if(Math.abs(mDaveX-target)<3){
-              clearInterval(walkIn);
-              mDB.className='dw idle';
-              mTrans=false;
-            }
-          },16);
-        },300);
+    function walkOff(){
+      mDaveX+=(walkTarget-mDaveX)*0.2;
+      mDave.style.left=Math.round(mDaveX)+'px';
+      if(Math.abs(mDaveX-walkTarget)>3){requestAnimationFrame(walkOff);return;}
+      // Slide screens
+      mScreens[mCur].style.transition='transform 0.5s cubic-bezier(0.77,0,0.175,1)';
+      mScreens[mCur].style.transform='translateY('+(dir<0?'100%':'-100%')+')';
+      mScreens[idx].style.transform='translateY('+(dir>0?'100%':'-100%')+')';
+      requestAnimationFrame(function(){
+        mScreens[idx].style.transition='transform 0.5s cubic-bezier(0.77,0,0.175,1)';
+        mScreens[idx].style.transform='translateY(0)';
+      });
+      // Pause old video
+      if(mCur>=1&&mCur<=6)mVids[mCur-1].pause();
+      mCur=idx;
+      // Load + play video
+      if(mCur>=1&&mCur<=6){
+        var v=mVids[mCur-1];
+        if(!v.src&&mSrcs[mCur]){v.src=mSrcs[mCur];v.load();}
+        v.muted=mMobMuted;v.play().catch(function(){});
+        if(mCur<6){var nv=mVids[mCur];if(!nv.src&&mSrcs[mCur+1]){nv.src=mSrcs[mCur+1];nv.load();}}
+        var lab=document.getElementById('mlab'+mCur);
+        if(lab){lab.classList.remove('fading');void lab.offsetWidth;lab.classList.add('fading');}
       }
-    },16);
+      // Walk Dave in from opposite side
+      setTimeout(function(){
+        mDaveX=dir>0?-80:window.innerWidth+20;
+        mDave.style.left=Math.round(mDaveX)+'px';
+        mDave.style.top=getMDaveStripY()+'px';
+        mDB.className='dw '+(dir>0?'wr':'wl');
+        function walkIn(){
+          var tgt=mCur>=1&&mCur<=6?Math.max(20,Math.min(window.innerWidth-80,(function(){var v=mVids[mCur-1];return v&&v.duration?v.currentTime/v.duration:0;})()*(window.innerWidth-80))):window.innerWidth*0.15;
+          mDaveX+=(tgt-mDaveX)*0.12;
+          mDave.style.left=Math.round(mDaveX)+'px';
+          mDave.style.top=getMDaveStripY()+'px';
+          if(Math.abs(mDaveX-tgt)>3){requestAnimationFrame(walkIn);}
+          else{mDB.className='dw idle';mTrans=false;}
+        }
+        requestAnimationFrame(walkIn);
+      },300);
+    }
+    requestAnimationFrame(walkOff);
   }
 
   // Initial placement
   setTimeout(function(){
-    placeDave(40,'idle');
-  },100);
-
-  // Video progress — move Dave as video plays
-  setInterval(function(){
-    if(mTrans||mCur<1||mCur>6)return;
-    var v=mVids[mCur-1];
-    if(!v||!v.duration)return;
-    var pct=v.currentTime/v.duration;
-    var target=Math.max(20,Math.min(window.innerWidth-80,pct*(window.innerWidth-80)));
-    mDaveX+=(target-mDaveX)*0.05;
-    mDave.style.left=mDaveX+'px';
-    mDave.style.top=(getMDaveStripY())+'px';
-    if(Math.abs(target-mDaveX)>4)mDB.className='dw wr';
-    else mDB.className='dw idle';
-  },33);
+    mDave.style.top=getMDaveStripY()+'px';
+    mDave.style.left='40px';
+    mDaveX=40;
+    mDB.className='dw idle';
+    mDave.style.pointerEvents='all';
+  },200);
 
   // Tap Dave → next screen
   mDave.addEventListener('click',function(){mGo(mCur+1);});
