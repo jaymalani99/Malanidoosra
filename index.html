@@ -196,6 +196,28 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </style>
 </head>
 <body>
+
+<!-- Best viewed on desktop popup — mobile only -->
+<div id="viewPopup" style="display:none;position:fixed;inset:0;background:rgba(6,6,6,0.96);z-index:999999;align-items:center;justify-content:center;flex-direction:column;padding:32px;">
+  <div style="width:100%;max-width:320px;background:#080808;border:1px solid #1a1a1a;">
+    <div style="height:3px;background:#FFE500;"></div>
+    <div style="padding:24px 22px;">
+      <div style="font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.3);letter-spacing:2px;margin-bottom:12px;">HEADS UP</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:#f0f0ee;line-height:0.9;margin-bottom:14px;">BEST VIEWED<br><span style="color:#FFE500;">ON DESKTOP</span></div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);line-height:1.8;margin-bottom:22px;">The full experience — wire mechanics,<br>film crew & Dave — lives on desktop.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <button onclick="document.getElementById('viewPopup').style.display='none';document.getElementById('mob').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:7px;color:#FFE500;background:transparent;border:1px solid rgba(255,229,0,0.4);padding:12px;letter-spacing:1px;cursor:pointer;width:100%;">SWITCH TO DESKTOP →</button>
+        <button onclick="document.getElementById('viewPopup').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,255,255,0.3);background:transparent;border:1px solid rgba(255,255,255,0.08);padding:12px;letter-spacing:1px;cursor:pointer;width:100%;">CONTINUE MOBILE</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+if(window.innerWidth<=768){
+  var vp=document.getElementById('viewPopup');
+  vp.style.display='flex';
+}
+</script>
 <div id="mob">
 
   <!-- Mobile Dave — real pixel art, positioned in strips -->
@@ -240,7 +262,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </div>
     </div>
     <div class="m-dave-strip" id="mHeroDaveStrip">
-      <div class="m-hint">SWIPE UP TO EXPLORE ↑</div>
+      <div class="m-hint">SWIPE UP TO EXPLORE · DRAG DAVE TO SCRUB</div>
     </div>
   </div>
 
@@ -1759,12 +1781,6 @@ if(window.innerWidth<=768){
       // Left anchor dot
       mWctx.beginPath();mWctx.arc(lx,ly,5,0,Math.PI*2);mWctx.strokeStyle='rgba('+colStr+',0.6)';mWctx.lineWidth=1.5;mWctx.stroke();
       mWctx.beginPath();mWctx.arc(lx,ly,3,0,Math.PI*2);mWctx.fillStyle='rgba('+colStr+',0.9)';mWctx.fill();
-      // Dashed trail: Dave's hand → right edge (loose end)
-      var dsag=Math.min((rx-dhx)*0.2,20);
-      var dcmx=(dhx+rx)/2,dcmy=(dhy+ly)/2+dsag;
-      mWctx.beginPath();mWctx.moveTo(dhx,dhy);mWctx.quadraticCurveTo(dcmx,dcmy,rx,ly);
-      mWctx.setLineDash([5,4]);mWctx.strokeStyle='rgba('+colStr+',0.25)';mWctx.lineWidth=1.5;mWctx.stroke();
-      mWctx.setLineDash([]);
       // Plug dot at Dave's hand
       mWctx.beginPath();mWctx.arc(dhx,dhy,4,0,Math.PI*2);mWctx.fillStyle='rgba('+colStr+',0.85)';mWctx.fill();
     }
@@ -1851,7 +1867,42 @@ if(window.innerWidth<=768){
     mDave.style.pointerEvents='all';
   },200);
 
-  // Swipe only — no tap Dave for navigation
+  // Drag Dave to scrub video — same as desktop
+  var mDragActive=false,mDragStartX=0,mDragStartPct=0;
+  mDave.addEventListener('touchstart',function(e){
+    if(mTrans||mCur<1||mCur>6)return;
+    mDragActive=true;
+    mDragStartX=e.touches[0].clientX;
+    var v=mVids[mCur-1];
+    mDragStartPct=v&&v.duration?v.currentTime/v.duration:0;
+    e.stopPropagation();
+  },{passive:true});
+  mDave.addEventListener('touchmove',function(e){
+    if(!mDragActive)return;
+    var dx=e.touches[0].clientX-mDragStartX;
+    var pct=Math.max(0,Math.min(1,mDragStartPct+dx/(window.innerWidth-80)));
+    var v=mVids[mCur-1];
+    if(v&&v.duration)v.currentTime=pct*v.duration;
+    mDaveX=Math.max(20,Math.min(window.innerWidth-80,pct*(window.innerWidth-80)));
+    mDave.style.left=Math.round(mDaveX)+'px';
+    var dir=dx>0?1:-1;
+    mDB.className='dw '+(dir>0?'wr':'wl');
+    e.stopPropagation();
+  },{passive:true});
+  mDave.addEventListener('touchend',function(e){
+    if(!mDragActive)return;
+    mDragActive=false;
+    mDB.className='dw idle';
+    // Only navigate if it was a tap (tiny movement), not a drag
+    var totalDx=Math.abs(e.changedTouches[0].clientX-mDragStartX);
+    if(totalDx<8)mGo(mCur+1);
+    e.stopPropagation();
+  },{passive:true});
+
+  // Swipe up/down to navigate between worlds
+  mDave.style.pointerEvents='all';
+  mDave.style.cursor='pointer';
+
   var mTY=0;
   document.getElementById('mob').addEventListener('touchstart',function(e){
     mTY=e.touches[0].clientY;
