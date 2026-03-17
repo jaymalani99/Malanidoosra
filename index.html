@@ -240,7 +240,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </div>
     </div>
     <div class="m-dave-strip" id="mHeroDaveStrip">
-      <div class="m-hint">TAP DAVE TO EXPLORE WORK ↓</div>
+      <div class="m-hint">SWIPE UP TO EXPLORE ↑</div>
     </div>
   </div>
 
@@ -349,8 +349,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <!-- Desktop link -->
-  <div id="mDesktopLink" style="position:absolute;bottom:0;left:0;right:0;text-align:center;padding:8px;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.2);cursor:pointer;z-index:10;letter-spacing:1px;" onclick="document.getElementById('mob').style.display='none';">VIEW DESKTOP VERSION →</div>
-
 </div>
 <div id="cur"></div>
 <div id="cur2"></div>
@@ -1640,32 +1638,29 @@ document.addEventListener('keydown',function(e){
 });
 
 // ── BACKGROUND MUSIC ─────────────────────────────────────
-var bgMusic=new Audio('https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/bgmusic.mp3');
-bgMusic.loop=true;
-bgMusic.volume=0.35;
-var bgMusicStarted=false;
-
-function updateBgMusic(){
-  if(!bgMusicStarted)return;
-  if(cw===0||cw===5){
-    bgMusic.play().catch(function(){});
-  } else {
-    bgMusic.pause();
+// Background music — desktop only
+if(window.innerWidth>768){
+  var bgMusic=new Audio('https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/bgmusic.mp3');
+  bgMusic.loop=true;
+  bgMusic.volume=0.35;
+  var bgMusicStarted=false;
+  function updateBgMusic(){
+    if(!bgMusicStarted)return;
+    if(cw===0||cw===5){bgMusic.play().catch(function(){});}
+    else{bgMusic.pause();}
   }
-}
-
-// Start on first user interaction
-function startBgMusic(){
-  if(bgMusicStarted)return;
-  bgMusicStarted=true;
-  if(cw===0||cw===5){
-    bgMusic.play().catch(function(){});
+  function startBgMusic(){
+    if(bgMusicStarted)return;
+    bgMusicStarted=true;
+    if(cw===0||cw===5)bgMusic.play().catch(function(){});
+    document.removeEventListener('click',startBgMusic);
+    document.removeEventListener('mousedown',startBgMusic);
   }
-  document.removeEventListener('click',startBgMusic);
-  document.removeEventListener('mousedown',startBgMusic);
+  document.addEventListener('click',startBgMusic);
+  document.addEventListener('mousedown',startBgMusic);
+} else {
+  function updateBgMusic(){}
 }
-document.addEventListener('click',startBgMusic);
-document.addEventListener('mousedown',startBgMusic);
 if('IntersectionObserver' in window){
   var mobVids=document.querySelectorAll('#mob video[data-src]');
   var vidObs=new IntersectionObserver(function(entries){
@@ -1757,12 +1752,8 @@ if(window.innerWidth<=768){
       mWctx.beginPath();mWctx.moveTo(rx,ry);mWctx.quadraticCurveTo(cmx,cmy,dhx,dhy);
       mWctx.strokeStyle='rgba('+colStr+',0.7)';mWctx.lineWidth=2;mWctx.setLineDash([]);mWctx.stroke();
       mWctx.beginPath();mWctx.arc(rx,ry,5,0,Math.PI*2);mWctx.fillStyle='rgba('+colStr+',0.8)';mWctx.fill();
-    } else if(mCur===0){
-      mWctx.setLineDash([6,4]);
-      mWctx.beginPath();mWctx.moveTo(dhx,dhy);mWctx.lineTo(mWire.width,dhy);
-      mWctx.strokeStyle='rgba(255,229,0,0.3)';mWctx.lineWidth=1.5;mWctx.stroke();
-      mWctx.setLineDash([]);
     }
+    // No wire on hero (mCur===0) or contact (mCur===7)
     requestAnimationFrame(drawMWire);
   }
   drawMWire();
@@ -1845,12 +1836,11 @@ if(window.innerWidth<=768){
     mDave.style.pointerEvents='all';
   },200);
 
-  // Tap Dave → next screen
-  mDave.addEventListener('click',function(){mGo(mCur+1);});
-
-  // Swipe
+  // Swipe only — no tap Dave for navigation
   var mTY=0;
-  document.getElementById('mob').addEventListener('touchstart',function(e){mTY=e.touches[0].clientY;},{passive:true});
+  document.getElementById('mob').addEventListener('touchstart',function(e){
+    mTY=e.touches[0].clientY;
+  },{passive:true});
   document.getElementById('mob').addEventListener('touchend',function(e){
     var dy=mTY-e.changedTouches[0].clientY;
     if(Math.abs(dy)>55){if(dy>0)mGo(mCur+1);else mGo(mCur-1);}
@@ -1871,10 +1861,8 @@ if(window.innerWidth<=768){
     })(mi);
   }
 
-  // Make mDave pointer-events active
-  mDave.style.pointerEvents='all';
-  mDave.style.cursor='pointer';
-  mDave.style.zIndex='99999';
+  // Make mDave non-interactive — navigation is swipe only
+  mDave.style.pointerEvents='none';
 }
 // ── END MOBILE ────────────────────────────────────────────
 })();
