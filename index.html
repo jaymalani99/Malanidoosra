@@ -180,7 +180,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .ms-cdave{height:70px;position:relative;border-top:1px solid #0d2a0d;flex-shrink:0;overflow:hidden;}
 }
 @media(max-width:768px){
-  #dave,#wireCanvas,#cur,#cur2,#nav,#sbar,#hint,#vibeNote,#stage,#flash,#rightJack,#leftJack,#wallJack{display:none!important;}
+  #dave,#wireCanvas,#cur,#cur2,#nav,#sbar,#hint,#vibeNote,#flash,#rightJack,#leftJack,#wallJack{display:none!important;}
   #mDave{display:block;position:fixed;z-index:99999;}
   #mDave .dw{transform:scale(2);transform-origin:bottom left;}
   body{overflow:hidden;}
@@ -206,7 +206,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:#f0f0ee;line-height:0.9;margin-bottom:14px;">FULL VIDEOS<br><span style="color:#FFE500;">ON DESKTOP</span></div>
       <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);line-height:1.8;margin-bottom:22px;">The films are shot in widescreen.<br>For the full frame — not a vertical crop — open this on a laptop or desktop.</div>
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <button onclick="document.getElementById('viewPopup').style.display='none';document.getElementById('mob').style.display='none';document.getElementById('stage').style.display='flex';" style="font-family:'Press Start 2P',monospace;font-size:7px;color:#FFE500;background:transparent;border:1px solid rgba(255,229,0,0.4);padding:12px;letter-spacing:1px;cursor:pointer;width:100%;">SWITCH TO DESKTOP →</button>
+        <button onclick="
+          document.getElementById('viewPopup').style.display='none';
+          document.getElementById('mob').style.display='none';
+          document.getElementById('mDave').style.display='none';
+          document.getElementById('mWireCanvas').style.display='none';
+          ['stage','dave','wireCanvas','cur','cur2','nav','sbar','hint','vibeNote','flash'].forEach(function(id){
+            var el=document.getElementById(id);if(el)el.style.display='';
+          });
+        " style="font-family:'Press Start 2P',monospace;font-size:7px;color:#FFE500;background:transparent;border:1px solid rgba(255,229,0,0.4);padding:12px;letter-spacing:1px;cursor:pointer;width:100%;">SWITCH TO DESKTOP →</button>
         <button onclick="document.getElementById('viewPopup').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,255,255,0.3);background:transparent;border:1px solid rgba(255,255,255,0.08);padding:12px;letter-spacing:1px;cursor:pointer;width:100%;">CONTINUE ON MOBILE</button>
       </div>
     </div>
@@ -1706,6 +1714,10 @@ document.querySelectorAll('.wnav-btn').forEach(function(b){
 
 // ── MOBILE SYSTEM ────────────────────────────────────────
 if(window.innerWidth<=768){
+  // Hide desktop elements — done via JS so switch to desktop can restore them
+  ['stage','dave','wireCanvas','cur','cur2','nav','sbar','hint','vibeNote','flash','rightJack','leftJack','wallJack'].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.style.display='none';
+  });
   var mCur=0,mTrans=false,mMobMuted=true;
   var mSrcs=[null,
     'https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Kareena%20Rosta%20Bts.mp4',
