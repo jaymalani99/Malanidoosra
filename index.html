@@ -766,6 +766,16 @@ function resizeWireCanvas(){
   if(!wireCanvas)return;
   wireCanvas.width=window.innerWidth;
   wireCanvas.height=window.innerHeight;
+  // Update Dave's ground position
+  dY=window.innerHeight-48-29;
+  dave.style.top=(dY)+'px';
+  // Resize contact wire canvas too
+  var cwc=document.getElementById('contactWireCanvas');
+  if(cwc){cwc.width=window.innerWidth;cwc.height=window.innerHeight;}
+  // Resize crew canvases
+  if(crewCanvas){crewCanvas.width=window.innerWidth;crewCanvas.height=window.innerHeight;}
+  if(crewCanvas5){crewCanvas5.width=window.innerWidth;crewCanvas5.height=window.innerHeight;}
+  initCrew();
 }
 resizeWireCanvas();
 window.addEventListener('resize',resizeWireCanvas);
@@ -790,9 +800,10 @@ function getPSocketCenter(el){
   return{x:r.left+r.width/2,y:r.top+r.height/2};
 }
 
-// Dave hand position — right side at mid height
+// Dave hand position — reads live from element
 function getDaveHandPos(){
-  return{x:dX+24,y:dY+14};
+  var r=dave.getBoundingClientRect();
+  return{x:r.left+r.width*0.75,y:r.top+r.height*0.45};
 }
 
 function drawPlug(x,y,size,alpha){
@@ -1184,11 +1195,6 @@ var crc=crewCanvas?crewCanvas.getContext('2d'):null;
 var crc5=crewCanvas5?crewCanvas5.getContext('2d'):null;
 if(crewCanvas){crewCanvas.width=window.innerWidth;crewCanvas.height=window.innerHeight;}
 if(crewCanvas5){crewCanvas5.width=window.innerWidth;crewCanvas5.height=window.innerHeight;}
-window.addEventListener('resize',function(){
-  if(crewCanvas){crewCanvas.width=window.innerWidth;crewCanvas.height=window.innerHeight;}
-  if(crewCanvas5){crewCanvas5.width=window.innerWidth;crewCanvas5.height=window.innerHeight;}
-});
-
 // Each crew member: type, fixed x zone, y, animation state
 var crew=[];
 var crewT=0;
@@ -1214,7 +1220,6 @@ function initCrew(){
   ];
 }
 initCrew();
-window.addEventListener('resize',initCrew);
 
 // Pixel drawing helpers — all crew at 3x scale, muted palette
 var S=3; // pixel scale
