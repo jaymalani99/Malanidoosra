@@ -203,11 +203,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div style="height:3px;background:#FFE500;"></div>
     <div style="padding:24px 22px;">
       <div style="font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,229,0,0.3);letter-spacing:2px;margin-bottom:12px;">HEADS UP</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:#f0f0ee;line-height:0.9;margin-bottom:14px;">BEST VIEWED<br><span style="color:#FFE500;">ON DESKTOP</span></div>
-      <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);line-height:1.8;margin-bottom:22px;">The full experience — wire mechanics,<br>film crew & Dave — lives on desktop.</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:#f0f0ee;line-height:0.9;margin-bottom:14px;">FULL VIDEOS<br><span style="color:#FFE500;">ON DESKTOP</span></div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.25);line-height:1.8;margin-bottom:22px;">The films are shot in widescreen.<br>For the full frame — not a vertical crop — open this on a laptop or desktop.</div>
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <button onclick="document.getElementById('viewPopup').style.display='none';document.getElementById('mob').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:7px;color:#FFE500;background:transparent;border:1px solid rgba(255,229,0,0.4);padding:12px;letter-spacing:1px;cursor:pointer;width:100%;">SWITCH TO DESKTOP →</button>
-        <button onclick="document.getElementById('viewPopup').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,255,255,0.3);background:transparent;border:1px solid rgba(255,255,255,0.08);padding:12px;letter-spacing:1px;cursor:pointer;width:100%;">CONTINUE MOBILE</button>
+        <button onclick="document.getElementById('viewPopup').style.display='none';document.getElementById('mob').style.display='none';document.getElementById('stage').style.display='flex';" style="font-family:'Press Start 2P',monospace;font-size:7px;color:#FFE500;background:transparent;border:1px solid rgba(255,229,0,0.4);padding:12px;letter-spacing:1px;cursor:pointer;width:100%;">SWITCH TO DESKTOP →</button>
+        <button onclick="document.getElementById('viewPopup').style.display='none';" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,255,255,0.3);background:transparent;border:1px solid rgba(255,255,255,0.08);padding:12px;letter-spacing:1px;cursor:pointer;width:100%;">CONTINUE ON MOBILE</button>
       </div>
     </div>
   </div>
@@ -366,7 +366,10 @@ if(window.innerWidth<=768){
       </div>
     </div>
     <div class="ms-cdave" id="mContactStrip">
-      <div style="position:absolute;bottom:8px;width:100%;text-align:center;font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(0,255,100,0.2);letter-spacing:2px;">TAP DAVE TO START OVER</div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:20px;">
+        <button onclick="mGo(0);" style="font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(0,255,100,0.6);background:transparent;border:1px solid rgba(0,255,100,0.2);padding:8px 14px;letter-spacing:1px;cursor:pointer;">← HOME</button>
+        <button onclick="mGo(mCur-1);" style="font-family:'Press Start 2P',monospace;font-size:6px;color:rgba(255,255,255,0.2);background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 14px;letter-spacing:1px;cursor:pointer;">← BACK</button>
+      </div>
     </div>
   </div>
 
@@ -1866,6 +1869,8 @@ if(window.innerWidth<=768){
     mDB.className='dw idle';
     mDave.style.pointerEvents='all';
   },200);
+
+  window.mGo=mGo;
 
   // Drag Dave to scrub video — same as desktop
   var mDragActive=false,mDragStartX=0,mDragStartPct=0;
