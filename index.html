@@ -1747,11 +1747,26 @@ if(window.innerWidth<=768){
     var dr=mDave.getBoundingClientRect();
     var dhx=dr.left+dr.width*0.75,dhy=dr.top+dr.height*0.45;
     if(mCur>=1&&mCur<=6){
-      var rx=mWire.width-12,ry=getMDaveStripY()+16;
-      var cmx=(rx+dhx)/2,cmy=Math.max(ry,dhy)+20;
-      mWctx.beginPath();mWctx.moveTo(rx,ry);mWctx.quadraticCurveTo(cmx,cmy,dhx,dhy);
-      mWctx.strokeStyle='rgba('+colStr+',0.7)';mWctx.lineWidth=2;mWctx.setLineDash([]);mWctx.stroke();
-      mWctx.beginPath();mWctx.arc(rx,ry,5,0,Math.PI*2);mWctx.fillStyle='rgba('+colStr+',0.8)';mWctx.fill();
+      var lx=12,ly=getMDaveStripY()+16; // left wall anchor
+      var rx=mWire.width-12; // right edge (next world socket)
+      // Solid wire: left anchor → Dave's hand (Dave pulling it)
+      var sag=Math.min(Math.abs(dhx-lx)*0.2,20);
+      var cmx=(lx+dhx)/2,cmy=(ly+dhy)/2+sag;
+      mWctx.beginPath();mWctx.moveTo(lx,ly);mWctx.quadraticCurveTo(cmx,cmy,dhx,dhy);
+      mWctx.strokeStyle='rgba('+colStr+',0.08)';mWctx.lineWidth=8;mWctx.lineCap='round';mWctx.setLineDash([]);mWctx.stroke();
+      mWctx.beginPath();mWctx.moveTo(lx,ly);mWctx.quadraticCurveTo(cmx,cmy,dhx,dhy);
+      mWctx.strokeStyle='rgba('+colStr+',0.8)';mWctx.lineWidth=2;mWctx.stroke();
+      // Left anchor dot
+      mWctx.beginPath();mWctx.arc(lx,ly,5,0,Math.PI*2);mWctx.strokeStyle='rgba('+colStr+',0.6)';mWctx.lineWidth=1.5;mWctx.stroke();
+      mWctx.beginPath();mWctx.arc(lx,ly,3,0,Math.PI*2);mWctx.fillStyle='rgba('+colStr+',0.9)';mWctx.fill();
+      // Dashed trail: Dave's hand → right edge (loose end)
+      var dsag=Math.min((rx-dhx)*0.2,20);
+      var dcmx=(dhx+rx)/2,dcmy=(dhy+ly)/2+dsag;
+      mWctx.beginPath();mWctx.moveTo(dhx,dhy);mWctx.quadraticCurveTo(dcmx,dcmy,rx,ly);
+      mWctx.setLineDash([5,4]);mWctx.strokeStyle='rgba('+colStr+',0.25)';mWctx.lineWidth=1.5;mWctx.stroke();
+      mWctx.setLineDash([]);
+      // Plug dot at Dave's hand
+      mWctx.beginPath();mWctx.arc(dhx,dhy,4,0,Math.PI*2);mWctx.fillStyle='rgba('+colStr+',0.85)';mWctx.fill();
     }
     // No wire on hero (mCur===0) or contact (mCur===7)
     requestAnimationFrame(drawMWire);
