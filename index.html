@@ -146,7 +146,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     top:36px;bottom:80px;left:0;right:0;
     display:flex;flex-direction:column;
     align-items:center;justify-content:center;
-    padding:0 14px;
+    padding:0 8px;
   }
   #mDeviceSpacer{display:none;}
 
@@ -1770,15 +1770,21 @@ if(window.matchMedia('(max-width:768px)').matches){
     var t=document.getElementById('mt'+idx);
     if(!t)return{x:60,y:100};
     var r=t.getBoundingClientRect();
-    return{x:r.left+r.width/2, y:r.top};
+    return{x:r.left+r.width/2, y:r.top, bottom:r.bottom};
   }
 
-  // Measure Dave's actual rendered height, then position
+  // Position Dave so his feet sit on tab top edge
   function placeDaveOnTab(idx){
     var pos=getTabCenter(idx);
     var dr=mDave.getBoundingClientRect();
-    var daveH=dr.height||40;
-    var daveW=dr.width||31;
+    var daveH=dr.height;
+    var daveW=dr.width;
+    // Fallback: measure the inner .dw element directly
+    if(!daveH||daveH<5){
+      var dw=mDave.querySelector('.dw');
+      if(dw){var dwr=dw.getBoundingClientRect();daveH=dwr.height;daveW=dwr.width;}
+    }
+    daveH=daveH||40;daveW=daveW||31;
     mDaveX=pos.x-(daveW/2);
     mDave.style.left=Math.round(mDaveX)+'px';
     mDave.style.top=Math.round(pos.y-daveH)+'px';
@@ -1806,8 +1812,9 @@ if(window.matchMedia('(max-width:768px)').matches){
   function mWalkTo(idx,cb){
     var pos=getTabCenter(idx);
     var dr=mDave.getBoundingClientRect();
-    var daveH=dr.height||40;
-    var daveW=dr.width||31;
+    var daveH=dr.height,daveW=dr.width;
+    if(!daveH||daveH<5){var dw=mDave.querySelector('.dw');if(dw){var dwr=dw.getBoundingClientRect();daveH=dwr.height;daveW=dwr.width;}}
+    daveH=daveH||40;daveW=daveW||31;
     var targetX=pos.x-(daveW/2),targetY=pos.y-daveH;
     var dist=Math.abs(targetX-mDaveX);
     // Count tab steps: switch=-1, bt0=0... tab index diff > 1 = jump
@@ -1939,8 +1946,12 @@ if(window.matchMedia('(max-width:768px)').matches){
     if(!mCrCv)return;
     mCrCv.width=window.innerWidth;
     mCrCv.height=80;
+    // Force immediate redraw
+    mCrewT=mCrewT||0;
   }
-  setTimeout(sizeMCrew,300);
+  sizeMCrew(); // run immediately, not after timeout
+  setTimeout(sizeMCrew,100);
+  setTimeout(sizeMCrew,500);
   window.addEventListener('resize',function(){
     sizeMCrew();
     setTimeout(function(){placeDaveOnTab(mCurCat);},50);
