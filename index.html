@@ -1768,12 +1768,15 @@ if(window.matchMedia('(max-width:768px)').matches){
     return{x:r.left+r.width/2, y:r.top};
   }
 
+  // Measure Dave's actual rendered height, then position
   function placeDaveOnTab(idx){
     var pos=getTabCenter(idx);
-    mDaveX=pos.x-16;
-    // Dave at scale(1.4): ~31px wide, ~40px tall
+    var dr=mDave.getBoundingClientRect();
+    var daveH=dr.height||40;
+    var daveW=dr.width||31;
+    mDaveX=pos.x-(daveW/2);
     mDave.style.left=Math.round(mDaveX)+'px';
-    mDave.style.top=Math.round(pos.y-40)+'px';
+    mDave.style.top=Math.round(pos.y-daveH)+'px';
   }
 
   function setActiveTab(idx){
@@ -1803,7 +1806,10 @@ if(window.matchMedia('(max-width:768px)').matches){
   // ── Walk / jump Dave ─────────────────────────────────
   function mWalkTo(idx,cb){
     var pos=getTabCenter(idx);
-    var targetX=pos.x-16,targetY=pos.y-40;
+    var dr=mDave.getBoundingClientRect();
+    var daveH=dr.height||40;
+    var daveW=dr.width||31;
+    var targetX=pos.x-(daveW/2),targetY=pos.y-daveH;
     var dist=Math.abs(targetX-mDaveX);
     var adjacent=dist<window.innerWidth*0.3;
 
@@ -1938,7 +1944,10 @@ if(window.matchMedia('(max-width:768px)').matches){
     mCrCv.height=area.offsetHeight||80;
   }
   setTimeout(sizeMCrew,300);
-  window.addEventListener('resize',function(){sizeMCrew();setTimeout(function(){placeDaveOnTab(Math.max(0,mCurCat));},50);});
+  window.addEventListener('resize',function(){
+    sizeMCrew();
+    setTimeout(function(){placeDaveOnTab(Math.max(0,mCurCat));},50);
+  });
 
   function drawCrew(){
     if(!mCrc){requestAnimationFrame(drawCrew);return;}
@@ -2075,8 +2084,21 @@ if(window.matchMedia('(max-width:768px)').matches){
   }
   drawCrew();
 
-  // ── Init Dave on first tab ────────────────────────────
-  setTimeout(function(){placeDaveOnTab(0);},250);
+  // Wait for full layout + fonts before measuring Dave
+  function initDave(){
+    // Force a reflow to get accurate measurements
+    mDave.style.visibility='hidden';
+    mDave.style.display='block';
+    setTimeout(function(){
+      mDave.style.visibility='visible';
+      placeDaveOnTab(0);
+    },600);
+  }
+  if(document.fonts&&document.fonts.ready){
+    document.fonts.ready.then(function(){setTimeout(initDave,100);});
+  } else {
+    setTimeout(initDave,600);
+  }
 }
 // ── END MOBILE MONITOR ───────────────────────────────────
 
