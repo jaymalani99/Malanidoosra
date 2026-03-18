@@ -216,27 +216,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .mi-sock{display:flex;flex-direction:column;align-items:center;gap:2px;}
   .mi-sock-hole{width:7px;height:7px;border-radius:50%;border:1px solid rgba(255,229,0,0.15);background:#000;}
   .mi-sock-name{font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,255,255,0.12);}
-  /* Red power switch */
-  #mRedSwitch{
-    margin-left:auto;
-    width:18px;height:18px;
-    border-radius:50%;
-    background:#1a0000;
-    border:1px solid #440000;
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;
-    box-shadow:0 0 8px rgba(255,0,0,0.3);
-    flex-shrink:0;
-  }
-  #mRedSwitchDot{
-    width:8px;height:8px;border-radius:50%;
-    background:#cc0000;
-    box-shadow:0 0 6px rgba(255,0,0,0.8);
-    animation:redpulse 1.5s ease-in-out infinite;
-  }
-  @keyframes redpulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.85);}}
-  #mRedSwitch.powered{background:#001a00;border-color:#004400;box-shadow:0 0 8px rgba(0,255,0,0.3);}
-  #mRedSwitch.powered #mRedSwitchDot{background:#00cc44;box-shadow:0 0 6px rgba(0,255,100,0.8);animation:none;}
+  @keyframes redpulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
+  /* Switch dot powered state */
+  #mSwitchDot.powered{background:#00cc44;box-shadow:0 0 5px rgba(0,255,100,0.7);animation:none;}
 
   /* HUD */
   #mHud{position:absolute;inset:0;z-index:4;pointer-events:none;}
@@ -322,8 +304,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <div id="mDevice">
-    <!-- Chrome-style tabs -->
+    <!-- Switch + tabs -->
     <div id="mTabRow">
+      <div class="mTab" id="mt-1" style="color:#ff3333;border-color:#440000;background:#0d0000;max-width:28px;flex:0 0 28px;" onclick="mGoHome();">
+        <span class="mTabLabel"><span id="mSwitchDot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#cc0000;box-shadow:0 0 5px rgba(255,0,0,0.7);animation:redpulse 1.5s ease-in-out infinite;vertical-align:middle;"></span></span>
+      </div>
       <div class="mTab" id="mt0" style="color:#FF8C00;border-color:#FF8C00;"><span class="mTabLabel">BTS</span></div>
       <div class="mTab" id="mt1" style="color:#dcdcdc;border-color:#dcdcdc;"><span class="mTabLabel">DOC</span></div>
       <div class="mTab" id="mt2" style="color:#b464ff;border-color:#b464ff;"><span class="mTabLabel">W&#38;D</span></div>
@@ -355,8 +340,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
               <div class="mi-sock"><div class="mi-sock-hole"></div><div class="mi-sock-name">TRAVEL</div></div>
             </div>
             <!-- Red switch — tap to begin -->
-            <div id="mRedSwitch" onclick="mPowerOn();">
-              <div id="mRedSwitchDot"></div>
             </div>
           </div>
         </div>
@@ -1776,18 +1759,6 @@ if(window.matchMedia('(max-width:768px)').matches){
   var mContactPanel=document.getElementById('mContactPanel');
   var mTopContactBtn=document.getElementById('mTopContactBtn');
 
-  // ── Power switch ──────────────────────────────────────
-  window.mPowerOn=function(){
-    var sw=document.getElementById('mRedSwitch');
-    if(sw)sw.classList.add('powered');
-    // CRT flash
-    var flash=document.createElement('div');
-    flash.style.cssText='position:absolute;inset:0;background:#fff;z-index:10;pointer-events:none;opacity:0.6;transition:opacity 0.4s;';
-    document.getElementById('mScreen').appendChild(flash);
-    setTimeout(function(){flash.style.opacity='0';},50);
-    setTimeout(function(){flash.remove();mSelect(0);},450);
-  };
-
   // ── Contact toggle ───────────────────────────────────
   window.mToggleContact=function(){
     mContactOpen=!mContactOpen;
@@ -1799,7 +1770,8 @@ if(window.matchMedia('(max-width:768px)').matches){
 
   // ── Tab / Dave positioning ───────────────────────────
   function getTabCenter(idx){
-    var t=document.getElementById('mt'+idx);
+    var id=idx===-1?'mt-1':'mt'+idx;
+    var t=document.getElementById(id);
     if(!t)return{x:60,y:100};
     var r=t.getBoundingClientRect();
     return{x:r.left+r.width/2, y:r.top};
@@ -1817,23 +1789,53 @@ if(window.matchMedia('(max-width:768px)').matches){
   }
 
   function setActiveTab(idx){
-    document.querySelectorAll('.mTab').forEach(function(t,i){
+    // All tabs including switch
+    ['mt-1','mt0','mt1','mt2','mt3'].forEach(function(id){
+      var t=document.getElementById(id);
+      if(!t)return;
       t.classList.remove('active','dave-here');
-      t.style.opacity=i===idx?'1':'0.4';
-      // restore label on all non-active tabs
+      t.style.opacity='0.4';
       var lbl=t.querySelector('.mTabLabel');
       if(lbl)lbl.style.opacity='1';
     });
-    if(idx>=0){
-      var tab=document.getElementById('mt'+idx);
-      if(tab)tab.classList.add('active');
-    }
+    var activeId=idx===-1?'mt-1':'mt'+idx;
+    var tab=document.getElementById(activeId);
+    if(tab){tab.classList.add('active');tab.style.opacity='1';}
   }
 
   function daveArrivedOnTab(idx){
-    var tab=document.getElementById('mt'+idx);
+    var id=idx===-1?'mt-1':'mt'+idx;
+    var tab=document.getElementById(id);
     if(tab)tab.classList.add('dave-here');
+    // Switch dot: red when on switch, green when on a tab
+    var dot=document.getElementById('mSwitchDot');
+    if(dot){
+      if(idx===-1){dot.classList.remove('powered');}
+      else{dot.classList.add('powered');}
+    }
   }
+
+  // Go back to home/identity card state
+  window.mGoHome=function(){
+    if(mWalking)return;
+    mWalking=true;
+    var prevCat=mCurCat;
+    mCurCat=-1;mCurVid=0;
+    setActiveTab(-1);
+    if(prevCat>=0)setTimeout(function(){
+      var t=document.getElementById('mt'+prevCat);
+      if(t){var l=t.querySelector('.mTabLabel');if(l)l.style.opacity='1';}
+    },400);
+    mWalkTo(-1,function(){
+      daveArrivedOnTab(-1);
+      // Show identity card, stop video
+      mVid.pause();mVid.src='';
+      mIdent.style.display='flex';
+      mWorldLabel.classList.remove('show');mWorldLabel.style.opacity='0';
+      mMuteBtn.style.display='none';mPrevNext.style.display='none';
+      mHudWorld.textContent='';
+    });
+  };
 
   function restoreTabLabel(idx){
     var tab=document.getElementById('mt'+idx);
@@ -1913,8 +1915,10 @@ if(window.matchMedia('(max-width:768px)').matches){
     var prevCat=mCurCat;
     mCurCat=catIdx;mCurVid=0;
     setActiveTab(catIdx);
-    // restore previous tab label after Dave leaves
-    if(prevCat>=0&&prevCat!==catIdx)setTimeout(function(){restoreTabLabel(prevCat);},400);
+    if(prevCat!==-1)setTimeout(function(){
+      var t=document.getElementById(prevCat===-1?'mt-1':'mt'+prevCat);
+      if(t){var l=t.querySelector('.mTabLabel');if(l)l.style.opacity='1';}
+    },400);
     mWalkTo(catIdx,function(){daveArrivedOnTab(catIdx);loadVid(catIdx,0);});
   }
 
@@ -2127,9 +2131,10 @@ if(window.matchMedia('(max-width:768px)').matches){
     mDave.style.display='block';
     setTimeout(function(){
       mDave.style.visibility='visible';
-      placeDaveOnTab(0);
-      // Hide label on first tab since Dave starts there
-      document.getElementById('mt0').classList.add('dave-here');
+      mCurCat=-1;
+      placeDaveOnTab(-1);
+      // Dave starts on switch
+      document.getElementById('mt-1').classList.add('active','dave-here');
     },600);
   }
   if(document.fonts&&document.fonts.ready){
