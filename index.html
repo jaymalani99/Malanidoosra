@@ -177,7 +177,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     border-bottom:1px solid #111;
     margin-bottom:-1px;
   }
-  .mTab .mTabLabel{transition:opacity 0.15s;pointer-events:none;}
+  .mTab .mTabLabel{pointer-events:none;}
   .mTab.dave-here .mTabLabel{opacity:0;}
 
   /* Monitor bezel */
@@ -1781,21 +1781,21 @@ if(window.matchMedia('(max-width:768px)').matches){
 
   function setActiveTab(idx){
     document.querySelectorAll('.mTab').forEach(function(t,i){
-      var wasActive=t.classList.contains('active');
       t.classList.remove('active','dave-here');
-      t.style.opacity='0.4';
-      // restore label if Dave was here and now leaving
-      if(wasActive&&i!==idx){
-        t.querySelector('.mTabLabel').style.opacity='1';
-      }
+      t.style.opacity=i===idx?'1':'0.4';
+      // restore label on all non-active tabs
+      var lbl=t.querySelector('.mTabLabel');
+      if(lbl)lbl.style.opacity='1';
     });
     if(idx>=0){
       var tab=document.getElementById('mt'+idx);
-      if(tab){
-        tab.classList.add('active','dave-here');
-        tab.style.opacity='1';
-      }
+      if(tab)tab.classList.add('active');
     }
+  }
+
+  function daveArrivedOnTab(idx){
+    var tab=document.getElementById('mt'+idx);
+    if(tab)tab.classList.add('dave-here');
   }
 
   function restoreTabLabel(idx){
@@ -1878,7 +1878,7 @@ if(window.matchMedia('(max-width:768px)').matches){
     setActiveTab(catIdx);
     // restore previous tab label after Dave leaves
     if(prevCat>=0&&prevCat!==catIdx)setTimeout(function(){restoreTabLabel(prevCat);},400);
-    mWalkTo(catIdx,function(){loadVid(catIdx,0);});
+    mWalkTo(catIdx,function(){daveArrivedOnTab(catIdx);loadVid(catIdx,0);});
   }
 
   document.querySelectorAll('.mTab').forEach(function(tab,i){
@@ -2086,12 +2086,13 @@ if(window.matchMedia('(max-width:768px)').matches){
 
   // Wait for full layout + fonts before measuring Dave
   function initDave(){
-    // Force a reflow to get accurate measurements
     mDave.style.visibility='hidden';
     mDave.style.display='block';
     setTimeout(function(){
       mDave.style.visibility='visible';
       placeDaveOnTab(0);
+      // Hide label on first tab since Dave starts there
+      document.getElementById('mt0').classList.add('dave-here');
     },600);
   }
   if(document.fonts&&document.fonts.ready){
