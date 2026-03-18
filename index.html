@@ -145,9 +145,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     position:absolute;
     top:36px;bottom:0;left:0;right:0;
     display:flex;flex-direction:column;
-    align-items:center;justify-content:center;
+    align-items:center;
+    justify-content:flex-start;
     padding:8px 14px 10px;
   }
+  /* Spacer pushes tabs+monitor to center, crew stays below */
+  #mDeviceSpacer{flex:1;}
 
   /* Thin chrome tabs */
   #mTabRow{
@@ -304,6 +307,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 
   <div id="mDevice">
+    <!-- Top spacer — pushes monitor to center -->
+    <div id="mDeviceSpacer"></div>
+
     <!-- Switch + tabs -->
     <div id="mTabRow">
       <div class="mTab" id="mt-1" style="color:#ff3333;border-color:#440000;background:#0d0000;max-width:28px;flex:0 0 28px;" onclick="mGoHome();">
@@ -1850,9 +1856,10 @@ if(window.matchMedia('(max-width:768px)').matches){
     var daveW=dr.width||31;
     var targetX=pos.x-(daveW/2),targetY=pos.y-daveH;
     var dist=Math.abs(targetX-mDaveX);
-    var anyTab=document.getElementById('mt0');
-    var tabW=anyTab?anyTab.getBoundingClientRect().width:70;
-    var adjacent=dist<tabW*1.6;
+    // Count tab steps: switch=-1, bt0=0... tab index diff > 1 = jump
+    var fromIdx=mCurCat; // current position index
+    var steps=Math.abs(idx-fromIdx);
+    var adjacent=steps<=1;
 
     if(adjacent){
       mDB.className='dw '+(targetX>mDaveX?'wr':'wl');
