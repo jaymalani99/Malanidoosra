@@ -216,6 +216,27 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .mi-sock{display:flex;flex-direction:column;align-items:center;gap:2px;}
   .mi-sock-hole{width:7px;height:7px;border-radius:50%;border:1px solid rgba(255,229,0,0.15);background:#000;}
   .mi-sock-name{font-family:'Press Start 2P',monospace;font-size:3px;color:rgba(255,255,255,0.12);}
+  /* Red power switch */
+  #mRedSwitch{
+    margin-left:auto;
+    width:18px;height:18px;
+    border-radius:50%;
+    background:#1a0000;
+    border:1px solid #440000;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    box-shadow:0 0 8px rgba(255,0,0,0.3);
+    flex-shrink:0;
+  }
+  #mRedSwitchDot{
+    width:8px;height:8px;border-radius:50%;
+    background:#cc0000;
+    box-shadow:0 0 6px rgba(255,0,0,0.8);
+    animation:redpulse 1.5s ease-in-out infinite;
+  }
+  @keyframes redpulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.85);}}
+  #mRedSwitch.powered{background:#001a00;border-color:#004400;box-shadow:0 0 8px rgba(0,255,0,0.3);}
+  #mRedSwitch.powered #mRedSwitchDot{background:#00cc44;box-shadow:0 0 6px rgba(0,255,100,0.8);animation:none;}
 
   /* HUD */
   #mHud{position:absolute;inset:0;z-index:4;pointer-events:none;}
@@ -329,9 +350,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
             <span class="mi-sock-label">PATCH BAY</span>
             <div class="mi-socks">
               <div class="mi-sock"><div class="mi-sock-hole"></div><div class="mi-sock-name">BTS</div></div>
-              <div class="mi-sock"><div class="mi-sock-hole"></div><div class="mi-sock-name">DOCU</div></div>
+              <div class="mi-sock"><div class="mi-sock-hole"></div><div class="mi-sock-name">DOC</div></div>
               <div class="mi-sock"><div class="mi-sock-hole"></div><div class="mi-sock-name">W&D</div></div>
               <div class="mi-sock"><div class="mi-sock-hole"></div><div class="mi-sock-name">TRAVEL</div></div>
+            </div>
+            <!-- Red switch — tap to begin -->
+            <div id="mRedSwitch" onclick="mPowerOn();">
+              <div id="mRedSwitchDot"></div>
             </div>
           </div>
         </div>
@@ -1750,6 +1775,18 @@ if(window.matchMedia('(max-width:768px)').matches){
   var mTcEl=document.getElementById('mHudTc');
   var mContactPanel=document.getElementById('mContactPanel');
   var mTopContactBtn=document.getElementById('mTopContactBtn');
+
+  // ── Power switch ──────────────────────────────────────
+  window.mPowerOn=function(){
+    var sw=document.getElementById('mRedSwitch');
+    if(sw)sw.classList.add('powered');
+    // CRT flash
+    var flash=document.createElement('div');
+    flash.style.cssText='position:absolute;inset:0;background:#fff;z-index:10;pointer-events:none;opacity:0.6;transition:opacity 0.4s;';
+    document.getElementById('mScreen').appendChild(flash);
+    setTimeout(function(){flash.style.opacity='0';},50);
+    setTimeout(function(){flash.remove();mSelect(0);},450);
+  };
 
   // ── Contact toggle ───────────────────────────────────
   window.mToggleContact=function(){
