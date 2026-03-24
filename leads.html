@@ -582,6 +582,15 @@
       </div>
 
       <div class="field full">
+        <label>Search Mode</label>
+        <div class="chip-group" id="searchMode">
+          <button class="chip active" data-val="active">🔴 Active Listings Only</button>
+          <button class="chip" data-val="cold">🔵 Cold Targets Only</button>
+          <button class="chip" data-val="both">⚡ Both — labelled separately</button>
+        </div>
+      </div>
+
+      <div class="field full">
         <label>Any specific niches or brands to target? (optional)</label>
         <textarea id="extraContext" placeholder="e.g. D2C skincare brands, hospitality / hotel brands, fintech companies with active social..."></textarea>
       </div>
@@ -641,6 +650,11 @@
     return [...document.querySelectorAll(`#${groupId} .chip.active`)].map(c => c.dataset.val);
   }
 
+  function getSearchMode() {
+    const active = document.querySelector('#searchMode .chip.active');
+    return active ? active.dataset.val : 'active';
+  }
+
   function setStatus(state, text) {
     const dot = document.getElementById('statusDot');
     dot.className = 'dot ' + state;
@@ -685,7 +699,9 @@
     log('Initialising lead finder agent...', 'info');
     log(`Target: ${location} · Work: ${workTypes.join(', ')}`, '');
     log(`Sources: ${sources.join(', ')}`, '');
+    const mode = getSearchMode();
     if (extraContext) log(`Extra context: ${extraContext.slice(0,80)}...`, '');
+    log(`Mode: ${mode === 'active' ? 'ACTIVE LISTINGS ONLY' : mode === 'cold' ? 'COLD TARGETS ONLY' : 'BOTH (labelled)'}`, 'info');
 
     const apiKey = document.getElementById('apiKey').value.trim();
     if (!apiKey || !apiKey.startsWith('sk-ant-')) {
@@ -695,7 +711,7 @@
       return;
     }
 
-    const prompt = buildPrompt(name, portfolio, location, workTypes, sources, extraContext);
+    const prompt = buildPrompt(name, portfolio, location, workTypes, sources, extraContext, mode);
 
     try {
       log('Agent searching web for live leads...', 'info');
@@ -752,7 +768,7 @@
     document.getElementById('runBtn').disabled = false;
   }
 
-  function buildPrompt(name, portfolio, location, workTypes, sources, extra) {
+  function buildPrompt(name, portfolio, location, workTypes, sources, extra, mode) {
     return `You are a live lead research agent for a filmmaker/cinematographer named ${name} based in ${location}.
 
 Portfolio: ${portfolio}
@@ -769,9 +785,8 @@ STEP 1 — SEARCH THE WEB FIRST. Before generating any leads, use web_search to 
 
 Run at least 4–5 searches across these angles. Use what you find to inform real, current leads.
 
-STEP 2 — Generate 8–10 leads based on your search findings. Mix:
-- Companies actively hiring or posting shoots right now (from search results)
-- Established ${location} agencies/brands that regularly hire freelancers
+STEP 2 — Generate 8–10 leads based on your search findings.
+${mode === 'active' ? `ACTIVE LISTINGS ONLY MODE: Only include companies with a verified active job post or casting call found in your search. If a company has no live listing, exclude it entirely. Do NOT include cold outreach targets.` : mode === 'cold' ? `COLD TARGETS ONLY MODE: Only include established agencies, brands, and production houses that regularly hire freelance cinematographers based on their profile — do NOT include job listings. These are companies you would pitch cold.` : `BOTH MODE: Include a mix. Clearly label each lead as either "Active Listing" or "Cold Target" in the lead_status field based on whether you found an actual job post or not.`}
 
 STEP 3 — For each lead write a short personalised cold pitch (5–7 lines):
 - Open with a specific observation about that company
@@ -794,6 +809,7 @@ Respond ONLY with a JSON array. No preamble. Format:
     "about": "2 sentence description of what this company does",
     "fit_score": 8,
     "pitch_subject": "Email subject line",
+    "lead_status": "Active Listing | Cold Target",
     "pitch_body": "Full pitch body text"
   }
 ]
@@ -811,6 +827,9 @@ Respond ONLY with a JSON array. No preamble. Format:
       card.id = `lead-${i}`;
 
       const scoreClass = lead.fit_score >= 8 ? 'high' : lead.fit_score >= 6 ? 'mid' : 'low';
+      const statusBadge = lead.lead_status === 'Active Listing'
+        ? '<span class="tag" style="border-color:#c8ff0055;color:var(--accent)">🔴 ACTIVE LISTING</span>'
+        : '<span class="tag" style="border-color:#3b8bff55;color:var(--blue)">🔵 COLD TARGET</span>';
       const typeClass = lead.type?.toLowerCase().includes('brand') ? 'type-brand'
         : lead.type?.toLowerCase().includes('corp') ? 'type-corp'
         : lead.type?.toLowerCase().includes('wedding') ? 'type-wedding' : 'type-travel';
