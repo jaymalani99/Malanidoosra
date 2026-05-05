@@ -868,7 +868,7 @@ function goW(i){if(isTr||i===cw)return;isTr=true;eCool=true;flash.style.opacity=
     if(el){el.style.borderColor='rgba('+r+','+g+','+b+',0.15)';el.style.color='rgba('+r+','+g+','+b+',0.25)';}
   });
   hint.textContent=hintT[cw];
-  hint.classList.toggle('small', cw>=1&&cw<=4);
+  hint.classList.toggle('small', (cw>=1&&cw<=4)||cw===6);
   // Restart world label fadeout animation
   ['wlabel','wtit','wdesc'].forEach(function(cls){
     document.querySelectorAll('.'+cls).forEach(function(el){
@@ -1052,7 +1052,7 @@ function drawWireSystem(){
       drawPlug(hand.x,hand.y,4,0.85);
       drawPlug(tipX,tipY,nearest?5:4,nearest?0.9:0.6);
     }
-  } else if(cw>=1&&cw<=4){
+  } else if(cw>=1&&cw<=4||cw===6){
     // Video worlds — wire trails from left ground socket to Dave's hand
     var ljEl=document.getElementById('leftJack');
     var ljRect=ljEl?ljEl.getBoundingClientRect():null;
@@ -1707,6 +1707,7 @@ document.addEventListener('keydown',function(e){
     else if(cw===2)toggleWMute('w2vid');
     else if(cw===3)toggleWMute('w3vid');
     else if(cw===4)toggleW4Mute();
+    else if(cw===6)toggleW6Mute();
   }
   if(e.key==='Escape'&&cw!==0)goW(0);
 });
