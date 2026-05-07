@@ -368,9 +368,13 @@
     transition: transform 0.6s, filter 0.4s;
   }
 
-  .film-item:hover video {
-    transform: scale(1);
-    filter: grayscale(0%);
+  .film-item.vertical video {
+    object-fit: contain;
+    background: var(--grey);
+    transform: none;
+  }
+  .film-item.vertical:hover video {
+    transform: none;
   }
 
   .film-overlay {
@@ -459,10 +463,11 @@
   #lightbox.open { opacity: 1; pointer-events: all; }
 
   #lb-video {
-    width: 90vw;
-    max-width: 1200px;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
 
   #lb-close {
@@ -902,7 +907,7 @@
     <span class="section-desc">Brand moments.<br>Every milestone, documented.</span>
   </div>
   <div class="film-grid">
-    <div class="film-item" data-src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Csr%20Innaugration%20V7.mp4" data-title="The CSR Journal Inauguration">
+    <div class="film-item vertical" data-src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Csr%20Innaugration%20V7.mp4" data-title="The CSR Journal Inauguration">
       <video muted loop playsinline preload="metadata" style="object-position: center center;">
         <source src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Csr%20Innaugration%20V7.mp4" type="video/mp4">
       </video>
