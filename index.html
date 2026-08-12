@@ -990,7 +990,9 @@
 
 <script>
   // AUTO THUMBNAILS — seek grid videos to 0.5s so first frame shows
+  // (skipped for any video that already has a custom poster image set)
   document.querySelectorAll('.film-item video').forEach(video => {
+    if (video.hasAttribute('poster')) return;
     video.addEventListener('loadedmetadata', () => {
       video.currentTime = 0.5;
     });
