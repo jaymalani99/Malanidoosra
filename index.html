@@ -1035,6 +1035,7 @@
       const src = item.dataset.src;
       const title = item.dataset.title;
       if(!src) return;
+      heroVideo.pause();
       lbVideo.src = src;
       lbTitle.textContent = title || '';
       lbVideo.load();
@@ -1049,6 +1050,7 @@
     lbVideo.pause();
     lbVideo.src = '';
     document.body.style.overflow = '';
+    heroVideo.play().catch(()=>{});
   }
 
   lb.addEventListener('click', e => { if(e.target === lb) closeLightbox(); });
