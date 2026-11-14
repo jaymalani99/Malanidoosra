@@ -9,12 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #080808;
-    --white: #f0ede8;
-    --orange: #ff4400;
-    --grey: #1a1a1a;
-    --mid: #333;
-    --text-dim: rgba(240,237,232,0.35);
+    --black: #EAD2B0;
+    --white: #2F3F21;
+    --orange: #963417;
+    --grey: #DFC49B;
+    --mid: #628981;
+    --solace: #CF893A;
+    --text-dim: rgba(47,63,33,0.45);
+    --text-dim-onvideo: rgba(234,210,176,0.55);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,7 +60,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 24px 40px;
-    mix-blend-mode: normal;
+    background: rgba(234,210,176,0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .nav-logo {
@@ -134,7 +138,7 @@
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     letter-spacing: 3px;
-    color: var(--orange);
+    color: var(--solace);
     text-transform: uppercase;
     margin-bottom: 12px;
     opacity: 0;
@@ -146,19 +150,19 @@
     font-size: clamp(64px, 10vw, 140px);
     line-height: 0.92;
     letter-spacing: -1px;
-    color: var(--white);
+    color: var(--black);
     opacity: 0;
     animation: fadeUp 0.8s 0.5s forwards;
   }
 
-  .hero-title span { color: var(--orange); }
+  .hero-title span { color: var(--solace); }
 
   .hero-sub {
     margin-top: 20px;
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     letter-spacing: 2px;
-    color: var(--text-dim);
+    color: var(--text-dim-onvideo);
     text-transform: uppercase;
     opacity: 0;
     animation: fadeUp 0.8s 0.7s forwards;
@@ -180,7 +184,7 @@
     font-family: 'DM Mono', monospace;
     font-size: 9px;
     letter-spacing: 2px;
-    color: var(--text-dim);
+    color: var(--text-dim-onvideo);
     text-transform: uppercase;
     writing-mode: vertical-rl;
     text-orientation: mixed;
@@ -202,7 +206,7 @@
     font-family: 'DM Mono', monospace;
     font-size: 8px;
     letter-spacing: 2px;
-    color: var(--text-dim);
+    color: var(--text-dim-onvideo);
     writing-mode: vertical-rl;
     text-transform: uppercase;
   }
@@ -222,7 +226,7 @@
     font-family: 'DM Mono', monospace;
     font-size: 9px;
     letter-spacing: 2px;
-    color: var(--text-dim);
+    color: var(--text-dim-onvideo);
     text-transform: uppercase;
     background: none;
     border: 1px solid var(--mid);
@@ -232,7 +236,7 @@
     opacity: 0;
     animation: fadeIn 1s 1.5s forwards;
   }
-  .mute-btn:hover { color: var(--white); border-color: var(--white); }
+  .mute-btn:hover { color: var(--black); border-color: var(--black); }
 
   /* INTRO LINE */
   .intro-section {
@@ -312,7 +316,7 @@
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     letter-spacing: 2px;
-    color: var(--orange);
+    color: var(--solace);
   }
 
   .section-title {
@@ -393,7 +397,7 @@
     font-family: 'DM Mono', monospace;
     font-size: 8px;
     letter-spacing: 3px;
-    color: var(--orange);
+    color: var(--solace);
     text-transform: uppercase;
     margin-bottom: 6px;
     transform: translateY(4px);
@@ -406,7 +410,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(18px, 2.5vw, 28px);
     letter-spacing: 1px;
-    color: var(--white);
+    color: var(--black);
     line-height: 1;
     transform: translateY(4px);
     transition: transform 0.3s;
@@ -436,7 +440,7 @@
     width: 0; height: 0;
     border-style: solid;
     border-width: 7px 0 7px 12px;
-    border-color: transparent transparent transparent var(--white);
+    border-color: transparent transparent transparent var(--black);
     margin-left: 3px;
   }
 
@@ -476,13 +480,13 @@
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     letter-spacing: 2px;
-    color: var(--text-dim);
+    color: var(--text-dim-onvideo);
     background: none;
     border: none;
     cursor: none;
     transition: color 0.2s;
   }
-  #lb-close:hover { color: var(--white); }
+  #lb-close:hover { color: var(--black); }
 
   #lb-title {
     position: absolute;
@@ -491,7 +495,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 24px;
     letter-spacing: 2px;
-    color: var(--text-dim);
+    color: var(--text-dim-onvideo);
   }
 
   /* ABOUT STRIP */
@@ -793,6 +797,16 @@
         <div class="film-play"></div>
         <span class="film-cat">BTS</span>
         <span class="film-name">Shreeleela Rosta</span>
+      </div>
+    </div>
+    <div class="film-item" data-src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Gemini%20Bts%20V5.mp4" data-title="Google Gemini w Sunil Grover · BTS">
+      <video muted loop playsinline preload="metadata" poster="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Gemini%20BTS%20v5.mp4_snapshot_00.09.149.jpg">
+        <source src="https://pub-568fb605618c4287a7f4c3ce70a8240c.r2.dev/Gemini%20Bts%20V5.mp4" type="video/mp4">
+      </video>
+      <div class="film-overlay">
+        <div class="film-play"></div>
+        <span class="film-cat">BTS</span>
+        <span class="film-name">Google Gemini w Sunil Grover</span>
       </div>
     </div>
   </div>
