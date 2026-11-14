@@ -340,13 +340,46 @@
   /* FILM GRID */
   .film-grid {
     padding: 0 40px 80px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 3px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 40px;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .film-grid::-webkit-scrollbar { display: none; }
+
+  .film-row { position: relative; }
+  .row-arrow {
+    position: absolute;
+    top: calc(50% - 40px);
+    transform: translateY(-50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--orange);
+    background: rgba(234,210,176,0.94);
+    color: var(--orange);
+    cursor: none;
+    z-index: 5;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, background 0.2s, color 0.2s;
+  }
+  .row-arrow.show { opacity: 1; pointer-events: auto; }
+  .row-arrow:hover { background: var(--orange); color: var(--black); }
+  .row-arrow.prev { left: 18px; }
+  .row-arrow.next { right: 18px; }
+  .row-arrow svg { width: 18px; height: 18px; }
+  @media (hover: none) { .row-arrow { display: none; } }
 
   .film-item {
     position: relative;
+    flex: 0 0 calc((100% - 6px) / 3);
+    scroll-snap-align: start;
     aspect-ratio: 16/9;
     overflow: hidden;
     background: var(--grey);
@@ -661,8 +694,9 @@
     .section-header { padding: 40px 20px 20px; flex-wrap: wrap; }
     .section-desc { display: none; }
 
-    .film-grid { padding: 0 20px 60px; grid-template-columns: 1fr 1fr; gap: 2px; }
-    .film-grid.has-featured .film-item:first-child { grid-column: span 2; }
+    .film-grid { padding: 0 20px 60px; gap: 2px; scroll-padding-left: 20px; }
+    .film-item { flex-basis: 78%; }
+    .row-arrow { display: none; }
 
     .about-strip { padding: 60px 20px; grid-template-columns: 1fr; gap: 40px; }
 
@@ -676,8 +710,7 @@
   }
 
   @media (max-width: 480px) {
-    .film-grid { grid-template-columns: 1fr; }
-    .film-grid.has-featured .film-item:first-child { grid-column: span 1; aspect-ratio: 16/9; }
+    .film-item { flex-basis: 84%; }
   }
 
   /* NOISE OVERLAY */
@@ -1112,6 +1145,43 @@
   }, { threshold: 0.1 });
 
   reveals.forEach(el => observer.observe(el));
+
+  // FILM ROWS — wrap each grid, add desktop arrows that show only when a row overflows
+  const chevron = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="' + d + '"/></svg>';
+  document.querySelectorAll('.film-grid').forEach(grid => {
+    const wrap = document.createElement('div');
+    wrap.className = 'film-row';
+    grid.parentNode.insertBefore(wrap, grid);
+    wrap.appendChild(grid);
+    const make = (dir, path, label) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'row-arrow ' + dir;
+      b.setAttribute('aria-label', label);
+      b.innerHTML = chevron(path);
+      b.addEventListener('mouseenter', () => cursor.classList.add('big'));
+      b.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+      wrap.appendChild(b);
+      return b;
+    };
+    const prev = make('prev', 'M15 18l-6-6 6-6', 'Previous videos');
+    const next = make('next', 'M9 18l6-6-6-6', 'Next videos');
+    const update = () => {
+      const max = grid.scrollWidth - grid.clientWidth;
+      prev.classList.toggle('show', grid.scrollLeft > 4);
+      next.classList.toggle('show', grid.scrollLeft < max - 4);
+    };
+    const step = () => {
+      const it = grid.querySelector('.film-item');
+      return it ? (it.getBoundingClientRect().width + 3) * 3 : grid.clientWidth;
+    };
+    prev.addEventListener('click', () => grid.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => grid.scrollBy({ left: step(), behavior: 'smooth' }));
+    grid.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    window.addEventListener('load', update);
+    update();
+  });
 </script>
 </body>
 </html>
